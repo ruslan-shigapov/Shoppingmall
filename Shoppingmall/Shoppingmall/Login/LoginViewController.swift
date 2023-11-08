@@ -83,15 +83,17 @@ final class LoginViewController: UIViewController {
         view.addSubview(doneButton)
     }
     
+    // вынести во вью модель 
     private func format(phoneNumber: String) -> String {
+        let cleanPhoneNumber = phoneNumber.components(separatedBy: .decimalDigits.inverted).joined()
         let mask = "+X (XXX) XXX XX XX"
         
         var result = ""
-        var index = phoneNumber.startIndex
-        for element in mask where index < phoneNumber.endIndex {
+        var index = cleanPhoneNumber.startIndex
+        for element in mask where index < cleanPhoneNumber.endIndex {
             if element == "X" {
-                result.append(phoneNumber[index])
-                index = phoneNumber.index(after: index)
+                result.append(cleanPhoneNumber[index])
+                index = cleanPhoneNumber.index(after: index)
             } else {
                 result.append(element)
             }

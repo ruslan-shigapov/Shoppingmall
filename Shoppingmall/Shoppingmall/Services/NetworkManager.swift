@@ -65,7 +65,7 @@ final class NetworkManager {
                 print(httpResponse.statusCode)
                 return $0.data
             }
-//            .decode(type: MobileDevice.self, decoder: JSONDecoder())
+            .decode(type: MobileDevice.self, decoder: JSONDecoder())
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -73,10 +73,9 @@ final class NetworkManager {
                 case .failure(let error):
                     print("finished with error: \(error)")
                 }
-            } receiveValue: { /*[weak self] in*/
-//                UserDefaults.standard.set($0.id, forKey: "deviceId")
-//                print(self?.deviceId)
-                print($0)
+            } receiveValue: { [weak self] in
+                UserDefaults.standard.set($0.id, forKey: "deviceId")
+                print(self?.deviceId)
             }
     }
 }

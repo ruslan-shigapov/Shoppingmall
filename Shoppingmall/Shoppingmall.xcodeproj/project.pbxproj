@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E440C59B2AFB979300F1EE5D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440C59A2AFB979300F1EE5D /* LoginViewModel.swift */; };
+		E4764AA22AFCDCC000822F7C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4764AA12AFCDCC000822F7C /* Constants.swift */; };
 		E4FA6F702AF2438900E3B64A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA6F6F2AF2438900E3B64A /* AppDelegate.swift */; };
 		E4FA6F722AF2438900E3B64A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA6F712AF2438900E3B64A /* SceneDelegate.swift */; };
 		E4FA6F742AF2438900E3B64A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA6F732AF2438900E3B64A /* LoginViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		E440C59A2AFB979300F1EE5D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		E4764AA12AFCDCC000822F7C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E4FA6F6C2AF2438900E3B64A /* Shoppingmall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoppingmall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4FA6F6F2AF2438900E3B64A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4FA6F712AF2438900E3B64A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		E4FA6F892AF2441300E3B64A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E4764AA12AFCDCC000822F7C /* Constants.swift */,
 				E4FA6F7B2AF2438C00E3B64A /* Assets.xcassets */,
 				E4FA6F802AF2438C00E3B64A /* Info.plist */,
 			);
@@ -201,6 +204,7 @@
 				E4FDDD392AF3A10A00D8A72E /* MobileDevice.swift in Sources */,
 				E4FA6F7A2AF2438900E3B64A /* Shoppingmall.xcdatamodeld in Sources */,
 				E440C59B2AFB979300F1EE5D /* LoginViewModel.swift in Sources */,
+				E4764AA22AFCDCC000822F7C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,28 +9,26 @@ import UIKit
 
 final class LoginViewController: UIViewController {
     
-    // MARK: Views
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false // вынести везде в отдельный метод?
-        label.text = "Авторизация" // добавить в константы
-        label.font = .systemFont(ofSize: 16) // добавить в константы
+        label.translatesAutoresizingMaskIntoConstraints = false 
+        label.text = Constants.Text.loginTitle
+        label.font = .systemFont(ofSize: 16)
         return label
     }()
     
     private lazy var signLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Введите номер телефона" // добавить в константы
-        label.font = .systemFont(ofSize: 16) // добавить в константы
+        label.text = Constants.Text.loginSign
+        label.font = .systemFont(ofSize: 16)
         return label
     }()
     
-    // создать один кастомный элемент из двух
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.font = .systemFont(ofSize: 14, weight: .light) // добавить в константы
+        textField.font = .systemFont(ofSize: 14, weight: .light)
         textField.keyboardType = .decimalPad
         return textField
     }()
@@ -39,7 +37,7 @@ final class LoginViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .secondarySystemBackground
-        view.layer.cornerRadius = 8 // добавить в константы
+        view.layer.cornerRadius = 8
         view.addSubview(textField)
         return view
     }()
@@ -47,7 +45,7 @@ final class LoginViewController: UIViewController {
     private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "На него будет отправлен одноразовый код" // добавить в константы
+        label.text = Constants.Text.loginInfo
         label.font = .systemFont(ofSize: 14, weight: .light)
         label.textColor = .systemGray
         return label
@@ -56,12 +54,14 @@ final class LoginViewController: UIViewController {
     private lazy var doneButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(named: "DeepBlue") // добавить в константы
-        button.layer.cornerRadius = 8 // добавить в константы
-        button.setTitle("Готово", for: .normal) // добавить в константы
-        button.titleLabel?.font = .systemFont(ofSize: 14) // добавить в константы
+        button.backgroundColor = Constants.Colors.deepBlue
+        button.layer.cornerRadius = 8
+        button.setTitle(Constants.Text.done, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 14) 
         return button
     }()
+    
+    private let viewModel = LoginViewModel()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,24 +82,6 @@ final class LoginViewController: UIViewController {
         view.addSubview(infoLabel)
         view.addSubview(doneButton)
     }
-    
-    // вынести во вью модель 
-    private func format(phoneNumber: String) -> String {
-        let cleanPhoneNumber = phoneNumber.components(separatedBy: .decimalDigits.inverted).joined()
-        let mask = "+X (XXX) XXX XX XX"
-        
-        var result = ""
-        var index = cleanPhoneNumber.startIndex
-        for element in mask where index < cleanPhoneNumber.endIndex {
-            if element == "X" {
-                result.append(cleanPhoneNumber[index])
-                index = cleanPhoneNumber.index(after: index)
-            } else {
-                result.append(element)
-            }
-        }
-        return result
-    }
 }
 
 // MARK: - UITextField Delegate
@@ -110,9 +92,13 @@ extension LoginViewController: UITextFieldDelegate {
         shouldChangeCharactersIn range: NSRange,
         replacementString string: String
     ) -> Bool {
-        guard let text = textField.text as? NSString else { return false }
-        let newString = text.replacingCharacters(in: range, with: string)
-        textField.text = format(phoneNumber: newString)
+        viewModel.replaceCharactersOf(
+            text: textField.text,
+            in: range,
+            withReplacement: string
+        ) { newText in
+            textField.text = viewModel.format(phoneNumber: newText)
+        }
         return false
     }
 }

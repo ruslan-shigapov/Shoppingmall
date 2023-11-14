@@ -66,11 +66,6 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textField.delegate = self
-        setupUI()
-    }
-    
-    private func setupUI() {
-        view.backgroundColor = .systemBackground
         addSubviews()
         setConstraints()
     }

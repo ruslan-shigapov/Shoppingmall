@@ -26,24 +26,22 @@ final class NetworkManager {
     private var deviceId: String? {
         UserDefaults.standard.string(forKey: "deviceId")
     }
+    
+    var isFirstLaunching: Bool {
+        deviceId == nil
+    }
                 
     private init() {}
     
-    /// Определение наличия идентификатора устройства
-    func setupDeviceId() {
-        guard deviceId != nil else {
-            getDeviceId()
-            return
-        }
-    }
-    
     /// Запрос для добавления мобильного устройства в систему
-    private func getDeviceId() {
+    func setupDeviceId() {
+        guard isFirstLaunching else { return }
         let url = URL(string: Path.base.rawValue + Path.mobileDevice.rawValue)!
         
         /// Время первого запуска приложения в формате timestamp
         let timestamp = Date().timeIntervalSince1970
         
+        /// Объект в формате JSON для отправки в теле запроса
         let json: [String: Any] = [
             "install_app": Int(timestamp),
             "os": "iOS",

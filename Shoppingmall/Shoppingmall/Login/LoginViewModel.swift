@@ -25,14 +25,16 @@ final class LoginViewModel: LoginViewModelProtocol {
         withReplacement string: String,
         completion: (String) -> Void
     ) {
-        guard let text else { return }
-        let newText = (text as NSString).replacingCharacters(
-            in: range,
-            with: string
-        )
-        completion(newText)
+        if let text {
+            let newText = (text as NSString).replacingCharacters(
+                in: range,
+                with: string
+            )
+            completion(newText)
+        }
     }
     
+    /// Форматирование номера телефона под стандартную маску
     func format(phoneNumber: String) -> String {
         let mask = "+X (XXX) XXX XX XX"
         let cleanPhoneNumber = phoneNumber.components(

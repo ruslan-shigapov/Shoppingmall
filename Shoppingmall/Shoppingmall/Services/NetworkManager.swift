@@ -71,9 +71,9 @@ final class NetworkManager {
                 case .failure(let error):
                     print("finished with error: \(error)")
                 }
-            } receiveValue: { [weak self] in
+            } receiveValue: { /*[weak self] in*/
                 UserDefaults.standard.set($0.id, forKey: "deviceId")
-                print(self?.deviceId)
+//                print(self?.deviceId)
             }
     }
 }

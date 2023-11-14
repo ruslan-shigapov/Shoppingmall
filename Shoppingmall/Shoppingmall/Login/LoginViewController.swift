@@ -132,6 +132,10 @@ extension LoginViewController {
             ),
             backgroundView.heightAnchor.constraint(equalToConstant: 31),
             
+            textField.topAnchor.constraint(
+                equalTo: backgroundView.topAnchor,
+                constant: 8
+            ),
             textField.leadingAnchor.constraint(
                 equalTo: backgroundView.leadingAnchor,
                 constant: 16
@@ -139,10 +143,6 @@ extension LoginViewController {
             textField.trailingAnchor.constraint(
                 equalTo: backgroundView.trailingAnchor,
                 constant: -16
-            ),
-            textField.topAnchor.constraint(
-                equalTo: backgroundView.topAnchor,
-                constant: 8
             ),
             textField.bottomAnchor.constraint(
                 equalTo: backgroundView.bottomAnchor,

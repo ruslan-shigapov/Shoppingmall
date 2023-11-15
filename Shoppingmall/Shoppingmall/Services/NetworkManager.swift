@@ -9,6 +9,7 @@ import UIKit
 import Combine
 
 private enum Path: String {
+    
     case base = "https://skillbox.dev.instadev.net/api/v1"
     case mobileDevice = "/mobile-device"
 }

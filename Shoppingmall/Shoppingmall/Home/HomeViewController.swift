@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()

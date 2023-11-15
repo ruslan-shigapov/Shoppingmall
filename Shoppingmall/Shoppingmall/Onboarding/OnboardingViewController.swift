@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingViewController: UIViewController {
+final class OnboardingViewController: UIViewController {
     
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
@@ -34,7 +34,7 @@ class OnboardingViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = Constants.Text.firstPageTitle
+        label.text = Constants.Text.Onboarding.firstPageTitle
         label.font = .systemFont(ofSize: 32)
         label.textColor = .white
         label.numberOfLines = 2
@@ -52,7 +52,7 @@ class OnboardingViewController: UIViewController {
     private lazy var skipButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(Constants.Text.skip, for: .normal)
+        button.setTitle(Constants.Text.ButtonTitle.skip, for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
         return button

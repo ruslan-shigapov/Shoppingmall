@@ -56,7 +56,7 @@ final class LoginViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = Constants.Colors.deepBlue
         button.layer.cornerRadius = 8
-        button.setTitle(Constants.Text.done, for: .normal)
+        button.setTitle(Constants.Text.ButtonTitle.done, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14) 
         return button
     }()
@@ -130,7 +130,7 @@ extension LoginViewController {
                 equalTo: view.trailingAnchor,
                 constant: -24
             ),
-            backgroundView.heightAnchor.constraint(equalToConstant: 31),
+            backgroundView.heightAnchor.constraint(equalToConstant: 32),
             
             textField.topAnchor.constraint(
                 equalTo: backgroundView.topAnchor,
@@ -170,7 +170,7 @@ extension LoginViewController {
                 equalTo: view.trailingAnchor,
                 constant: -24
             ),
-            doneButton.heightAnchor.constraint(equalToConstant: 31)
+            doneButton.heightAnchor.constraint(equalToConstant: 32)
         ])
     }
 }

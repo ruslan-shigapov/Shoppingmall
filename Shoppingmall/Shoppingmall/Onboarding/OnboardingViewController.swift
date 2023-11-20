@@ -57,6 +57,8 @@ final class OnboardingViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 14)
         return button
     }()
+    
+    weak var coordinator: OnboardingCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()

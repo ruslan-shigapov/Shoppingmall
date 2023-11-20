@@ -8,6 +8,5 @@
 import Foundation
 
 struct MobileDevice: Decodable {
-    
     let id: String
 }

@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var appCoordinator: AppCoordinator?
     
     func scene(
         _ scene: UIScene,
@@ -18,10 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.makeKeyAndVisible()
-        window?.rootViewController = NetworkManager.shared.isFirstLaunching
-            ? OnboardingViewController()
-            : TabBarController()
+        if let window {
+            appCoordinator = AppCoordinator(window: window)
+            appCoordinator?.start()
+        }
     }
 }
 

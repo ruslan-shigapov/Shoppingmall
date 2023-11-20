@@ -8,7 +8,6 @@
 import Foundation
 
 protocol LoginViewModelProtocol {
-    
     func replaceCharactersOf(
         text: String?,
         in range: NSRange,

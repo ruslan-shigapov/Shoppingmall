@@ -8,16 +8,12 @@
 import UIKit
 
 enum Constants {
-    
     enum Colors {
-        
         static let deepBlue = UIColor(named: "DeepBlue")
     }
     
     enum Text {
-        
         enum Onboarding {
-            
             static let firstPageTitle = "Шоппинг и отдых"
             static let secondPageTitle = "Особые привилегии"
             static let thirdPageTitle = "Узнавайте первыми"
@@ -32,7 +28,6 @@ enum Constants {
         static let loginInfo = "На него будет отправлен одноразовый код"
         
         enum ButtonTitle {
-            
             static let allow = "Разрешить"
             static let sooner = "Позже"
             static let register = "Зарегистрироваться"
@@ -45,7 +40,6 @@ enum Constants {
     }
     
     enum Images {
-        
         static let logo = UIImage(named: "Logo")
         static let shoppingAndRest = UIImage(named: "Onboarding1") // delete
     }

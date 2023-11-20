@@ -6,75 +6,76 @@
 //
 
 import UIKit
-import Combine
 
 private enum Path: String {
-    
     case base = "https://skillbox.dev.instadev.net/api/v1"
     case mobileDevice = "/mobile-device"
 }
 
 enum NetworkError: Error {
-
+    case noData
+    case decodingError
 }
 
 final class NetworkManager {
     
     static let shared = NetworkManager()
-    
-    private var subscription: AnyCancellable? = nil
-        
+            
     private var deviceId: String? {
         UserDefaults.standard.string(forKey: "deviceId")
-    }
-    
-    var isFirstLaunching: Bool {
-        deviceId == nil
     }
                 
     private init() {}
     
-    /// Запрос для добавления мобильного устройства в систему
+    /// Установка идентификатора мобильного устройства
     func setupDeviceId() {
-        guard isFirstLaunching else { return }
-        let url = URL(string: Path.base.rawValue + Path.mobileDevice.rawValue)!
-        
+        guard deviceId == nil else { return }
+
         /// Время первого запуска приложения в формате timestamp
         let timestamp = Date().timeIntervalSince1970
         
-        /// Объект в формате JSON для отправки в теле запроса
-        let json: [String: Any] = [
+        /// Данные в формате JSON для отправки в теле запроса
+        let jsonData: [String: Any] = [
             "install_app": Int(timestamp),
             "os": "iOS",
             "version_os": UIDevice.current.systemVersion,
             "model": UIDevice.current.model
         ]
         
+        getDeviceId(by: jsonData) { result in
+            switch result {
+            case .success(let id):
+                UserDefaults.standard.set(id, forKey: "deviceId")
+                print(id)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    /// Запрос для добавления устройства в систему
+    func getDeviceId(
+        by jsonData: [String: Any],
+        completion: @escaping (Result<Any, NetworkError>) -> Void
+    ) {
+        let url = URL(string: Path.base.rawValue + Path.mobileDevice.rawValue)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "content-type")
-        request.setValue("text/plain", forHTTPHeaderField: "accept")
-        request.httpBody = try? JSONSerialization.data(withJSONObject: json)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: jsonData)
         
-        subscription = URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap {
-                guard let httpResponse = $0.response as? HTTPURLResponse else {
-                    return $0.data
-                }
-                print(httpResponse.statusCode)
-                return $0.data
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data else {
+                completion(.failure(.noData))
+                return
             }
-            .decode(type: MobileDevice.self, decoder: JSONDecoder())
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    print("device ID received")
-                case .failure(let error):
-                    print("finished with error: \(error)")
-                }
-            } receiveValue: { /*[weak self] in*/
-                UserDefaults.standard.set($0.id, forKey: "deviceId")
-//                print(self?.deviceId)
+            do {
+                let decoder = JSONDecoder() // TODO: вынести в свойство класса
+                let device = try decoder.decode(MobileDevice.self, from: data)
+                completion(.success(device.id))
+            } catch {
+                completion(.failure(.decodingError))
             }
+        }.resume()
     }
 }

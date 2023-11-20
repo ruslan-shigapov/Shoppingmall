@@ -8,7 +8,9 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
-
+    
+    weak var coordinator: TabBarCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -18,10 +20,10 @@ final class TabBarController: UITabBarController {
     private func setupUI() {
         setViewControllers([
                 HomeViewController()
-                // TODO: add another VCs
+                // TODO: добавить другие контроллеры
             ],
             animated: true
         )
-        // TODO: setup tab bar items
+        // TODO: настроить иконки 
     }
 }

@@ -8,7 +8,6 @@
 import UIKit
 
 enum OnboardingPage: Int {
-    
     case first
     case second
     case third

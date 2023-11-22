@@ -20,4 +20,8 @@ class OnboardingCoordinator: BaseCoordinator {
         onboardingVC.coordinator = self
         navigationController.pushViewController(onboardingVC, animated: true)
     }
+    
+    func skipOnboarding() {
+        
+    }
 }

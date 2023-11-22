@@ -11,7 +11,6 @@ final class OnboardingViewController: UIViewController {
     
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = Constants.Images.logo
         return imageView
     }()
@@ -55,6 +54,11 @@ final class OnboardingViewController: UIViewController {
         button.setTitle(Constants.Text.ButtonTitle.skip, for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
+        button.addTarget(
+            self,
+            action: #selector(skipButtonWasPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -67,17 +71,22 @@ final class OnboardingViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
+        navigationItem.titleView = logoView
+        
         addSubviews()
         setConstraints()
     }
     
     private func addSubviews() {
-        view.addSubview(logoView)
         view.addSubview(backgroundView)
         view.addSubview(imageView)
         view.addSubview(titleLabel)
         view.addSubview(pageControl)
         view.addSubview(skipButton)
+    }
+    
+    @objc private func skipButtonWasPressed() {
+        coordinator?.skipOnboarding()
     }
 }
 
@@ -86,16 +95,11 @@ extension OnboardingViewController {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            logoView.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: 40
-            ),
-            logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoView.widthAnchor.constraint(equalToConstant: 120),
             logoView.heightAnchor.constraint(equalToConstant: 20),
             
             backgroundView.topAnchor.constraint(
-                equalTo: logoView.bottomAnchor,
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: 24
             ),
             backgroundView.leadingAnchor.constraint(
@@ -107,10 +111,6 @@ extension OnboardingViewController {
                 constant: -24
             ),
             
-            imageView.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: 200
-            ),
             imageView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
                 constant: 12
@@ -120,6 +120,10 @@ extension OnboardingViewController {
                 constant: -12
             ),
             imageView.heightAnchor.constraint(equalToConstant: 235),
+            imageView.centerYAnchor.constraint(
+                equalTo: backgroundView.centerYAnchor,
+                constant: -60
+            ),
 
             pageControl.bottomAnchor.constraint(
                 equalTo: backgroundView.bottomAnchor,

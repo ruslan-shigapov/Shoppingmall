@@ -7,7 +7,8 @@
 
 import UIKit
 
-final class OnboardingViewController: UIViewController {
+final class OnboardingViewController: UIPageViewController {
+    // TODO: разобраться, как работает этот контроллер (свайпы и т.д.)
     
     private lazy var logoView: UIImageView = {
         let imageView = UIImageView()
@@ -17,23 +18,14 @@ final class OnboardingViewController: UIViewController {
     
     private lazy var backgroundView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = Constants.Colors.deepBlue
         view.layer.cornerRadius = 24
         return view
     }()
     
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = Constants.Images.shoppingAndRest
-        return imageView
-    }()
+    private lazy var imageView = UIImageView()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = Constants.Text.Onboarding.firstPageTitle
         label.font = .systemFont(ofSize: 32)
         label.textColor = .white
         label.numberOfLines = 2
@@ -43,14 +35,12 @@ final class OnboardingViewController: UIViewController {
     
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.numberOfPages = 4
         return pageControl
     }()
     
     private lazy var skipButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(Constants.Text.ButtonTitle.skip, for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
@@ -63,9 +53,18 @@ final class OnboardingViewController: UIViewController {
     }()
     
     weak var coordinator: OnboardingCoordinator?
+    
+    private var viewModel: OnboardingViewModelProtocol! {
+        didSet {
+            viewModel.viewModelDidChange = { [weak self] _ in
+                self?.configureUI()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = OnboardingViewModel()
         setupUI()
     }
     
@@ -74,7 +73,9 @@ final class OnboardingViewController: UIViewController {
         navigationItem.titleView = logoView
         
         addSubviews()
+        view.subviews.forEach(prepareForAutoLayout)
         setConstraints()
+        configureUI()
     }
     
     private func addSubviews() {
@@ -83,6 +84,17 @@ final class OnboardingViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(pageControl)
         view.addSubview(skipButton)
+    }
+    
+    private func prepareForAutoLayout(view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func configureUI() {
+        backgroundView.backgroundColor = viewModel.currentPage.color
+        imageView.image = viewModel.currentPage.image
+        titleLabel.text = viewModel.currentPage.title
+        pageControl.currentPage = viewModel.currentPage.rawValue
     }
     
     @objc private func skipButtonWasPressed() {

@@ -13,6 +13,15 @@ enum OnboardingPage: Int {
     case third
     case fourth
     
+    var color: UIColor? {
+        switch self {
+        case .first: Constants.Colors.deepBlue
+        case .second: Constants.Colors.ligthPink
+        case .third: Constants.Colors.deepBlue
+        case .fourth: Constants.Colors.ligthBlack
+        }
+    }
+    
     var image: UIImage? {
         UIImage(named: "Onboarding\(self.rawValue)")
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingCoordinator: BaseCoordinator {
+final class OnboardingCoordinator: BaseCoordinator {
     
     private var navigationController: UINavigationController
     
@@ -22,6 +22,11 @@ class OnboardingCoordinator: BaseCoordinator {
     }
     
     func skipOnboarding() {
+        UserDefaults.standard.set(
+            true,
+            forKey: UserDefaultsNamespace.shared.onboardingWasViewedKey
+        )
         
+        // TODO: разобраться, как реализовать инициализацию нового NavigationController
     }
 }

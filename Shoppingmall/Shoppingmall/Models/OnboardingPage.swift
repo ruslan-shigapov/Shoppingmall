@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum OnboardingPage: Int {
+enum OnboardingPage: Int, CaseIterable {
     case first
     case second
     case third
@@ -37,28 +37,25 @@ enum OnboardingPage: Int {
     
     var description: String? {
         switch self {
-        case .first: nil
-        case .second: nil
         case .third: Constants.Text.Onboarding.thirdPageDescription
         case .fourth: Constants.Text.Onboarding.fourthPageDescription
+        default: nil
         }
     }
     
     var mainButtonTitle: String? {
         switch self {
-        case .first: nil
-        case .second: nil
         case .third: Constants.Text.ButtonTitle.allow
         case .fourth: Constants.Text.ButtonTitle.register
+        default: nil
         }
     }
     
     var secondaryButtonTitle: String? {
         switch self {
-        case .first: nil
-        case .second: nil
         case .third: Constants.Text.ButtonTitle.sooner
         case .fourth: Constants.Text.ButtonTitle.alreadyRegistered
+        default: nil
         }
     }
 }

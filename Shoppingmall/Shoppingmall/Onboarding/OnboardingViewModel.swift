@@ -2,21 +2,19 @@
 //  OnboardingViewModel.swift
 //  Shoppingmall
 //
-//  Created by Руслан Шигапов on 15.11.2023.
+//  Created by Ruslan Shigapov on 06.12.2023.
 //
 
 import Foundation
 
-protocol OnboardingViewModelProtocol {
-    var currentPage: OnboardingPage { get }
-    var viewModelDidChange: ((OnboardingViewModelProtocol) -> Void)? { get set }
-}
-
-final class OnboardingViewModel: OnboardingViewModelProtocol {
+final class OnboardingViewModel {
     
-    var currentPage: OnboardingPage = .first
-    
-    var viewModelDidChange: ((OnboardingViewModelProtocol) -> Void)?
-    
-    // TODO: реализовать перелистывание
+    let pages: [OnboardingPageView] = {
+        let pages = OnboardingPage.allCases.map {
+            let pageView = OnboardingPageView()
+            pageView.configureFor(currentPage: $0)
+            return pageView
+        }
+        return pages
+    }()
 }

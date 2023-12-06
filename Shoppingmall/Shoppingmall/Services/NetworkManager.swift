@@ -22,7 +22,9 @@ final class NetworkManager {
     static let shared = NetworkManager()
             
     private var deviceId: String? {
-        UserDefaults.standard.string(forKey: "deviceId")
+        UserDefaults.standard.string(
+            forKey: UserDefaultsNamespace.shared.deviceIdKey
+        )
     }
                 
     private init() {}
@@ -44,9 +46,12 @@ final class NetworkManager {
         
         getDeviceId(by: jsonData) { result in
             switch result {
-            case .success(let id):
-                UserDefaults.standard.set(id, forKey: "deviceId")
-                print(id)
+            case .success(let deviceId):
+                UserDefaults.standard.set(
+                    deviceId,
+                    forKey: UserDefaultsNamespace.shared.deviceIdKey
+                )
+                print(deviceId)
             case .failure(let error):
                 print(error)
             }

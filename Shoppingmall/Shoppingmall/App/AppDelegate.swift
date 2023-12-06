@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        NetworkManager.shared.setupDeviceId()
+//        NetworkManager.shared.setupDeviceId() // Ждем, пока поддержка не устранит неполадки
         return true
     }
 
@@ -29,4 +29,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
     }
 }
-

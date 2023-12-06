@@ -25,13 +25,12 @@ final class LoginViewModel: LoginViewModelProtocol {
         withReplacement string: String,
         completion: (String) -> Void
     ) {
-        if let text {
-            let newText = (text as NSString).replacingCharacters(
-                in: range,
-                with: string
-            )
-            completion(newText)
-        }
+        guard let text else { return }
+        let newText = (text as NSString).replacingCharacters(
+            in: range,
+            with: string
+        )
+        completion(newText)
     }
     
     /// Форматирование номера телефона под стандартную маску
@@ -43,6 +42,7 @@ final class LoginViewModel: LoginViewModelProtocol {
         
         var result = ""
         var index = cleanPhoneNumber.startIndex
+        
         for element in mask where index < cleanPhoneNumber.endIndex {
             if element == "X" {
                 result.append(cleanPhoneNumber[index])

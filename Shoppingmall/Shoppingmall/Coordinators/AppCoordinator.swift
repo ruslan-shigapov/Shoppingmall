@@ -7,15 +7,16 @@
 
 import UIKit
 
-class AppCoordinator: BaseCoordinator {
+final class AppCoordinator: BaseCoordinator {
     
     private var window: UIWindow
-    
     private var navigationController = UINavigationController()
     
-    private var isFirstLaunching: Bool {
-        true // TODO: добавить логику с помощью UserDefaults
-    }
+    private lazy var isFirstLaunching: Bool = {
+        !UserDefaults.standard.bool(
+            forKey: UserDefaultsNamespace.shared.onboardingWasViewedKey
+        )
+    }()
     
     init(window: UIWindow) {
         self.window = window
@@ -24,22 +25,15 @@ class AppCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        isFirstLaunching ? runOnboarding() : runTabBar()
+        runCoordinator(
+            isFirstLaunching
+            ? OnboardingCoordinator(navigationController: navigationController)
+            : TabBarCoordinator(navigationController: navigationController)
+        )
     }
     
-    private func runOnboarding() {
-        let onboardingCoordinator = OnboardingCoordinator(
-            navigationController: navigationController
-        )
-        add(coordinator: onboardingCoordinator)
-        onboardingCoordinator.start()
-    }
-    
-    private func runTabBar() {
-        let tabBarCoordinator = TabBarCoordinator(
-            navigationController: navigationController
-        )
-        add(coordinator: tabBarCoordinator)
-        tabBarCoordinator.start()
+    private func runCoordinator(_ coordinator: Coordinator) {
+        add(coordinator: coordinator)
+        coordinator.start()
     }
 }

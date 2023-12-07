@@ -12,24 +12,37 @@ final class OnboardingPageView: UIView {
     // MARK: Views
     private lazy var backgroundView: UIView = {
         let view = UIView()
+        view.backgroundColor = viewModel.backgroundColor
         view.layer.cornerRadius = 24
         return view
     }()
     
-    private lazy var imageView = UIImageView()
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = viewModel.image
+        return imageView
+    }()
+    
+    private lazy var mainStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [textStackView])
+        stackView.axis = .vertical
+        stackView.spacing = 24
+        return stackView
+    }()
     
     private lazy var textStackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [titleLabel]
         )
         stackView.axis = .vertical
-        stackView.spacing = 24
+        stackView.spacing = 12
         return stackView
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 32)
+        label.text = viewModel.title
+        label.font = .systemFont(ofSize: 28)
         label.textColor = .white
         label.numberOfLines = 2
         label.textAlignment = .center
@@ -38,6 +51,7 @@ final class OnboardingPageView: UIView {
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
+        label.text = viewModel.description
         label.font = .systemFont(ofSize: 16)
         label.textColor = .white
         label.numberOfLines = 0
@@ -45,25 +59,37 @@ final class OnboardingPageView: UIView {
         return label
     }()
     
-    private lazy var lowerStackView: UIStackView = {
+    private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [pageControl]
+            arrangedSubviews: [confirmButton, secondaryButton]
         )
         stackView.axis = .vertical
-        stackView.spacing = 32
+        stackView.spacing = 10
         return stackView
     }()
     
-    private lazy var buttonsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        return stackView
+    private lazy var confirmButton: UIButton = {
+        let button = ConfirmButton(
+            color: .white,
+            title: viewModel.mainButtonTitle,
+            titleColor: .deepBlue
+        )
+        return button
+    }()
+    
+    private lazy var secondaryButton: UIButton = {
+        let button = OrdinaryButton(
+            color: .clear,
+            title: viewModel.secondaryButtonTitle,
+            titleColor: .white
+        )
+        return button
     }()
     
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = 4
+        pageControl.currentPage = viewModel.pageNumber
         return pageControl
     }()
     
@@ -79,9 +105,13 @@ final class OnboardingPageView: UIView {
         )
         return button
     }()
+    
+    // MARK: Initialization
+    private var viewModel: OnboardingPageViewModelProtocol
         
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: OnboardingPageViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         setupUI()
     }
     
@@ -89,13 +119,18 @@ final class OnboardingPageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Setup
     private func setupUI() {
         addSubview(backgroundView)
         addSubview(imageView)
-        addSubview(textStackView)
-        addSubview(lowerStackView)
+        addSubview(mainStackView)
+        addSubview(pageControl)
         addSubview(skipButton)
         subviews.forEach(prepareForAutoLayout)
+        if viewModel.isInteractivePage {
+            textStackView.addArrangedSubview(descriptionLabel)
+            mainStackView.addArrangedSubview(buttonsStackView)
+        }
         setConstraints()
     }
     
@@ -103,24 +138,9 @@ final class OnboardingPageView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    // MARK: Actions
     @objc private func skipButtonWasPressed() {
 //        coordinator?.skipOnboarding() TODO: delegate
-    }
-    
-    func configureFor(currentPage: OnboardingPage) {
-        switch currentPage {
-        case .first, .second:
-            backgroundView.backgroundColor = currentPage.color
-            imageView.image = currentPage.image
-            titleLabel.text = currentPage.title
-            pageControl.currentPage = currentPage.rawValue
-        case .third, .fourth:
-            backgroundView.backgroundColor = currentPage.color
-            imageView.image = currentPage.image
-            titleLabel.text = currentPage.title
-            pageControl.currentPage = currentPage.rawValue
-        }
-        // TODO: добаваить логику отображения элементов на других страницах
     }
 }
 
@@ -151,36 +171,45 @@ extension OnboardingPageView {
                 constant: -12
             ),
             imageView.heightAnchor.constraint(equalToConstant: 300),
-            imageView.centerYAnchor.constraint(
-                equalTo: centerYAnchor,
-                constant: -85
-            ),
-            
-            textStackView.bottomAnchor.constraint(
-                equalTo: lowerStackView.topAnchor,
-                constant: -32
-            ),
-            textStackView.widthAnchor.constraint(equalToConstant: 190),
-            textStackView.centerXAnchor.constraint(
-                equalTo: backgroundView.centerXAnchor
-            ),
 
-            lowerStackView.bottomAnchor.constraint(
-                equalTo: backgroundView.bottomAnchor,
-                constant: -24
+            mainStackView.topAnchor.constraint(
+                equalTo: imageView.bottomAnchor,
+                constant: viewModel.isInteractivePage ? 10 : 130
             ),
-            lowerStackView.leadingAnchor.constraint(
+            mainStackView.leadingAnchor.constraint(
                 equalTo: backgroundView.leadingAnchor,
                 constant: 24
             ),
-            lowerStackView.trailingAnchor.constraint(
+            mainStackView.trailingAnchor.constraint(
+                equalTo: backgroundView.trailingAnchor,
+                constant: -24
+            ),
+            mainStackView.bottomAnchor.constraint(
+                equalTo: pageControl.topAnchor,
+                constant: -24
+            ),
+            mainStackView.centerXAnchor.constraint(
+                equalTo: backgroundView.centerXAnchor
+            ),
+            
+            confirmButton.heightAnchor.constraint(equalToConstant: 34),
+
+            pageControl.bottomAnchor.constraint(
+                equalTo: backgroundView.bottomAnchor,
+                constant: -24
+            ),
+            pageControl.leadingAnchor.constraint(
+                equalTo: backgroundView.leadingAnchor,
+                constant: 24
+            ),
+            pageControl.trailingAnchor.constraint(
                 equalTo: backgroundView.trailingAnchor,
                 constant: -24
             ),
                                     
             skipButton.topAnchor.constraint(
                 equalTo: backgroundView.bottomAnchor,
-                constant: 16
+                constant: 10
             ),
             skipButton.trailingAnchor.constraint(
                 equalTo: trailingAnchor,

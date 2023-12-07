@@ -10,9 +10,9 @@ import UIKit
 enum Constants {
     // MARK: - Colors
     enum Colors {
-        static let deepBlue = UIColor(named: "DeepBlue")
-        static let ligthPink = UIColor(named: "LightPink")
-        static let ligthBlack = UIColor(named: "LightBlack")
+        static let deepBlue = UIColor(named: "DeepBlue")!
+        static let ligthPink = UIColor(named: "LightPink")!
+        static let ligthBlack = UIColor(named: "LightBlack")!
     }
     
     // MARK: - Text

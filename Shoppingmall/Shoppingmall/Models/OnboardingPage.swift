@@ -13,7 +13,14 @@ enum OnboardingPage: Int, CaseIterable {
     case third
     case fourth
     
-    var color: UIColor? {
+    var isInteractive: Bool {
+        switch self {
+        case .first, .second: false
+        case .third, .fourth: true
+        }
+    }
+    
+    var color: UIColor {
         switch self {
         case .first: Constants.Colors.deepBlue
         case .second: Constants.Colors.ligthPink
@@ -22,8 +29,8 @@ enum OnboardingPage: Int, CaseIterable {
         }
     }
     
-    var image: UIImage? {
-        UIImage(named: "Onboarding\(self.rawValue)")
+    var image: UIImage {
+        UIImage(named: "Onboarding\(self.rawValue)")!
     }
     
     var title: String {

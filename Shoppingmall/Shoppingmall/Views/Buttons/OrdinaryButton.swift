@@ -9,7 +9,7 @@ import UIKit
 
 class OrdinaryButton: UIButton {
 
-    init(color: UIColor, title: String, titleColor: UIColor) {
+    init(color: UIColor, title: String?, titleColor: UIColor) {
         super.init(frame: .zero)
         backgroundColor = color
         setTitle(title, for: .normal)

@@ -11,8 +11,9 @@ final class OnboardingViewModel {
     
     let pages: [OnboardingPageView] = {
         let pages = OnboardingPage.allCases.map {
-            let pageView = OnboardingPageView()
-            pageView.configureFor(currentPage: $0)
+            let pageView = OnboardingPageView(
+                viewModel: OnboardingPageViewModel(currentPage: $0)
+            )
             return pageView
         }
         return pages

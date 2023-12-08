@@ -15,7 +15,7 @@ protocol OnboardingPageViewModelProtocol {
     var title: String { get }
     var description: String? { get }
     var mainButtonTitle: String? { get }
-    var secondaryButtonTitle: String? { get }
+    var rejectButtonTitle: String? { get }
     init(currentPage: OnboardingPage)
 }
 
@@ -28,7 +28,7 @@ final class OnboardingPageViewModel: OnboardingPageViewModelProtocol {
     }
     
     var isInteractivePage: Bool {
-        currentPage.isInteractive
+        currentPage == .third || currentPage == .fourth
     }
     
     var backgroundColor: UIColor {
@@ -51,8 +51,8 @@ final class OnboardingPageViewModel: OnboardingPageViewModelProtocol {
         currentPage.mainButtonTitle
     }
     
-    var secondaryButtonTitle: String? {
-        currentPage.secondaryButtonTitle
+    var rejectButtonTitle: String? {
+        currentPage.rejectButtonTitle
     }
     
     required init(currentPage: OnboardingPage) {

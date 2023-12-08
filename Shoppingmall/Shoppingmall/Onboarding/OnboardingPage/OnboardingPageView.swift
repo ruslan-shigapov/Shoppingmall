@@ -61,7 +61,7 @@ final class OnboardingPageView: UIView {
     
     private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [confirmButton, secondaryButton]
+            arrangedSubviews: [confirmButton, rejectButton]
         )
         stackView.axis = .vertical
         stackView.spacing = 10
@@ -74,14 +74,24 @@ final class OnboardingPageView: UIView {
             title: viewModel.mainButtonTitle,
             titleColor: .deepBlue
         )
+        button.addTarget(
+            self,
+            action: #selector(confirmButtonWasPressed),
+            for: .touchUpInside
+        )
         return button
     }()
     
-    private lazy var secondaryButton: UIButton = {
+    private lazy var rejectButton: UIButton = {
         let button = OrdinaryButton(
             color: .clear,
-            title: viewModel.secondaryButtonTitle,
+            title: viewModel.rejectButtonTitle,
             titleColor: .white
+        )
+        button.addTarget(
+            self,
+            action: #selector(rejectButtonWasPressed),
+            for: .touchUpInside
         )
         return button
     }()
@@ -90,6 +100,7 @@ final class OnboardingPageView: UIView {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = 4
         pageControl.currentPage = viewModel.pageNumber
+        pageControl.isEnabled = false
         return pageControl
     }()
     
@@ -106,9 +117,11 @@ final class OnboardingPageView: UIView {
         return button
     }()
     
-    // MARK: Initialization
+    // MARK: Dependency Injection
     private var viewModel: OnboardingPageViewModelProtocol
-        
+    var delegate: OnboardingPageViewDelegate?
+    
+    // MARK: Initialization
     init(viewModel: OnboardingPageViewModelProtocol) {
         self.viewModel = viewModel
         super.init(frame: .zero)
@@ -140,7 +153,15 @@ final class OnboardingPageView: UIView {
     
     // MARK: Actions
     @objc private func skipButtonWasPressed() {
-//        coordinator?.skipOnboarding() TODO: delegate
+        delegate?.skipButtonWasPressed?()
+    }
+    
+    @objc private func confirmButtonWasPressed() {
+        delegate?.confirmButtonWasPressed?()
+    }
+    
+    @objc private func rejectButtonWasPressed() {
+        delegate?.rejectButtonWasPressed?()
     }
 }
 
@@ -174,15 +195,15 @@ extension OnboardingPageView {
 
             mainStackView.topAnchor.constraint(
                 equalTo: imageView.bottomAnchor,
-                constant: viewModel.isInteractivePage ? 10 : 130
+                constant: viewModel.isInteractivePage ? 10 : 100
             ),
             mainStackView.leadingAnchor.constraint(
                 equalTo: backgroundView.leadingAnchor,
-                constant: 24
+                constant: viewModel.isInteractivePage ? 24 : 72
             ),
             mainStackView.trailingAnchor.constraint(
                 equalTo: backgroundView.trailingAnchor,
-                constant: -24
+                constant: viewModel.isInteractivePage ? -24 : -72
             ),
             mainStackView.bottomAnchor.constraint(
                 equalTo: pageControl.topAnchor,

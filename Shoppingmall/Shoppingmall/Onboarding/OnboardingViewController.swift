@@ -17,11 +17,24 @@ class OnboardingViewController: UIViewController {
         return scrollView
     }()
         
-    private let viewModel = OnboardingViewModel()
+    private var viewModel: OnboardingViewModelProtocol! {
+        didSet {
+            viewModel.skipButtonWasPressed = {
+                
+            }
+            viewModel.confirmButtonWasPressed = {
+                
+            }
+            viewModel.rejectButtonWasPressed = {
+                
+            }
+        }
+    }
     weak var coordinator: OnboardingCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = OnboardingViewModel()
         setupUI()
     }
     
@@ -30,7 +43,7 @@ class OnboardingViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(pageScrollView)
         setConstraints()
-        setupPageScrollView(with: viewModel.pages)
+        setupPageScrollView(with: createOnboardingPageViews())
     }
     
     private func setupPageScrollView(with pages: [OnboardingPageView]) {
@@ -46,6 +59,16 @@ class OnboardingViewController: UIViewController {
                 height: view.frame.height * 0.85
             )
             pageScrollView.addSubview(page)
+        }
+    }
+    
+    private func createOnboardingPageViews() -> [OnboardingPageView] {
+        viewModel.pages.map {
+            let pageView = OnboardingPageView(
+                viewModel: OnboardingPageViewModel(currentPage: $0)
+            )
+            pageView.delegate = viewModel as OnboardingPageViewDelegate
+            return pageView
         }
     }
 }

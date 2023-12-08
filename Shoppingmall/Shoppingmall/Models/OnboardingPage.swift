@@ -13,13 +13,6 @@ enum OnboardingPage: Int, CaseIterable {
     case third
     case fourth
     
-    var isInteractive: Bool {
-        switch self {
-        case .first, .second: false
-        case .third, .fourth: true
-        }
-    }
-    
     var color: UIColor {
         switch self {
         case .first: Constants.Colors.deepBlue
@@ -58,7 +51,7 @@ enum OnboardingPage: Int, CaseIterable {
         }
     }
     
-    var secondaryButtonTitle: String? {
+    var rejectButtonTitle: String? {
         switch self {
         case .third: Constants.Text.ButtonTitle.sooner
         case .fourth: Constants.Text.ButtonTitle.alreadyRegistered

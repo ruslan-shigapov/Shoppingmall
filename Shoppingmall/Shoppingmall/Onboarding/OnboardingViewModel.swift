@@ -9,8 +9,8 @@ import Foundation
 
 protocol OnboardingPageViewDelegate {
     var skipButtonWasPressed: (() -> Void)? { get set }
-    var confirmButtonWasPressed: (() -> Void)? { get set }
-    var rejectButtonWasPressed: (() -> Void)? { get set }
+    var confirmButtonWasPressed: ((OnboardingPage) -> Void)? { get set }
+    var rejectButtonWasPressed: ((OnboardingPage) -> Void)? { get set }
 }
 
 protocol OnboardingViewModelProtocol: OnboardingPageViewDelegate {
@@ -20,8 +20,8 @@ protocol OnboardingViewModelProtocol: OnboardingPageViewDelegate {
 final class OnboardingViewModel: OnboardingViewModelProtocol {
     
     var skipButtonWasPressed: (() -> Void)?
-    var confirmButtonWasPressed: (() -> Void)?
-    var rejectButtonWasPressed: (() -> Void)?
+    var confirmButtonWasPressed: ((OnboardingPage) -> Void)?
+    var rejectButtonWasPressed: ((OnboardingPage) -> Void)?
     
     let pages = OnboardingPage.allCases
 }

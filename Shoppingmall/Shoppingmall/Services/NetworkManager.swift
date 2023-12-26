@@ -59,7 +59,7 @@ final class NetworkManager {
     }
     
     /// Запрос для добавления устройства в систему
-    func getDeviceId(
+    private func getDeviceId(
         by jsonData: [String: Any],
         completion: @escaping (Result<Any, NetworkError>) -> Void
     ) {

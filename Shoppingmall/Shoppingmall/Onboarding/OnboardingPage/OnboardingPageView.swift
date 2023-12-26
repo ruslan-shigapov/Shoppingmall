@@ -157,11 +157,11 @@ final class OnboardingPageView: UIView {
     }
     
     @objc private func confirmButtonWasPressed() {
-        delegate?.confirmButtonWasPressed?()
+        delegate?.confirmButtonWasPressed?(<#OnboardingPage#>)
     }
     
     @objc private func rejectButtonWasPressed() {
-        delegate?.rejectButtonWasPressed?()
+        delegate?.rejectButtonWasPressed?(<#OnboardingPage#>)
     }
 }
 

@@ -19,13 +19,17 @@ class OnboardingViewController: UIViewController {
         
     private var viewModel: OnboardingViewModelProtocol! {
         didSet {
-            viewModel.skipButtonWasPressed = {
-                
+            viewModel.skipButtonWasPressed = { [weak self] in
+                self?.coordinator?.skipOnboarding()
             }
-            viewModel.confirmButtonWasPressed = {
-                
+            viewModel.confirmButtonWasPressed = { page in
+                if page == .third {
+                    
+                } else if page == .fourth {
+                    
+                }
             }
-            viewModel.rejectButtonWasPressed = {
+            viewModel.rejectButtonWasPressed = { page in
                 
             }
         }

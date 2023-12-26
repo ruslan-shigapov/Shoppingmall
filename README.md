@@ -8,6 +8,6 @@
 
 Верстка: программно (NSLayoutConstraints)
 
-<img width="393" alt="Screenshot_1" src="https://github.com/ruslan-shigapov/Shoppingmall/assets/104629658/45764fd6-a10e-4bdf-9cc3-fdddb918877e">
+![Screenshot_1](https://github.com/ruslan-shigapov/Shoppingmall/assets/104629658/be256799-555e-4a3e-b08f-5d700e95211f)
 
-<img width="393" alt="Screenshot_2" src="https://github.com/ruslan-shigapov/Shoppingmall/assets/104629658/c32d1407-e43d-4347-8025-185e5a2c2a9d">
+![Screenshot_2](https://github.com/ruslan-shigapov/Shoppingmall/assets/104629658/1d684faa-89cd-4fd1-aaa4-bf7b91777c41)

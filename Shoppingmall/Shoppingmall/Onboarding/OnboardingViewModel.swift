@@ -2,26 +2,17 @@
 //  OnboardingViewModel.swift
 //  Shoppingmall
 //
-//  Created by Ruslan Shigapov on 06.12.2023.
+//  Created by Ruslan Shigapov on 12.02.2024.
 //
 
-import Foundation
-
-protocol OnboardingPageViewDelegate {
-    var skipButtonWasPressed: (() -> Void)? { get set }
-    var confirmButtonWasPressed: ((OnboardingPage) -> Void)? { get set }
-    var rejectButtonWasPressed: ((OnboardingPage) -> Void)? { get set }
-}
-
-protocol OnboardingViewModelProtocol: OnboardingPageViewDelegate {
-    var pages: [OnboardingPage] { get }
-}
-
-final class OnboardingViewModel: OnboardingViewModelProtocol {
+final class OnboardingViewModel {
     
-    var skipButtonWasPressed: (() -> Void)?
-    var confirmButtonWasPressed: ((OnboardingPage) -> Void)?
-    var rejectButtonWasPressed: ((OnboardingPage) -> Void)?
+    private let pages = OnboardingPage.allCases
     
-    let pages = OnboardingPage.allCases
+    var pageViews: [OnboardingPageView] {
+        pages.map {
+            let currentViewModel = OnboardingPageViewModel(currentPage: $0)
+            return OnboardingPageView(viewModel: currentViewModel)
+        }
+    }
 }

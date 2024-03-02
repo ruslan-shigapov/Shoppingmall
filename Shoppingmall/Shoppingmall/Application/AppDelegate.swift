@@ -2,19 +2,21 @@
 //  AppDelegate.swift
 //  Shoppingmall
 //
-//  Created by Руслан Шигапов on 01.11.2023.
+//  Created by Ruslan Shigapov on 26.01.2024.
 //
 
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(
         _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+        didFinishLaunchingWithOptions launchOptions: [
+            UIApplication.LaunchOptionsKey: Any
+        ]?
     ) -> Bool {
-        NetworkManager.shared.setupDeviceId() 
+        NetworkManager.shared.setupDeviceId()
         return true
     }
 
@@ -25,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> UISceneConfiguration {
         UISceneConfiguration(
             name: "Default Configuration",
-            sessionRole: connectingSceneSession.role
-        )
+            sessionRole: connectingSceneSession.role)
     }
 }

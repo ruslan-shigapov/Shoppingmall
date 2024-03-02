@@ -2,13 +2,12 @@
 //  BaseCoordinator.swift
 //  Shoppingmall
 //
-//  Created by Руслан Шигапов on 20.11.2023.
+//  Created by Ruslan Shigapov on 26.01.2024.
 //
-
-import Foundation
 
 protocol Coordinator: AnyObject {
     var childCoordinators: [Coordinator] { get set }
+    var didFinish: (() -> Void)? { get set }
     func start()
 }
 
@@ -26,6 +25,7 @@ extension Coordinator {
 class BaseCoordinator: Coordinator {
     
     var childCoordinators: [Coordinator] = []
+    var didFinish: (() -> Void)? = nil
     
     func start() {
         fatalError("Child should implement func start")

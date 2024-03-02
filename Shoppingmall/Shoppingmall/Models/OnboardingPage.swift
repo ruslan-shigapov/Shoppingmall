@@ -2,7 +2,7 @@
 //  OnboardingPage.swift
 //  Shoppingmall
 //
-//  Created by Руслан Шигапов on 15.11.2023.
+//  Created by Ruslan Shigapov on 12.02.2024.
 //
 
 import UIKit
@@ -11,14 +11,14 @@ enum OnboardingPage: Int, CaseIterable {
     case first
     case second
     case third
-    case fourth
+    case fourth 
     
     var color: UIColor {
         switch self {
-        case .first: Constants.Colors.deepBlue
-        case .second: Constants.Colors.ligthPink
-        case .third: Constants.Colors.deepBlue
-        case .fourth: Constants.Colors.ligthBlack
+        case .first: Constants.Colors.customBlue
+        case .second: Constants.Colors.customPink
+        case .third: Constants.Colors.customBlue
+        case .fourth: Constants.Colors.customBlack
         }
     }
     
@@ -43,18 +43,18 @@ enum OnboardingPage: Int, CaseIterable {
         }
     }
     
-    var mainButtonTitle: String? {
+    var confirmButtonTitle: String? {
         switch self {
-        case .third: Constants.Text.ButtonTitle.allow
-        case .fourth: Constants.Text.ButtonTitle.register
+        case .third: Constants.Text.Onboarding.thirdPageConfirmButtonTitle
+        case .fourth: Constants.Text.Onboarding.fourthPageConfirmButtonTitle
         default: nil
         }
     }
     
-    var rejectButtonTitle: String? {
+    var secondaryButtonTitle: String? {
         switch self {
-        case .third: Constants.Text.ButtonTitle.sooner
-        case .fourth: Constants.Text.ButtonTitle.alreadyRegistered
+        case .third: Constants.Text.Onboarding.thirdPageSecondaryButtonTitle
+        case .fourth: Constants.Text.Onboarding.fourthPageSecondaryButtonTitle
         default: nil
         }
     }

@@ -2,10 +2,8 @@
 //  MobileDevice.swift
 //  Shoppingmall
 //
-//  Created by Руслан Шигапов on 02.11.2023.
+//  Created by Ruslan Shigapov on 12.02.2024.
 //
-
-import Foundation
 
 struct MobileDevice: Decodable {
     let id: String

@@ -1,20 +1,17 @@
 //
-//  LogoTitleView.swift
+//  LogoView.swift
 //  Shoppingmall
 //
-//  Created by Ruslan Shigapov on 06.12.2023.
+//  Created by Ruslan Shigapov on 02.03.2024.
 //
 
 import UIKit
 
-final class LogoTitleView: UIView {
+final class LogoView: UIView {
     
-    private let imageView: UIImageView = {
+    private let logoImageView: UIImageView = {
         let imageView = UIImageView(image: Constants.Images.logo)
-        imageView.frame = .init(
-            origin: .zero, 
-            size: CGSize(width: 120, height: 20)
-        )
+        imageView.frame = .init(x: 0, y: 0, width: 120, height: 18)
         return imageView
     }()
 
@@ -28,8 +25,8 @@ final class LogoTitleView: UIView {
     }
     
     private func setupUI() {
-        addSubview(imageView)
-        imageView.center.x = center.x
-        imageView.center.y = center.y
+        addSubview(logoImageView)
+        logoImageView.center.x = center.x
+        logoImageView.center.y = center.y
     }
 }

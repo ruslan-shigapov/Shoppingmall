@@ -2,7 +2,7 @@
 //  TabBarController.swift
 //  Shoppingmall
 //
-//  Created by Руслан Шигапов on 10.11.2023.
+//  Created by Ruslan Shigapov on 26.01.2024.
 //
 
 import UIKit
@@ -10,20 +10,9 @@ import UIKit
 final class TabBarController: UITabBarController {
     
     weak var coordinator: TabBarCoordinator?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        setupUI()
-    }
-    
-    private func setupUI() {
-        setViewControllers([
-                HomeViewController()
-                // TODO: добавить другие контроллеры
-            ],
-            animated: true
-        )
-        // TODO: настроить иконки 
+        setViewControllers([HomeViewController()], animated: true)
     }
 }

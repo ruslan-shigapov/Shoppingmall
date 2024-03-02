@@ -2,16 +2,16 @@
 //  SceneDelegate.swift
 //  Shoppingmall
 //
-//  Created by Руслан Шигапов on 01.11.2023.
+//  Created by Ruslan Shigapov on 26.01.2024.
 //
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var appCoordinator: AppCoordinator?
-    
+
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,

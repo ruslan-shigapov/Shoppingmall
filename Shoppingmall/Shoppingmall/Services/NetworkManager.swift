@@ -2,55 +2,45 @@
 //  NetworkManager.swift
 //  Shoppingmall
 //
-//  Created by Руслан Шигапов on 01.11.2023.
+//  Created by Ruslan Shigapov on 26.01.2024.
 //
 
 import UIKit
-
-private enum Path: String {
-    case base = "https://skillbox.dev.instadev.net/api/v1"
-    case mobileDevice = "/mobile-device"
-}
 
 enum NetworkError: Error {
     case noData
     case decodingError
 }
 
+private enum Path: String {
+    case base = "https://skillbox.dev.instadev.net/api/v1"
+    case mobileDevice = "/mobile-device"
+}
+
 final class NetworkManager {
     
     static let shared = NetworkManager()
-            
+        
     private var deviceId: String? {
-        UserDefaults.standard.string(
-            forKey: UserDefaultsNamespace.shared.deviceIdKey
-        )
+        UserDefaults.standard.string(forKey: "deviceId")
     }
-                
+    
     private init() {}
     
-    /// Установка идентификатора мобильного устройства
     func setupDeviceId() {
         guard deviceId == nil else { return }
-
-        /// Время первого запуска приложения в формате timestamp
-        let timestamp = Date().timeIntervalSince1970
         
-        /// Данные в формате JSON для отправки в теле запроса
+        let timestamp = Date().timeIntervalSince1970
         let jsonData: [String: Any] = [
             "install_app": Int(timestamp),
             "os": "iOS",
             "version_os": UIDevice.current.systemVersion,
-            "model": UIDevice.current.model
-        ]
+            "model": UIDevice.current.model]
         
         getDeviceId(by: jsonData) { result in
             switch result {
             case .success(let deviceId):
-                UserDefaults.standard.set(
-                    deviceId,
-                    forKey: UserDefaultsNamespace.shared.deviceIdKey
-                )
+                UserDefaults.standard.set(deviceId, forKey: "deviceId")
                 print(deviceId)
             case .failure(let error):
                 print(error)
@@ -58,7 +48,6 @@ final class NetworkManager {
         }
     }
     
-    /// Запрос для добавления устройства в систему
     private func getDeviceId(
         by jsonData: [String: Any],
         completion: @escaping (Result<Any, NetworkError>) -> Void
@@ -66,7 +55,6 @@ final class NetworkManager {
         let url = URL(string: Path.base.rawValue + Path.mobileDevice.rawValue)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONSerialization.data(withJSONObject: jsonData)
         
         URLSession.shared.dataTask(with: request) { data, _, error in
@@ -75,7 +63,7 @@ final class NetworkManager {
                 return
             }
             do {
-                let decoder = JSONDecoder() // TODO: вынести в свойство класса
+                let decoder = JSONDecoder()
                 let device = try decoder.decode(MobileDevice.self, from: data)
                 completion(.success(device.id))
             } catch {

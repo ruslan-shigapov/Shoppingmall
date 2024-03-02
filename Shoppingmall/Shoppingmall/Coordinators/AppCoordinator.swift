@@ -2,7 +2,7 @@
 //  AppCoordinator.swift
 //  Shoppingmall
 //
-//  Created by Руслан Шигапов on 20.11.2023.
+//  Created by Ruslan Shigapov on 26.01.2024.
 //
 
 import UIKit
@@ -10,14 +10,12 @@ import UIKit
 final class AppCoordinator: BaseCoordinator {
     
     private var window: UIWindow
-    private var navigationController = UINavigationController()
+    private let navigationController = UINavigationController()
     
-    private lazy var isFirstLaunching: Bool = {
-        !UserDefaults.standard.bool(
-            forKey: UserDefaultsNamespace.shared.onboardingWasViewedKey
-        )
-    }()
-    
+    private var isFirstLaunching: Bool {
+        !UserDefaults.standard.bool(forKey: "onboardingWasViewed")
+    }
+        
     init(window: UIWindow) {
         self.window = window
         self.window.rootViewController = navigationController
@@ -25,15 +23,26 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        runCoordinator(
-            isFirstLaunching
-            ? OnboardingCoordinator(navigationController: navigationController)
-            : TabBarCoordinator(navigationController: navigationController)
-        )
+        let initialCoordinator = isFirstLaunching
+        ? OnboardingCoordinator(navigationController: navigationController)
+        : TabBarCoordinator(navigationController: navigationController)
+        
+        run(coordinator: initialCoordinator)
+        setupNavigationController()
     }
     
-    private func runCoordinator(_ coordinator: Coordinator) {
+    private func run(coordinator: Coordinator) {
         add(coordinator: coordinator)
+        coordinator.didFinish = { [weak self] in
+            self?.childCoordinators.removeAll()
+            self?.start()
+        }
         coordinator.start()
+    }
+    
+    private func setupNavigationController() {
+        if let currentVC = navigationController.topViewController {
+            currentVC.navigationItem.titleView = LogoView()
+        }
     }
 }

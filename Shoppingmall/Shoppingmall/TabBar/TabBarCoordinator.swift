@@ -2,7 +2,7 @@
 //  TabBarCoordinator.swift
 //  Shoppingmall
 //
-//  Created by Руслан Шигапов on 20.11.2023.
+//  Created by Ruslan Shigapov on 26.01.2024.
 //
 
 import UIKit
@@ -18,6 +18,8 @@ final class TabBarCoordinator: BaseCoordinator {
     override func start() {
         let tabBarController = TabBarController()
         tabBarController.coordinator = self
-        navigationController.pushViewController(tabBarController, animated: true)
+        navigationController.setViewControllers(
+            [tabBarController],
+            animated: true)
     }
 }

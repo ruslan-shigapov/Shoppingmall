@@ -20,7 +20,7 @@ final class OnboardingCoordinator: BaseCoordinator {
         let onboardingVC = OnboardingViewController(
             viewModel: onboardingViewModel)
         onboardingVC.coordinator = self
-//        UserDefaults.standard.set(true, forKey: "onboardingWasViewed")
+        UserDefaults.standard.set(true, forKey: "onboardingWasViewed")
         navigationController.setViewControllers([onboardingVC], animated: true)
     }
     

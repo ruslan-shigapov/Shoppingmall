@@ -13,6 +13,14 @@ final class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewControllers([HomeViewController()], animated: true)
+        tabBar.backgroundColor = .brown
+        setViewControllers(
+            [
+                HomeViewController(),
+                CatalogueViewController(),
+                BonusViewController(),
+                MenuViewController()
+            ],
+            animated: true)
     }
 }

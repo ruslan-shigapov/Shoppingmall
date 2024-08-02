@@ -1,2 +1,9 @@
 # Shoppingmall
-Final project at Skillbox's course (2 level)
+
+Приложение, которое помогает ориентироваться в товарах и услугах ТРЦ и включает в себя программу лояльности.
+
+Платформа: UIKit
+
+Архитектура: MVVM
+
+Верстка: программно (NSLayoutConstraints)

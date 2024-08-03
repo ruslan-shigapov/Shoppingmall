@@ -10,7 +10,7 @@ import UIKit
 final class OnboardingViewController: UIViewController {
 
     // TODO: try to use different onboarding styles
-    let onboardingView = OnboardingView(color: .deepBlue, title: "Узнавайте первыми", description: "Разрешите уведомления, чтобы узнавать о начисленных бонусах и специальных предложениях", primaryButtonTitle: "Разрешить", secondaryButtonTitle: "Позже", currentPage: 2)
+    let onboardingView = OnboardingPageView(pageType: .interactive, color: .deepBlue, title: "Узнавайте первыми", currentPage: 2, description: "Разрешите уведомления, чтобы узнавать о начисленных бонусах и специальных предложениях", primaryButtonTitle: "Разрешить", secondaryButtonTitle: "Позже")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,5 +28,3 @@ final class OnboardingViewController: UIViewController {
         
     }
 }
-
-// TODO: try to clone the project again

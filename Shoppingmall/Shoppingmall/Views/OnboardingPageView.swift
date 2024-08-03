@@ -1,5 +1,5 @@
 //
-//  OnboardingView.swift
+//  OnboardingPageView.swift
 //  Shoppingmall
 //
 //  Created by Ruslan Shigapov on 03.08.2024.
@@ -7,22 +7,27 @@
 
 import UIKit
 
-// TODO: rename to Page?
-final class OnboardingView: UIView {
+enum OnboardingPageType {
+    case notInteractive
+    case interactive
+}
+
+final class OnboardingPageView: UIView {
+    
+    // MARK: Private Properties
+    private let pageType: OnboardingPageType
     
     // MARK: Views
     private let roundedView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 16
         return view
     }()
     
-    // TODO: create constants
     // TODO: replace labels?
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Montserrat-Medium", size: 32)
+        label.font = UIFont(name: Constants.Fonts.medium, size: 32)
         label.textColor = .white
         label.numberOfLines = 2
         label.textAlignment = .center
@@ -31,7 +36,7 @@ final class OnboardingView: UIView {
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Montserrat-Regular", size: 16)
+        label.font = UIFont(name: Constants.Fonts.regular, size: 16)
         label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -52,14 +57,14 @@ final class OnboardingView: UIView {
         button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.setTitleColor(.deepBlue, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Montserrat-Medium", size: 16)
+        button.titleLabel?.font = UIFont(name: Constants.Fonts.medium, size: 16)
         button.heightAnchor.constraint(equalToConstant: 34).isActive = true
         return button
     }()
     
     private let secondaryButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = UIFont(name: "Montserrat-Medium", size: 14)
+        button.titleLabel?.font = UIFont(name: Constants.Fonts.medium, size: 14)
         return button
     }()
     
@@ -77,11 +82,9 @@ final class OnboardingView: UIView {
         return pageControl
     }()
     
-    // TODO: crate extension
     private lazy var containerStackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [labelStackView, buttonStackView, pageControl])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 32
         return stackView
@@ -89,13 +92,15 @@ final class OnboardingView: UIView {
 
     // MARK: Initialize
     init(
+        pageType: OnboardingPageType,
         color: UIColor,
         title: String,
-        description: String,
-        primaryButtonTitle: String,
-        secondaryButtonTitle: String,
-        currentPage: Int
+        currentPage: Int,
+        description: String? = nil,
+        primaryButtonTitle: String? = nil,
+        secondaryButtonTitle: String? = nil
     ) {
+        self.pageType = pageType
         super.init(frame: .zero)
         roundedView.backgroundColor = color
         titleLabel.text = title
@@ -113,14 +118,24 @@ final class OnboardingView: UIView {
     
     // MARK: Private Methods
     private func setupUI() {
-        addSubview(roundedView)
-        addSubview(containerStackView)
+        configure()
+        addSubviews(roundedView, containerStackView)
+        prepareForAutoLayout()
         setConstraints()
     }
     
-    // TODO: create public method for configure
+    private func configure() {
+        if pageType == .notInteractive {
+            labelStackView.removeArrangedSubview(descriptionLabel)
+            containerStackView.removeArrangedSubview(buttonStackView)
+        }
+    }
+}
+
+// MARK: - Layout
+private extension OnboardingPageView {
     
-    private func setConstraints() {
+    func setConstraints() {
         NSLayoutConstraint.activate([
             roundedView.topAnchor.constraint(equalTo: topAnchor, constant: 24),
             roundedView.leadingAnchor.constraint(
@@ -142,7 +157,7 @@ final class OnboardingView: UIView {
             containerStackView.trailingAnchor.constraint(
                 equalTo: roundedView.trailingAnchor,
                 constant: -24),
-            containerStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            containerStackView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
 }

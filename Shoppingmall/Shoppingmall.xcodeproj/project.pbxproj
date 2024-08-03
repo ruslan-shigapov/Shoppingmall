@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E40014F62C5E218F003407ED /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40014F52C5E218F003407ED /* OnboardingView.swift */; };
+		E40014F62C5E218F003407ED /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40014F52C5E218F003407ED /* OnboardingPageView.swift */; };
 		E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43989A82C5E120A002F51C9 /* AppDelegate.swift */; };
 		E43989B22C5E120B002F51C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43989B12C5E120B002F51C9 /* Assets.xcassets */; };
 		E43989BF2C5E13EC002F51C9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43989BE2C5E13EC002F51C9 /* OnboardingViewController.swift */; };
@@ -17,10 +17,12 @@
 		E43989CA2C5E152B002F51C9 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E43989C52C5E152B002F51C9 /* Montserrat-Regular.ttf */; };
 		E43989CB2C5E152B002F51C9 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E43989C62C5E152B002F51C9 /* Montserrat-SemiBold.ttf */; };
 		E43989CC2C5E152B002F51C9 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E43989C72C5E152B002F51C9 /* OFL.txt */; };
+		E43BDD1F2C5E43D500305E05 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BDD1E2C5E43D500305E05 /* Constants.swift */; };
+		E43BDD212C5E44AD00305E05 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BDD202C5E44AD00305E05 /* UIView+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E40014F52C5E218F003407ED /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		E40014F52C5E218F003407ED /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		E43989A52C5E120A002F51C9 /* Shoppingmall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoppingmall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43989A82C5E120A002F51C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E43989B12C5E120B002F51C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -32,6 +34,8 @@
 		E43989C52C5E152B002F51C9 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		E43989C62C5E152B002F51C9 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		E43989C72C5E152B002F51C9 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		E43BDD1E2C5E43D500305E05 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E43BDD202C5E44AD00305E05 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 				E43989DD2C5E15EC002F51C9 /* Models */,
 				E43989E02C5E15FE002F51C9 /* Views */,
 				E43989DF2C5E15F7002F51C9 /* Services */,
+				E43BDD1D2C5E43BC00305E05 /* Helpers */,
 				E43989DC2C5E15AA002F51C9 /* Resources */,
 			);
 			path = Shoppingmall;
@@ -121,10 +126,19 @@
 		E43989E02C5E15FE002F51C9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E40014F52C5E218F003407ED /* OnboardingView.swift */,
+				E40014F52C5E218F003407ED /* OnboardingPageView.swift */,
 				E43989BE2C5E13EC002F51C9 /* OnboardingViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E43BDD1D2C5E43BC00305E05 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E43BDD1E2C5E43D500305E05 /* Constants.swift */,
+				E43BDD202C5E44AD00305E05 /* UIView+extension.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,8 +217,10 @@
 				E43989C12C5E141F002F51C9 /* NetworkManager.swift in Sources */,
 				E43989C32C5E1439002F51C9 /* MobileDevice.swift in Sources */,
 				E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */,
-				E40014F62C5E218F003407ED /* OnboardingView.swift in Sources */,
+				E43BDD212C5E44AD00305E05 /* UIView+extension.swift in Sources */,
+				E40014F62C5E218F003407ED /* OnboardingPageView.swift in Sources */,
 				E43989BF2C5E13EC002F51C9 /* OnboardingViewController.swift in Sources */,
+				E43BDD1F2C5E43D500305E05 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Shoppingmall
 //
-//  Created by Ruslan Shigapov on 02.08.2024.
+//  Created by Ruslan Shigapov on 03.08.2024.
 //
 
 import UIKit
@@ -21,9 +21,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkManager.shared.setupMobileDeviceId()
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let window else { return false }
-        window.rootViewController = ViewController()
+        window.rootViewController = OnboardingViewController()
         window.makeKeyAndVisible()
         return true
     }
 }
-

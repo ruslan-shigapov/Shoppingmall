@@ -3,29 +3,37 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43989A82C5E120A002F51C9 /* AppDelegate.swift */; };
+		E43989B22C5E120B002F51C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43989B12C5E120B002F51C9 /* Assets.xcassets */; };
+		E43989BF2C5E13EC002F51C9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43989BE2C5E13EC002F51C9 /* OnboardingViewController.swift */; };
+		E43989C12C5E141F002F51C9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43989C02C5E141F002F51C9 /* NetworkManager.swift */; };
+		E43989C32C5E1439002F51C9 /* MobileDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43989C22C5E1439002F51C9 /* MobileDevice.swift */; };
+		E43989C92C5E152B002F51C9 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E43989C42C5E152B002F51C9 /* Montserrat-Medium.ttf */; };
+		E43989CA2C5E152B002F51C9 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E43989C52C5E152B002F51C9 /* Montserrat-Regular.ttf */; };
+		E43989CB2C5E152B002F51C9 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E43989C62C5E152B002F51C9 /* Montserrat-SemiBold.ttf */; };
+		E43989CC2C5E152B002F51C9 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E43989C72C5E152B002F51C9 /* OFL.txt */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		E4B13BE42C5CC65200110997 /* Shoppingmall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoppingmall.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E43989A52C5E120A002F51C9 /* Shoppingmall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoppingmall.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E43989A82C5E120A002F51C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E43989B12C5E120B002F51C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E43989B62C5E120B002F51C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E43989BE2C5E13EC002F51C9 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		E43989C02C5E141F002F51C9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E43989C22C5E1439002F51C9 /* MobileDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileDevice.swift; sourceTree = "<group>"; };
+		E43989C42C5E152B002F51C9 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		E43989C52C5E152B002F51C9 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		E43989C62C5E152B002F51C9 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		E43989C72C5E152B002F51C9 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		E4B13C092C5CCEE900110997 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Resources/Info.plist,
-			);
-			target = E4B13BE32C5CC65200110997 /* Shoppingmall */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		E4B13BE62C5CC65200110997 /* Shoppingmall */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E4B13C092C5CCEE900110997 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Shoppingmall; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		E4B13BE12C5CC65200110997 /* Frameworks */ = {
+		E43989A22C5E120A002F51C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -35,162 +43,171 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E4B13BDB2C5CC65200110997 = {
+		E439899C2C5E120A002F51C9 = {
 			isa = PBXGroup;
 			children = (
-				E4B13BE62C5CC65200110997 /* Shoppingmall */,
-				E4B13BE52C5CC65200110997 /* Products */,
+				E43989A72C5E120A002F51C9 /* Shoppingmall */,
+				E43989A62C5E120A002F51C9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E4B13BE52C5CC65200110997 /* Products */ = {
+		E43989A62C5E120A002F51C9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E4B13BE42C5CC65200110997 /* Shoppingmall.app */,
+				E43989A52C5E120A002F51C9 /* Shoppingmall.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E43989A72C5E120A002F51C9 /* Shoppingmall */ = {
+			isa = PBXGroup;
+			children = (
+				E43989DE2C5E15F2002F51C9 /* App */,
+				E43989DD2C5E15EC002F51C9 /* Models */,
+				E43989E02C5E15FE002F51C9 /* Views */,
+				E43989DF2C5E15F7002F51C9 /* Services */,
+				E43989DC2C5E15AA002F51C9 /* Resources */,
+			);
+			path = Shoppingmall;
+			sourceTree = "<group>";
+		};
+		E43989C82C5E152B002F51C9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E43989C52C5E152B002F51C9 /* Montserrat-Regular.ttf */,
+				E43989C42C5E152B002F51C9 /* Montserrat-Medium.ttf */,
+				E43989C62C5E152B002F51C9 /* Montserrat-SemiBold.ttf */,
+				E43989C72C5E152B002F51C9 /* OFL.txt */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E43989DC2C5E15AA002F51C9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E43989C82C5E152B002F51C9 /* Fonts */,
+				E43989B12C5E120B002F51C9 /* Assets.xcassets */,
+				E43989B62C5E120B002F51C9 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E43989DD2C5E15EC002F51C9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E43989C22C5E1439002F51C9 /* MobileDevice.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E43989DE2C5E15F2002F51C9 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E43989A82C5E120A002F51C9 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E43989DF2C5E15F7002F51C9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E43989C02C5E141F002F51C9 /* NetworkManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E43989E02C5E15FE002F51C9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E43989BE2C5E13EC002F51C9 /* OnboardingViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E4B13BE32C5CC65200110997 /* Shoppingmall */ = {
+		E43989A42C5E120A002F51C9 /* Shoppingmall */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4B13BF72C5CC65300110997 /* Build configuration list for PBXNativeTarget "Shoppingmall" */;
+			buildConfigurationList = E43989B92C5E120B002F51C9 /* Build configuration list for PBXNativeTarget "Shoppingmall" */;
 			buildPhases = (
-				E4B13BE02C5CC65200110997 /* Sources */,
-				E4B13BE12C5CC65200110997 /* Frameworks */,
-				E4B13BE22C5CC65200110997 /* Resources */,
+				E43989A12C5E120A002F51C9 /* Sources */,
+				E43989A22C5E120A002F51C9 /* Frameworks */,
+				E43989A32C5E120A002F51C9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				E4B13BE62C5CC65200110997 /* Shoppingmall */,
-			);
 			name = Shoppingmall;
-			packageProductDependencies = (
-			);
 			productName = Shoppingmall;
-			productReference = E4B13BE42C5CC65200110997 /* Shoppingmall.app */;
+			productReference = E43989A52C5E120A002F51C9 /* Shoppingmall.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E4B13BDC2C5CC65200110997 /* Project object */ = {
+		E439899D2C5E120A002F51C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					E4B13BE32C5CC65200110997 = {
-						CreatedOnToolsVersion = 16.0;
+					E43989A42C5E120A002F51C9 = {
+						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
-			buildConfigurationList = E4B13BDF2C5CC65200110997 /* Build configuration list for PBXProject "Shoppingmall" */;
-			compatibilityVersion = "Xcode 15.0";
+			buildConfigurationList = E43989A02C5E120A002F51C9 /* Build configuration list for PBXProject "Shoppingmall" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = E4B13BDB2C5CC65200110997;
-			productRefGroup = E4B13BE52C5CC65200110997 /* Products */;
+			mainGroup = E439899C2C5E120A002F51C9;
+			productRefGroup = E43989A62C5E120A002F51C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E4B13BE32C5CC65200110997 /* Shoppingmall */,
+				E43989A42C5E120A002F51C9 /* Shoppingmall */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E4B13BE22C5CC65200110997 /* Resources */ = {
+		E43989A32C5E120A002F51C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E43989CC2C5E152B002F51C9 /* OFL.txt in Resources */,
+				E43989CA2C5E152B002F51C9 /* Montserrat-Regular.ttf in Resources */,
+				E43989C92C5E152B002F51C9 /* Montserrat-Medium.ttf in Resources */,
+				E43989CB2C5E152B002F51C9 /* Montserrat-SemiBold.ttf in Resources */,
+				E43989B22C5E120B002F51C9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E4B13BE02C5CC65200110997 /* Sources */ = {
+		E43989A12C5E120A002F51C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E43989C12C5E141F002F51C9 /* NetworkManager.swift in Sources */,
+				E43989C32C5E1439002F51C9 /* MobileDevice.swift in Sources */,
+				E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */,
+				E43989BF2C5E13EC002F51C9 /* OnboardingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		E4B13BF82C5CC65300110997 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X7QDNJU74Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Shoppingmall/Resources/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.RuslanShigapov.Shoppingmall;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		E4B13BF92C5CC65300110997 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X7QDNJU74Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Shoppingmall/Resources/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.RuslanShigapov.Shoppingmall;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		E4B13BFB2C5CC65300110997 /* Debug */ = {
+		E43989B72C5E120B002F51C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -242,7 +259,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -253,7 +270,7 @@
 			};
 			name = Debug;
 		};
-		E4B13BFC2C5CC65300110997 /* Release */ = {
+		E43989B82C5E120B002F51C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -299,7 +316,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -309,28 +326,88 @@
 			};
 			name = Release;
 		};
+		E43989BA2C5E120B002F51C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X7QDNJU74Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Shoppingmall/Resources/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RuslanShigapov.Shoppingmall;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		E43989BB2C5E120B002F51C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X7QDNJU74Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Shoppingmall/Resources/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RuslanShigapov.Shoppingmall;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E4B13BDF2C5CC65200110997 /* Build configuration list for PBXProject "Shoppingmall" */ = {
+		E43989A02C5E120A002F51C9 /* Build configuration list for PBXProject "Shoppingmall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E4B13BFB2C5CC65300110997 /* Debug */,
-				E4B13BFC2C5CC65300110997 /* Release */,
+				E43989B72C5E120B002F51C9 /* Debug */,
+				E43989B82C5E120B002F51C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4B13BF72C5CC65300110997 /* Build configuration list for PBXNativeTarget "Shoppingmall" */ = {
+		E43989B92C5E120B002F51C9 /* Build configuration list for PBXNativeTarget "Shoppingmall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E4B13BF82C5CC65300110997 /* Debug */,
-				E4B13BF92C5CC65300110997 /* Release */,
+				E43989BA2C5E120B002F51C9 /* Debug */,
+				E43989BB2C5E120B002F51C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E4B13BDC2C5CC65200110997 /* Project object */;
+	rootObject = E439899D2C5E120A002F51C9 /* Project object */;
 }

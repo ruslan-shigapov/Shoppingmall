@@ -1,17 +1,16 @@
 //
-//  ViewController.swift
+//  OnboardingViewController.swift
 //  Shoppingmall
 //
-//  Created by Ruslan Shigapov on 02.08.2024.
+//  Created by Ruslan Shigapov on 03.08.2024.
 //
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class OnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
 }
-

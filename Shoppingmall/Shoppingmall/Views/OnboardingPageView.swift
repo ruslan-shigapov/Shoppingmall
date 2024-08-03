@@ -7,15 +7,7 @@
 
 import UIKit
 
-enum OnboardingPageType {
-    case notInteractive
-    case interactive
-}
-
 final class OnboardingPageView: UIView {
-    
-    // MARK: Private Properties
-    private let pageType: OnboardingPageType
     
     // MARK: Views
     private let roundedView: UIView = {
@@ -24,7 +16,6 @@ final class OnboardingPageView: UIView {
         return view
     }()
     
-    // TODO: replace labels?
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Constants.Fonts.medium, size: 32)
@@ -51,22 +42,9 @@ final class OnboardingPageView: UIView {
         return stackView
     }()
     
-    // TODO: replace buttons
-    private let primaryButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 8
-        button.setTitleColor(.deepBlue, for: .normal)
-        button.titleLabel?.font = UIFont(name: Constants.Fonts.medium, size: 16)
-        button.heightAnchor.constraint(equalToConstant: 34).isActive = true
-        return button
-    }()
+    private let primaryButton = PrimaryButton(color: .white)
     
-    private let secondaryButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.font = UIFont(name: Constants.Fonts.medium, size: 14)
-        return button
-    }()
+    private let secondaryButton = SecondaryButton(color: .white)
     
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(
@@ -92,7 +70,6 @@ final class OnboardingPageView: UIView {
 
     // MARK: Initialize
     init(
-        pageType: OnboardingPageType,
         color: UIColor,
         title: String,
         currentPage: Int,
@@ -100,7 +77,6 @@ final class OnboardingPageView: UIView {
         primaryButtonTitle: String? = nil,
         secondaryButtonTitle: String? = nil
     ) {
-        self.pageType = pageType
         super.init(frame: .zero)
         roundedView.backgroundColor = color
         titleLabel.text = title
@@ -118,16 +94,17 @@ final class OnboardingPageView: UIView {
     
     // MARK: Private Methods
     private func setupUI() {
-        configure()
+        setupContent()
         addSubviews(roundedView, containerStackView)
         prepareForAutoLayout()
         setConstraints()
     }
     
-    private func configure() {
-        if pageType == .notInteractive {
+    private func setupContent() {
+        if descriptionLabel.text == nil {
             labelStackView.removeArrangedSubview(descriptionLabel)
             containerStackView.removeArrangedSubview(buttonStackView)
+            primaryButton.isHidden = true
         }
     }
 }

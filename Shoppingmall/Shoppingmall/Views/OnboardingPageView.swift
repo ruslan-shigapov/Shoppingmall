@@ -9,6 +9,14 @@ import UIKit
 
 final class OnboardingPageView: UIView {
     
+    // MARK: Private Properties
+    private let currentPage: Int
+    
+    private var imageViewTopInset: CGFloat = 0
+    private var imageViewLeadingInset: CGFloat = 0
+    private var imageViewBottomInset: CGFloat = 0
+    private var imageViewTrailingInset: CGFloat = 0
+    
     // MARK: Views
     private let roundedView: UIView = {
         let view = UIView()
@@ -16,11 +24,17 @@ final class OnboardingPageView: UIView {
         return view
     }()
     
+    private lazy var illustrationImageView: UIImageView = {
+        let imageView = UIImageView(
+            image: UIImage(named: "Illustration\(currentPage)"))
+        return imageView
+    }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Constants.Fonts.medium, size: 32)
         label.textColor = .white
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
@@ -38,7 +52,7 @@ final class OnboardingPageView: UIView {
         let stackView = UIStackView(
             arrangedSubviews: [titleLabel, descriptionLabel])
         stackView.axis = .vertical
-        stackView.spacing = 24
+        stackView.spacing = 16
         return stackView
     }()
     
@@ -50,13 +64,14 @@ final class OnboardingPageView: UIView {
         let stackView = UIStackView(
             arrangedSubviews: [primaryButton, secondaryButton])
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 8
         return stackView
     }()
     
-    private let pageControl: UIPageControl = {
+    private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = 4
+        pageControl.currentPage = currentPage
         return pageControl
     }()
     
@@ -64,7 +79,8 @@ final class OnboardingPageView: UIView {
         let stackView = UIStackView(
             arrangedSubviews: [labelStackView, buttonStackView, pageControl])
         stackView.axis = .vertical
-        stackView.spacing = 32
+        stackView.spacing = 24
+        stackView.distribution = .fillProportionally
         return stackView
     }()
 
@@ -77,13 +93,13 @@ final class OnboardingPageView: UIView {
         primaryButtonTitle: String? = nil,
         secondaryButtonTitle: String? = nil
     ) {
+        self.currentPage = currentPage
         super.init(frame: .zero)
         roundedView.backgroundColor = color
         titleLabel.text = title
         descriptionLabel.text = description
         primaryButton.setTitle(primaryButtonTitle, for: .normal)
         secondaryButton.setTitle(secondaryButtonTitle, for: .normal)
-        pageControl.currentPage = currentPage
         setupUI()
     }
     
@@ -95,7 +111,8 @@ final class OnboardingPageView: UIView {
     // MARK: Private Methods
     private func setupUI() {
         setupContent()
-        addSubviews(roundedView, containerStackView)
+        setImageViewInsets()
+        addSubviews(roundedView, illustrationImageView, containerStackView)
         prepareForAutoLayout()
         setConstraints()
     }
@@ -105,6 +122,30 @@ final class OnboardingPageView: UIView {
             labelStackView.removeArrangedSubview(descriptionLabel)
             containerStackView.removeArrangedSubview(buttonStackView)
             primaryButton.isHidden = true
+            secondaryButton.isHidden = true
+        }
+    }
+    
+    private func setImageViewInsets() {
+        switch currentPage {
+        case 0:
+            imageViewTopInset = 72
+            imageViewLeadingInset = 10
+            imageViewBottomInset = -61
+            imageViewTrailingInset = -10
+        case 1:
+            imageViewTopInset = 57
+            imageViewBottomInset = -65
+        case 2:
+            imageViewLeadingInset = 34
+            imageViewBottomInset = -2
+            imageViewTrailingInset = -42
+        case 3:
+            imageViewTopInset = 51
+            imageViewLeadingInset = 28
+            imageViewBottomInset = -2
+            imageViewTrailingInset = -28
+        default: break
         }
     }
 }
@@ -114,16 +155,27 @@ private extension OnboardingPageView {
     
     func setConstraints() {
         NSLayoutConstraint.activate([
-            roundedView.topAnchor.constraint(equalTo: topAnchor, constant: 24),
+            roundedView.topAnchor.constraint(equalTo: topAnchor),
             roundedView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 24),
-            roundedView.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
-                constant: -16),
+            roundedView.bottomAnchor.constraint(equalTo: bottomAnchor),
             roundedView.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
                 constant: -24),
+            
+            illustrationImageView.topAnchor.constraint(
+                equalTo: roundedView.topAnchor,
+                constant: imageViewTopInset),
+            illustrationImageView.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: imageViewLeadingInset),
+            illustrationImageView.bottomAnchor.constraint(
+                equalTo: containerStackView.topAnchor,
+                constant: imageViewBottomInset),
+            illustrationImageView.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: imageViewTrailingInset),
             
             containerStackView.leadingAnchor.constraint(
                 equalTo: roundedView.leadingAnchor,

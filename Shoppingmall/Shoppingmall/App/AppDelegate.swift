@@ -20,9 +20,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         NetworkManager.shared.setupMobileDeviceId()
         window = UIWindow(frame: UIScreen.main.bounds)
-        guard let window else { return false }
-        window.rootViewController = OnboardingViewController()
-        window.makeKeyAndVisible()
+        window?.rootViewController = OnboardingViewController()
+        window?.makeKeyAndVisible()
         return true
     }
 }

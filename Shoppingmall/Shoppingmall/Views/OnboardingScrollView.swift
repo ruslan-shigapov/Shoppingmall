@@ -9,33 +9,13 @@ import UIKit
 
 final class OnboardingScrollView: UIScrollView {
     
-    // MARK: Views
-    private let firstPageView = OnboardingPageView(
-        color: .deepBlue,
-        title: Constants.Texts.firstPageTitle,
-        currentPage: 0)
-    private let secondPageView = OnboardingPageView(
-        color: .milkyPink,
-        title: Constants.Texts.secondPageTitle,
-        currentPage: 1)
-    private let thirdPageView = OnboardingPageView(
-        color: .deepBlue,
-        title: Constants.Texts.thirdPageTitle,
-        currentPage: 2,
-        description: Constants.Texts.thirdPageDescription,
-        primaryButtonTitle: Constants.Texts.ButtonTitles.allow,
-        secondaryButtonTitle: Constants.Texts.ButtonTitles.later)
-    private let fourthPageView = OnboardingPageView(
-        color: .smokyBlack,
-        title: Constants.Texts.fourthPageTitle,
-        currentPage: 3,
-        description: Constants.Texts.fourthPageDescription,
-        primaryButtonTitle: Constants.Texts.ButtonTitles.register,
-        secondaryButtonTitle: Constants.Texts.ButtonTitles.alreadyRegistered)
+    // MARK: Private Properties
+    private var pageViews: [OnboardingPageView] = []
 
     // MARK: Initialize
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(pageViews: [OnboardingPageView]) {
+        self.pageViews = pageViews
+        super.init(frame: .zero)
         setupUI()
     }
 
@@ -57,12 +37,6 @@ final class OnboardingScrollView: UIScrollView {
     }
     
     private func setupPages() {
-        let pageViews = [
-            firstPageView,
-            secondPageView,
-            thirdPageView,
-            fourthPageView
-        ]
         contentSize = CGSize(
             width: frame.width * CGFloat(pageViews.count),
             height: frame.height)

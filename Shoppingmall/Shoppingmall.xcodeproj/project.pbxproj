@@ -19,6 +19,9 @@
 		E43989CC2C5E152B002F51C9 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E43989C72C5E152B002F51C9 /* OFL.txt */; };
 		E43BDD1F2C5E43D500305E05 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BDD1E2C5E43D500305E05 /* Constants.swift */; };
 		E43BDD212C5E44AD00305E05 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BDD202C5E44AD00305E05 /* UIView+extension.swift */; };
+		E47291F92C63A8D800E944E9 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */; };
+		E47291FB2C63AD6B00E944E9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47291FA2C63AD6B00E944E9 /* MainTabBarController.swift */; };
+		E47291FD2C63B20300E944E9 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47291FC2C63B20300E944E9 /* NotificationManager.swift */; };
 		E4E33A482C5E82A300A4908C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A472C5E82A300A4908C /* PrimaryButton.swift */; };
 		E4E33A4A2C5E859F00A4908C /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A492C5E859F00A4908C /* SecondaryButton.swift */; };
 		E4E33A4C2C5E894800A4908C /* OnboardingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A4B2C5E894800A4908C /* OnboardingScrollView.swift */; };
@@ -39,6 +42,9 @@
 		E43989C72C5E152B002F51C9 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		E43BDD1E2C5E43D500305E05 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E43BDD202C5E44AD00305E05 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
+		E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		E47291FA2C63AD6B00E944E9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		E47291FC2C63B20300E944E9 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		E4E33A472C5E82A300A4908C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		E4E33A492C5E859F00A4908C /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		E4E33A4B2C5E894800A4908C /* OnboardingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScrollView.swift; sourceTree = "<group>"; };
@@ -77,6 +83,7 @@
 				E43989DE2C5E15F2002F51C9 /* App */,
 				E43989DD2C5E15EC002F51C9 /* Models */,
 				E43989E02C5E15FE002F51C9 /* Views */,
+				E47291F72C63A8CA00E944E9 /* ViewModels */,
 				E43989DF2C5E15F7002F51C9 /* Services */,
 				E43BDD1D2C5E43BC00305E05 /* Helpers */,
 				E43989DC2C5E15AA002F51C9 /* Resources */,
@@ -125,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				E43989C02C5E141F002F51C9 /* NetworkManager.swift */,
+				E47291FC2C63B20300E944E9 /* NotificationManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -136,6 +144,7 @@
 				E40014F52C5E218F003407ED /* OnboardingPageView.swift */,
 				E4E33A4B2C5E894800A4908C /* OnboardingScrollView.swift */,
 				E43989BE2C5E13EC002F51C9 /* OnboardingViewController.swift */,
+				E47291FA2C63AD6B00E944E9 /* MainTabBarController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,6 +156,14 @@
 				E43BDD202C5E44AD00305E05 /* UIView+extension.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E47291F72C63A8CA00E944E9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		E4E33A462C5E821000A4908C /* Buttons */ = {
@@ -233,12 +250,15 @@
 			files = (
 				E4E33A4A2C5E859F00A4908C /* SecondaryButton.swift in Sources */,
 				E43989C12C5E141F002F51C9 /* NetworkManager.swift in Sources */,
+				E47291FB2C63AD6B00E944E9 /* MainTabBarController.swift in Sources */,
 				E43989C32C5E1439002F51C9 /* MobileDevice.swift in Sources */,
 				E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */,
 				E43BDD212C5E44AD00305E05 /* UIView+extension.swift in Sources */,
+				E47291FD2C63B20300E944E9 /* NotificationManager.swift in Sources */,
 				E40014F62C5E218F003407ED /* OnboardingPageView.swift in Sources */,
 				E4E33A4C2C5E894800A4908C /* OnboardingScrollView.swift in Sources */,
 				E43989BF2C5E13EC002F51C9 /* OnboardingViewController.swift in Sources */,
+				E47291F92C63A8D800E944E9 /* OnboardingViewModel.swift in Sources */,
 				E4E33A482C5E82A300A4908C /* PrimaryButton.swift in Sources */,
 				E43BDD1F2C5E43D500305E05 /* Constants.swift in Sources */,
 			);

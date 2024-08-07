@@ -148,6 +148,22 @@ final class OnboardingPageView: UIView {
         default: break
         }
     }
+    
+    // MARK: Public Methods
+    func addTarget(
+        _ target: Any?,
+        primaryAction: Selector,
+        secondaryAction: Selector
+    ) {
+        primaryButton.addTarget(
+            target,
+            action: primaryAction,
+            for: .touchUpInside)
+        secondaryButton.addTarget(
+            target,
+            action: secondaryAction,
+            for: .touchUpInside)
+    }
 }
 
 // MARK: - Layout

@@ -20,10 +20,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         NetworkManager.shared.setupMobileDeviceId()
         window = UIWindow(frame: UIScreen.main.bounds)
-        // TODO: create screen factory
-        let viewModel = OnboardingViewModel()
-        window?.rootViewController = OnboardingViewController(
-            viewModel: viewModel)
+        window?.rootViewController = ScreenFactory.makeRootViewController()
         window?.makeKeyAndVisible()
         return true
     }

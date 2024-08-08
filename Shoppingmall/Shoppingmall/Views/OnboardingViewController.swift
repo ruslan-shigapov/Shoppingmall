@@ -102,8 +102,10 @@ final class OnboardingViewController: UIViewController {
     }
     
     @objc private func skipButtonTapped() {
-        viewModel.setFirstLaunch(value: true)
-        dismiss(animated: true)
+        viewModel.setNotFirstLaunch(value: true)
+        let mainTabBarController = MainTabBarController()
+        mainTabBarController.modalPresentationStyle = .fullScreen
+        present(mainTabBarController, animated: true)
     }
     
     @objc private func allowButtonTapped() {

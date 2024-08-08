@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E40014F62C5E218F003407ED /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40014F52C5E218F003407ED /* OnboardingPageView.swift */; };
+		E408085E2C64C29800680E99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408085D2C64C29800680E99 /* HomeViewController.swift */; };
+		E40808602C64C2D200680E99 /* BonusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E408085F2C64C2D200680E99 /* BonusViewController.swift */; };
+		E40808622C64C32D00680E99 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40808612C64C32D00680E99 /* HomeViewModel.swift */; };
+		E40808642C64C6DA00680E99 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40808632C64C6DA00680E99 /* ScreenFactory.swift */; };
 		E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43989A82C5E120A002F51C9 /* AppDelegate.swift */; };
 		E43989B22C5E120B002F51C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43989B12C5E120B002F51C9 /* Assets.xcassets */; };
 		E43989BF2C5E13EC002F51C9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43989BE2C5E13EC002F51C9 /* OnboardingViewController.swift */; };
@@ -29,6 +33,10 @@
 
 /* Begin PBXFileReference section */
 		E40014F52C5E218F003407ED /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		E408085D2C64C29800680E99 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E408085F2C64C2D200680E99 /* BonusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusViewController.swift; sourceTree = "<group>"; };
+		E40808612C64C32D00680E99 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E40808632C64C6DA00680E99 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		E43989A52C5E120A002F51C9 /* Shoppingmall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoppingmall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43989A82C5E120A002F51C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E43989B12C5E120B002F51C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -145,6 +153,8 @@
 				E4E33A4B2C5E894800A4908C /* OnboardingScrollView.swift */,
 				E43989BE2C5E13EC002F51C9 /* OnboardingViewController.swift */,
 				E47291FA2C63AD6B00E944E9 /* MainTabBarController.swift */,
+				E408085D2C64C29800680E99 /* HomeViewController.swift */,
+				E408085F2C64C2D200680E99 /* BonusViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,6 +162,7 @@
 		E43BDD1D2C5E43BC00305E05 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E40808632C64C6DA00680E99 /* ScreenFactory.swift */,
 				E43BDD1E2C5E43D500305E05 /* Constants.swift */,
 				E43BDD202C5E44AD00305E05 /* UIView+extension.swift */,
 			);
@@ -162,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */,
+				E40808612C64C32D00680E99 /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -249,10 +261,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4E33A4A2C5E859F00A4908C /* SecondaryButton.swift in Sources */,
+				E40808602C64C2D200680E99 /* BonusViewController.swift in Sources */,
+				E40808642C64C6DA00680E99 /* ScreenFactory.swift in Sources */,
 				E43989C12C5E141F002F51C9 /* NetworkManager.swift in Sources */,
+				E40808622C64C32D00680E99 /* HomeViewModel.swift in Sources */,
 				E47291FB2C63AD6B00E944E9 /* MainTabBarController.swift in Sources */,
 				E43989C32C5E1439002F51C9 /* MobileDevice.swift in Sources */,
 				E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */,
+				E408085E2C64C29800680E99 /* HomeViewController.swift in Sources */,
 				E43BDD212C5E44AD00305E05 /* UIView+extension.swift in Sources */,
 				E47291FD2C63B20300E944E9 /* NotificationManager.swift in Sources */,
 				E40014F62C5E218F003407ED /* OnboardingPageView.swift in Sources */,

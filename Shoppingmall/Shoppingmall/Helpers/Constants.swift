@@ -11,12 +11,14 @@ enum Constants {
     // MARK: Images
     enum Images {
         static let appName = UIImage(named: "AppName")
+        static let homeIcon = UIImage(systemName: "house")
+        static let bonusIcon = UIImage(systemName: "gift")
     }
     // MARK: Fonts
     enum Fonts {
         static let regular = "Montserrat-Regular"
         static let medium = "Montserrat-Medium"
-        static let semiBol = "Montserrat-SemiBold"
+        static let semiBold = "Montserrat-SemiBold"
     }
     // MARK: Texts
     enum Texts {
@@ -36,6 +38,10 @@ enum Constants {
             static let later = "Позже"
             static let register = "Зарегистрироваться"
             static let alreadyRegistered = "У меня уже есть аккаунт"
+        }
+        enum TabBarTitles {
+            static let home = "Дом"
+            static let bonus = "Бонус"
         }
     }
 }

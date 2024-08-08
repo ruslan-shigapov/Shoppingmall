@@ -13,10 +13,9 @@ private enum Path: String {
 }
 
 enum NetworkError: Error {
-    case invalidURL
     case parsingFailure(error: Error)
     case unknownError(_ error: Error)
-    case invalidResponse(_ statusCode: Int)
+    case invalidResponse
     case noData
 }
 
@@ -34,14 +33,10 @@ final class NetworkManager {
     
     private func fetchMobileDeviceId(
         by jsonData: [String: Any],
+        retryCount: Int = 2,
         completion: @escaping (Result<String, NetworkError>) -> Void
     ) {
-        guard let url = URL(
-            string: Path.base.rawValue + Path.mobileDevice.rawValue
-        ) else {
-            completion(.failure(.invalidURL))
-            return
-        }
+        let url = URL(string: Path.base.rawValue + Path.mobileDevice.rawValue)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -50,33 +45,46 @@ final class NetworkManager {
                 withJSONObject: jsonData)
         } catch {
             completion(.failure(.parsingFailure(error: error)))
+            return
         }
         URLSession.shared.dataTask(
             with: request
         ) { [weak self] data, response, error in
             guard let self else { return }
             if let error {
-                completion(.failure(.unknownError(error)))
+                if retryCount > 0 {
+                    fetchMobileDeviceId(
+                        by: jsonData,
+                        retryCount: retryCount - 1,
+                        completion: completion)
+                } else {
+                    completion(.failure(.unknownError(error)))
+                }
                 return
             }
-            if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-                switch statusCode {
-                case 200:
-                    guard let data else {
-                        completion(.failure(.noData))
-                        return
-                    }
-                    do {
-                        let mobileDevice = try decoder.decode(
-                            MobileDevice.self,
-                            from: data)
-                        completion(.success(mobileDevice.id))
-                    } catch {
-                        completion(.failure(.parsingFailure(error: error)))
-                    }
-                default:
-                    completion(.failure(.invalidResponse(statusCode)))
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                if retryCount > 0 {
+                    fetchMobileDeviceId(
+                        by: jsonData,
+                        retryCount: retryCount - 1,
+                        completion: completion)
+                } else {
+                    completion(.failure(.invalidResponse))
                 }
+                return
+            }
+            guard let data else {
+                completion(.failure(.noData))
+                return
+            }
+            do {
+                let mobileDevice = try decoder.decode(
+                    MobileDevice.self,
+                    from: data)
+                completion(.success(mobileDevice.id))
+            } catch {
+                completion(.failure(.parsingFailure(error: error)))
             }
         }.resume()
     }

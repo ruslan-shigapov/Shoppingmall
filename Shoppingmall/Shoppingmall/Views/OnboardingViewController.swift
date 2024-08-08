@@ -9,6 +9,9 @@ import UIKit
 
 final class OnboardingViewController: UIViewController {
     
+    // MARK: Private Properties
+    private let viewModel: OnboardingViewModelProtocol
+    
     // MARK: Views
     private let titleImageView = UIImageView(image: Constants.Images.appName)
     
@@ -52,6 +55,17 @@ final class OnboardingViewController: UIViewController {
         return button
     }()
     
+    // MARK: Initialize
+    init(viewModel: OnboardingViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,13 +102,12 @@ final class OnboardingViewController: UIViewController {
     }
     
     @objc private func skipButtonTapped() {
-        // TODO: add first launch flag ?
+        viewModel.setFirstLaunch(value: true)
         dismiss(animated: true)
     }
     
     @objc private func allowButtonTapped() {
-        // TODO: replace to view model ?
-        NotificationManager.shared.requestPermission { [weak self] in
+        viewModel.requestNotificationPermission { [weak self] in
             guard let self else { return }
             scrollToLastPage()
         }

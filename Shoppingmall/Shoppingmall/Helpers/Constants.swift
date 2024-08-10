@@ -38,10 +38,17 @@ enum Constants {
             static let later = "Позже"
             static let register = "Зарегистрироваться"
             static let alreadyRegistered = "У меня уже есть аккаунт"
+            static let all = "Все"
         }
         enum TabBarTitles {
             static let home = "Дом"
             static let bonus = "Бонус"
+        }
+        enum BlockTitles: String, CaseIterable {
+            case news = "Новости"
+            case newOffers = "Новые предложения"
+            case usefulInfo = "Полезная информация"
+            case events = "Мероприятия"
         }
     }
 }

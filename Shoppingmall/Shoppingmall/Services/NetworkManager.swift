@@ -10,6 +10,7 @@ import UIKit
 private enum Path: String {
     case base = "https://skillbox.dev.instadev.net/api/v1"
     case mobileDevice = "/mobile-device"
+    case news = "/news/with/promotions-and-event"
 }
 
 enum NetworkError: Error {

@@ -38,12 +38,13 @@ final class OnboardingViewController: UIViewController {
         primaryButtonTitle: Constants.Texts.ButtonTitles.register,
         secondaryButtonTitle: Constants.Texts.ButtonTitles.alreadyRegistered)
     
-    private lazy var onboardingScrollView = OnboardingScrollView(
+    private lazy var pageScrollView = OnboardingScrollView(
         pageViews: [
             firstPageView,
             secondPageView,
             thirdPageView,
-            fourthPageView])
+            fourthPageView
+        ])
     
     private lazy var skipButton: SecondaryButton = {
         let button = SecondaryButton(color: .lightGray)
@@ -76,7 +77,7 @@ final class OnboardingViewController: UIViewController {
     // MARK: Private Methods
     private func setupUI() {
         view.backgroundColor = .white
-        view.addSubviews(titleImageView, onboardingScrollView, skipButton)
+        view.addSubviews(titleImageView, pageScrollView, skipButton)
         view.prepareForAutoLayout()
         setConstraints()
     }
@@ -94,9 +95,9 @@ final class OnboardingViewController: UIViewController {
     
     private func scrollToLastPage() {
         let fourthPageViewContentOffset = CGPoint(
-            x: onboardingScrollView.frame.width * 3,
+            x: pageScrollView.frame.width * 3,
             y: 0)
-        onboardingScrollView.setContentOffset(
+        pageScrollView.setContentOffset(
             fourthPageViewContentOffset,
             animated: true)
     }
@@ -130,22 +131,22 @@ private extension OnboardingViewController {
         NSLayoutConstraint.activate([
             titleImageView.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: 40),
+                constant: 10),
             titleImageView.centerXAnchor.constraint(
                 equalTo: view.centerXAnchor),
             titleImageView.heightAnchor.constraint(equalToConstant: 18),
             titleImageView.widthAnchor.constraint(equalToConstant: 120),
             
-            onboardingScrollView.topAnchor.constraint(
+            pageScrollView.topAnchor.constraint(
                 equalTo: titleImageView.bottomAnchor,
                 constant: 24),
-            onboardingScrollView.leadingAnchor.constraint(
+            pageScrollView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor),
-            onboardingScrollView.trailingAnchor.constraint(
+            pageScrollView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor),
             
             skipButton.topAnchor.constraint(
-                equalTo: onboardingScrollView.bottomAnchor,
+                equalTo: pageScrollView.bottomAnchor,
                 constant: 16),
             skipButton.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,

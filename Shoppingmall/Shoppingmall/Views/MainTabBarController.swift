@@ -18,7 +18,7 @@ final class MainTabBarController: UITabBarController {
     private func setupUI() {
         tabBar.barTintColor = .lightGray
         tabBar.tintColor = .deepBlue
-        
+        // TODO: add shadows, rounded corners (and dividers?) 
     }
     
     private func setViewControllers() {

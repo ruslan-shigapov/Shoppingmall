@@ -16,21 +16,28 @@ final class MainTabBarController: UITabBarController {
     }
     
     private func setupUI() {
+        tabBar.backgroundColor = .white
         tabBar.barTintColor = .lightGray
         tabBar.tintColor = .deepBlue
-        // TODO: add shadows, rounded corners (and dividers?) 
+        tabBar.layer.cornerRadius = 16
+        tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBar.layer.shadowOpacity = 0.24
+        let path = UIBezierPath(
+            roundedRect: tabBar.bounds,
+            cornerRadius: tabBar.layer.cornerRadius)
+        tabBar.layer.shadowPath = path.cgPath
     }
     
     private func setViewControllers() {
         setViewControllers(
             [
                 generateNavigationController(
-                    for: ScreenFactory.makeHomeViewController(),
-                    withTabBarIcon: Constants.Images.homeIcon,
+                    for: ScreenFactory.getHomeViewController(),
+                    withTabBarIcon: Constants.Images.TabBarIcons.home,
                     andTabBarTitle: Constants.Texts.TabBarTitles.home),
                 generateNavigationController(
-                    for: ScreenFactory.makeBonusViewController(),
-                    withTabBarIcon: Constants.Images.bonusIcon,
+                    for: ScreenFactory.getBonusViewController(),
+                    withTabBarIcon: Constants.Images.TabBarIcons.bonus,
                     andTabBarTitle: Constants.Texts.TabBarTitles.bonus)
             ],
             animated: true)

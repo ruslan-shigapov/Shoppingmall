@@ -20,7 +20,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         NetworkManager.shared.setupMobileDeviceId()
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = ScreenFactory.makeRootViewController()
+        window?.rootViewController = ScreenFactory.getRootViewController()
         window?.makeKeyAndVisible()
         return true
     }

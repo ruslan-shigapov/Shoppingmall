@@ -11,8 +11,10 @@ enum Constants {
     // MARK: Images
     enum Images {
         static let appName = UIImage(named: "AppName")
-        static let homeIcon = UIImage(systemName: "house")
-        static let bonusIcon = UIImage(systemName: "gift")
+        enum TabBarIcons {
+            static let home = UIImage(systemName: "house")
+            static let bonus = UIImage(systemName: "gift")
+        }
     }
     // MARK: Fonts
     enum Fonts {
@@ -22,16 +24,18 @@ enum Constants {
     }
     // MARK: Texts
     enum Texts {
-        static let firstPageTitle = "Шоппинг \n и отдых"
-        static let secondPageTitle = "Особые \n привилегии"
-        static let thirdPageTitle = "Узнавайте первыми"
-        static let fourthPageTitle = "Регистрация"
-        static let thirdPageDescription = """
-        Разрешите уведомления, чтобы узнавать о начисленных бонусах и специальных предложениях
-        """
-        static let fourthPageDescription = """
-        Станьте частью сообщества Shoppingmall и получайте баллы
-        """
+        enum Onboarding {
+            static let firstPageTitle = "Шоппинг \n и отдых"
+            static let secondPageTitle = "Особые \n привилегии"
+            static let thirdPageTitle = "Узнавайте первыми"
+            static let fourthPageTitle = "Регистрация"
+            static let thirdPageDescription = """
+            Разрешите уведомления, чтобы узнавать о начисленных бонусах и специальных предложениях
+            """
+            static let fourthPageDescription = """
+            Станьте частью сообщества Shoppingmall и получайте баллы
+            """
+        }
         enum ButtonTitles {
             static let skip = "Пропустить"
             static let allow = "Разрешить"
@@ -43,6 +47,12 @@ enum Constants {
         enum TabBarTitles {
             static let home = "Дом"
             static let bonus = "Бонус"
+        }
+        enum Greetings {
+            static let goodMorning = "Доброе утро!"
+            static let goodAfternoon = "Добрый день!"
+            static let goodEvening = "Добрый вечер!"
+            static let goodNight = "Доброй ночи!"
         }
         enum BlockTitles: String, CaseIterable {
             case news = "Новости"

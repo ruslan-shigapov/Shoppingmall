@@ -18,17 +18,19 @@ final class HomeViewController: UIViewController {
     private lazy var greetingLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Constants.Fonts.regular, size: 32)
+        label.textColor = .black
         label.text = viewModel.getGreetingText()
-        label.textAlignment = .center
         return label
     }()
     
     private lazy var blockTableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.register(
             BlockTableViewCell.self,
-            forCellReuseIdentifier: String(describing: BlockTableViewCell.self))
+            forCellReuseIdentifier: BlockTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
@@ -98,19 +100,17 @@ extension HomeViewController: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: BlockTableViewCell.self))
-        guard let blockCell = cell as? BlockTableViewCell else {
-            return UITableViewCell()
-        }
-        blockCell.viewModel = viewModel.getBlockCellViewModel(at: indexPath)
-        return blockCell
+            withIdentifier: BlockTableViewCell.identifier)
+        let blockCell = cell as? BlockTableViewCell
+        blockCell?.viewModel = viewModel.getBlockCellViewModel(at: indexPath)
+        return blockCell ?? UITableViewCell()
     }
 }
 
 // MARK: - Layout
-private extension HomeViewController {
+extension HomeViewController {
     
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             titleImageView.heightAnchor.constraint(equalToConstant: 18),
             titleImageView.widthAnchor.constraint(equalToConstant: 120),

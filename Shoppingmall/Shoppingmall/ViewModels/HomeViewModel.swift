@@ -18,7 +18,17 @@ protocol HomeViewModelProtocol {
 final class HomeViewModel: HomeViewModelProtocol {
         
     func getGreetingText() -> String {
-        return "Добрый день!" // TODO: make logic of finding out time of day
+        let currentHour = Calendar.current.component(.hour, from: Date())
+        switch currentHour {
+        case 6..<12:
+            return Constants.Texts.Greetings.goodMorning
+        case 12..<18:
+            return Constants.Texts.Greetings.goodAfternoon
+        case 18..<24:
+            return Constants.Texts.Greetings.goodEvening
+        default: break
+        }
+        return Constants.Texts.Greetings.goodNight
     }
     
     func getNumberOfRows() -> Int {

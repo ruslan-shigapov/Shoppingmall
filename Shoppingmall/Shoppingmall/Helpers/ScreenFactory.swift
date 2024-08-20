@@ -9,25 +9,25 @@ import UIKit
 
 struct ScreenFactory {
     
-    static func makeRootViewController() -> UIViewController {
+    static func getRootViewController() -> UIViewController {
         let isNotFirstLaunch = UserDefaults.standard.bool(
             forKey: "isNotFirstLaunch")
         return isNotFirstLaunch
         ? MainTabBarController()
-        : makeOnboardingViewController()
+        : getOnboardingViewController()
     }
     
-    static func makeOnboardingViewController() -> OnboardingViewController {
+    static func getOnboardingViewController() -> OnboardingViewController {
         let viewModel = OnboardingViewModel()
         return OnboardingViewController(viewModel: viewModel)
     }
     
-    static func makeHomeViewController() -> HomeViewController {
+    static func getHomeViewController() -> HomeViewController {
         let viewModel = HomeViewModel()
         return HomeViewController(viewModel: viewModel)
     }
     
-    static func makeBonusViewController() -> BonusViewController {
+    static func getBonusViewController() -> BonusViewController {
         BonusViewController()
     }
 }

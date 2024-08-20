@@ -17,24 +17,24 @@ final class OnboardingViewController: UIViewController {
     
     private let firstPageView = OnboardingPageView(
         color: .deepBlue,
-        title: Constants.Texts.firstPageTitle,
+        title: Constants.Texts.Onboarding.firstPageTitle,
         currentPage: 0)
     private let secondPageView = OnboardingPageView(
         color: .milkyPink,
-        title: Constants.Texts.secondPageTitle,
+        title: Constants.Texts.Onboarding.secondPageTitle,
         currentPage: 1)
     private let thirdPageView = OnboardingPageView(
         color: .deepBlue,
-        title: Constants.Texts.thirdPageTitle,
+        title: Constants.Texts.Onboarding.thirdPageTitle,
         currentPage: 2,
-        description: Constants.Texts.thirdPageDescription,
+        description: Constants.Texts.Onboarding.thirdPageDescription,
         primaryButtonTitle: Constants.Texts.ButtonTitles.allow,
         secondaryButtonTitle: Constants.Texts.ButtonTitles.later)
     private let fourthPageView = OnboardingPageView(
         color: .smokyBlack,
-        title: Constants.Texts.fourthPageTitle,
+        title: Constants.Texts.Onboarding.fourthPageTitle,
         currentPage: 3,
-        description: Constants.Texts.fourthPageDescription,
+        description: Constants.Texts.Onboarding.fourthPageDescription,
         primaryButtonTitle: Constants.Texts.ButtonTitles.register,
         secondaryButtonTitle: Constants.Texts.ButtonTitles.alreadyRegistered)
     

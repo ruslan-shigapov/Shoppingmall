@@ -9,10 +9,8 @@ import UIKit
 
 final class OnboardingScrollView: UIScrollView {
     
-    // MARK: Private Properties
     private var pageViews: [OnboardingPageView] = []
 
-    // MARK: Initialize
     init(pageViews: [OnboardingPageView]) {
         self.pageViews = pageViews
         super.init(frame: .zero)
@@ -24,13 +22,11 @@ final class OnboardingScrollView: UIScrollView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Lifecycle
     override func layoutSubviews() {
         super.layoutSubviews()
         setupPages()
     }
     
-    // MARK: Private Methods 
     private func setupUI() {
         showsHorizontalScrollIndicator = false
         isPagingEnabled = true

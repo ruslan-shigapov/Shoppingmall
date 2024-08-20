@@ -25,13 +25,13 @@ final class BlockTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let showAllItemsButton: SecondaryButton = {
+    private let showAllCardsButton: SecondaryButton = {
         let button = SecondaryButton(color: .deepBlue)
         button.setTitle(Constants.Texts.ButtonTitles.all, for: .normal)
         return button
     }()
     
-    private lazy var itemCollectionView: UICollectionView = {
+    private lazy var cardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(
@@ -42,8 +42,8 @@ final class BlockTableViewCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(
-            ItemCollectionViewCell.self,
-            forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
+            CardCollectionViewCell.self,
+            forCellWithReuseIdentifier: CardCollectionViewCell.identifier)
         return collectionView
     }()
     
@@ -55,6 +55,10 @@ final class BlockTableViewCell: UITableViewCell {
                 dividerView.isHidden = true
             }
             titleLabel.text = viewModel.title
+            viewModel.fetchCards { [weak self] in
+                guard let self else { return }
+                cardCollectionView.reloadData()
+            }
         }
     }
 
@@ -75,8 +79,8 @@ final class BlockTableViewCell: UITableViewCell {
         contentView.addSubviews(
             dividerView,
             titleLabel,
-            showAllItemsButton,
-            itemCollectionView)
+            showAllCardsButton,
+            cardCollectionView)
         contentView.prepareForAutoLayout()
         setConstraints()
     }
@@ -91,9 +95,10 @@ extension BlockTableViewCell: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         guard let viewModel else { return .zero }
+        // TODO: add right inset
         return CGSize(
             width: viewModel.isFirstBlock ? 334 : 227,
-            height: itemCollectionView.bounds.height)
+            height: cardCollectionView.bounds.height)
     }
 }
 
@@ -104,7 +109,7 @@ extension BlockTableViewCell: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        10
+        viewModel?.getNumberOfItems() ?? 0
     }
     
     func collectionView(
@@ -112,9 +117,9 @@ extension BlockTableViewCell: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ItemCollectionViewCell.identifier,
+            withReuseIdentifier: CardCollectionViewCell.identifier,
             for: indexPath)
-        let itemCell = cell as? ItemCollectionViewCell
+        let itemCell = cell as? CardCollectionViewCell
         return itemCell ?? UICollectionViewCell()
     }
 }
@@ -129,29 +134,29 @@ extension BlockTableViewCell {
                 equalTo: titleLabel.topAnchor,
                 constant: -8),
             dividerView.trailingAnchor.constraint(
-                equalTo: showAllItemsButton.trailingAnchor),
+                equalTo: showAllCardsButton.trailingAnchor),
             dividerView.heightAnchor.constraint(equalToConstant: 2),
             
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             
-            showAllItemsButton.bottomAnchor.constraint(
+            showAllCardsButton.bottomAnchor.constraint(
                 equalTo: titleLabel.bottomAnchor),
-            showAllItemsButton.trailingAnchor.constraint(
+            showAllCardsButton.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
                 constant: -24),
-            showAllItemsButton.heightAnchor.constraint(
+            showAllCardsButton.heightAnchor.constraint(
                 equalTo: titleLabel.heightAnchor),
             
-            itemCollectionView.topAnchor.constraint(
+            cardCollectionView.topAnchor.constraint(
                 equalTo: titleLabel.bottomAnchor,
                 constant: 8),
-            itemCollectionView.leadingAnchor.constraint(
+            cardCollectionView.leadingAnchor.constraint(
                 equalTo: leadingAnchor),
-            itemCollectionView.bottomAnchor.constraint(
+            cardCollectionView.bottomAnchor.constraint(
                 equalTo: bottomAnchor,
                 constant: -16),
-            itemCollectionView.trailingAnchor.constraint(
+            cardCollectionView.trailingAnchor.constraint(
                 equalTo: trailingAnchor)
         ])
     }

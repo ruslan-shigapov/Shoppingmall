@@ -1,5 +1,5 @@
 //
-//  ItemCollectionViewCell.swift
+//  CardCollectionViewCell.swift
 //  Shoppingmall
 //
 //  Created by Ruslan Shigapov on 19.08.2024.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class ItemCollectionViewCell: UICollectionViewCell {
+final class CardCollectionViewCell: UICollectionViewCell {
     
-    static var identifier = String(describing: ItemCollectionViewCell.self)
+    static var identifier = String(describing: CardCollectionViewCell.self)
  
     override init(frame: CGRect) {
         super.init(frame: frame)

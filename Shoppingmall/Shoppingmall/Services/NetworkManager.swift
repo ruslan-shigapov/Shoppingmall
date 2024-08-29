@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 private enum Path: String {
     case base = "https://skillbox.dev.instadev.net/api/v1"
     case mobileDevice = "/mobile-device"
-    case news = "/news/with/promotions-and-event"
+    case news = "/news/with/promotions"
+    case offers = "/offers"
+    case services = "/shops/category/slug/services/"
+    case events = "/events"
 }
 
 enum NetworkError: Error {
@@ -121,13 +125,20 @@ final class NetworkManager {
     }
     
     func fetchCards(
+        forBlock blockTitle: Constants.Texts.BlockTitles,
         completion: @escaping (Result<[Card], NetworkError>) -> Void
     ) {
+        let extraPath = switch blockTitle {
+        case .news: Path.news.rawValue
+        case .newOffers: Path.offers.rawValue
+        case .usefulInfo: Path.services.rawValue
+        case .events: Path.events.rawValue
+        }
         var urlComponents = URLComponents(
-            string: Path.base.rawValue + Path.news.rawValue)
+            string: Path.base.rawValue + extraPath)
+        let queryItemName = blockTitle == .news ? "on_main" : "on_home"
         urlComponents?.queryItems = [
-            URLQueryItem(name: "on_main", value: "true"),
-            URLQueryItem(name: "mobileUserId", value: mobileDeviceId)
+            URLQueryItem(name: queryItemName, value: "true")
         ]
         guard let url = urlComponents?.url else { return }
         let request = URLRequest(url: url)
@@ -141,5 +152,19 @@ final class NetworkManager {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func imagePublisher(
+        byUrl url: URL
+    ) -> AnyPublisher<UIImage?, NetworkError> {
+        URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap {
+                guard let image = UIImage(data: $0.data) else {
+                    throw NetworkError.noData
+                }
+                return image
+            }
+            .mapError { NetworkError.unknownError($0) }
+            .eraseToAnyPublisher()
     }
 }

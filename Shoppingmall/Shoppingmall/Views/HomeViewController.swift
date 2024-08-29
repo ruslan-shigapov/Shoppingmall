@@ -10,7 +10,7 @@ import UIKit
 final class HomeViewController: UIViewController {
     
     // MARK: Private Properties
-    private let viewModel: HomeViewModelProtocol
+    private var viewModel: HomeViewModelProtocol
 
     // MARK: Views
     private let titleImageView = UIImageView(image: Constants.Images.appName)
@@ -51,6 +51,7 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        handleEvents()
     }
     
     // MARK: Private Methods
@@ -64,6 +65,15 @@ final class HomeViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.titleView = titleImageView
+    }
+    
+    private func handleEvents() {
+        viewModel.wasEmptyBlockDetected = { [weak self] in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.blockTableView.reloadData()
+            }
+        }
     }
 }
 

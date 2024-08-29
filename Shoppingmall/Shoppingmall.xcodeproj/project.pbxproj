@@ -28,6 +28,7 @@
 		E47291F92C63A8D800E944E9 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */; };
 		E47291FB2C63AD6B00E944E9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47291FA2C63AD6B00E944E9 /* MainTabBarController.swift */; };
 		E47291FD2C63B20300E944E9 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47291FC2C63B20300E944E9 /* NotificationManager.swift */; };
+		E49499DF2C7F2DCC009A9B52 /* CardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49499DE2C7F2DCC009A9B52 /* CardCellViewModel.swift */; };
 		E4C18B492C675CED0078C5BF /* BlockCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C18B482C675CED0078C5BF /* BlockCellViewModel.swift */; };
 		E4C18B4B2C676CE10078C5BF /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C18B4A2C676CE10078C5BF /* BlockTableViewCell.swift */; };
 		E4E33A482C5E82A300A4908C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A472C5E82A300A4908C /* PrimaryButton.swift */; };
@@ -59,6 +60,7 @@
 		E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		E47291FA2C63AD6B00E944E9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E47291FC2C63B20300E944E9 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		E49499DE2C7F2DCC009A9B52 /* CardCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCellViewModel.swift; sourceTree = "<group>"; };
 		E4C18B482C675CED0078C5BF /* BlockCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCellViewModel.swift; sourceTree = "<group>"; };
 		E4C18B4A2C676CE10078C5BF /* BlockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
 		E4E33A472C5E82A300A4908C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */,
 				E40808612C64C32D00680E99 /* HomeViewModel.swift */,
 				E4C18B482C675CED0078C5BF /* BlockCellViewModel.swift */,
+				E49499DE2C7F2DCC009A9B52 /* CardCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				E40808622C64C32D00680E99 /* HomeViewModel.swift in Sources */,
 				E47291FB2C63AD6B00E944E9 /* MainTabBarController.swift in Sources */,
 				E43989C32C5E1439002F51C9 /* MobileDevice.swift in Sources */,
+				E49499DF2C7F2DCC009A9B52 /* CardCellViewModel.swift in Sources */,
 				E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */,
 				E408085E2C64C29800680E99 /* HomeViewController.swift in Sources */,
 				E43BDD212C5E44AD00305E05 /* UIView+extension.swift in Sources */,

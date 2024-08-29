@@ -5,21 +5,34 @@
 //  Created by Ruslan Shigapov on 10.08.2024.
 //
 
+import Foundation
+
 protocol BlockCellViewModelProtocol {
     var isFirstBlock: Bool { get }
     var title: String { get }
     func fetchCards(completion: @escaping () -> Void)
     func getNumberOfItems() -> Int
+    func getCardCellViewModel(
+        at indexPath: IndexPath
+    ) -> CardCellViewModelProtocol
 }
 
 final class BlockCellViewModel: BlockCellViewModelProtocol {
     
     private let blockTitle: Constants.Texts.BlockTitles
-    
-    private var cards: [Card] = []
+        
+    private var cards: [Card] = [] {
+        didSet {
+            if cards.isEmpty {
+                delegate?.removeEmptyBlock(title: blockTitle)
+            }
+        }
+    }
+        
+    var delegate: BlockCellViewModelDelegate?
     
     var isFirstBlock: Bool {
-        blockTitle == Constants.Texts.BlockTitles.news
+        blockTitle == .news
     }
     
     var title: String {
@@ -29,23 +42,30 @@ final class BlockCellViewModel: BlockCellViewModelProtocol {
     init(blockTitle: Constants.Texts.BlockTitles) {
         self.blockTitle = blockTitle
     }
-    
+        
     func fetchCards(completion: @escaping () -> Void) {
-        if isFirstBlock {
-            NetworkManager.shared.fetchCards { [weak self] result in
-                guard let self else { return }
-                switch result {
-                case .success(let cards):
-                    self.cards = cards
-                    completion()
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        NetworkManager.shared.fetchCards(
+            forBlock: blockTitle
+        ) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let cards):
+                self.cards = cards
+                completion()
+            case .failure(let error):
+                cards = []
+                print(error)
             }
         }
     }
     
     func getNumberOfItems() -> Int {
         cards.count
+    }
+    
+    func getCardCellViewModel(
+        at indexPath: IndexPath
+    ) -> CardCellViewModelProtocol {
+        CardCellViewModel(card: cards[indexPath.item])
     }
 }

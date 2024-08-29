@@ -7,7 +7,12 @@
 
 import Foundation
 
-protocol HomeViewModelProtocol {
+protocol BlockCellViewModelDelegate {
+    func removeEmptyBlock(title: Constants.Texts.BlockTitles)
+}
+
+protocol HomeViewModelProtocol: BlockCellViewModelDelegate {
+    var wasEmptyBlockDetected: (() -> Void)? { get set }
     func getGreetingText() -> String
     func getNumberOfRows() -> Int
     func getBlockCellViewModel(
@@ -16,6 +21,20 @@ protocol HomeViewModelProtocol {
 }
 
 final class HomeViewModel: HomeViewModelProtocol {
+    
+    private var blockTitles = Constants.Texts.BlockTitles.allCases {
+        didSet {
+            wasEmptyBlockDetected?()
+        }
+    }
+    
+    var wasEmptyBlockDetected: (() -> Void)?
+    
+    func removeEmptyBlock(title: Constants.Texts.BlockTitles) {
+        if let index = blockTitles.firstIndex(of: title) {
+            blockTitles.remove(at: index)
+        }
+    }
         
     func getGreetingText() -> String {
         let currentHour = Calendar.current.component(.hour, from: Date())
@@ -32,13 +51,15 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     func getNumberOfRows() -> Int {
-        Constants.Texts.BlockTitles.allCases.count
+        blockTitles.count
     }
     
     func getBlockCellViewModel(
         at indexPath: IndexPath
     ) -> BlockCellViewModelProtocol {
-        BlockCellViewModel(
-            blockTitle: Constants.Texts.BlockTitles.allCases[indexPath.row])
+        let viewModel = BlockCellViewModel(
+            blockTitle: blockTitles[indexPath.row])
+        viewModel.delegate = self as BlockCellViewModelDelegate
+        return viewModel
     }
 }

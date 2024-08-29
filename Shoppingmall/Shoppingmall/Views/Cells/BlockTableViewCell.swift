@@ -51,9 +51,7 @@ final class BlockTableViewCell: UITableViewCell {
     var viewModel: BlockCellViewModelProtocol? {
         didSet {
             guard let viewModel else { return }
-            if viewModel.isFirstBlock {
-                dividerView.isHidden = true
-            }
+            dividerView.isHidden = viewModel.isFirstBlock
             titleLabel.text = viewModel.title
             viewModel.fetchCards { [weak self] in
                 guard let self else { return }
@@ -72,6 +70,12 @@ final class BlockTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Lifecycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setConstraints()
+    }
 
     // MARK: Private Methods
     private func setupUI() {
@@ -82,7 +86,6 @@ final class BlockTableViewCell: UITableViewCell {
             showAllCardsButton,
             cardCollectionView)
         contentView.prepareForAutoLayout()
-        setConstraints()
     }
 }
 
@@ -95,10 +98,17 @@ extension BlockTableViewCell: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         guard let viewModel else { return .zero }
-        // TODO: add right inset
         return CGSize(
-            width: viewModel.isFirstBlock ? 334 : 227,
+            width: viewModel.isFirstBlock ? 308 : 227,
             height: cardCollectionView.bounds.height)
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 24)
     }
 }
 
@@ -120,6 +130,7 @@ extension BlockTableViewCell: UICollectionViewDataSource {
             withReuseIdentifier: CardCollectionViewCell.identifier,
             for: indexPath)
         let itemCell = cell as? CardCollectionViewCell
+        itemCell?.viewModel = viewModel?.getCardCellViewModel(at: indexPath)
         return itemCell ?? UICollectionViewCell()
     }
 }

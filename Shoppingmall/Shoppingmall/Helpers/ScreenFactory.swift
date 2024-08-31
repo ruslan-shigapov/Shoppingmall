@@ -27,7 +27,15 @@ struct ScreenFactory {
         return HomeViewController(viewModel: viewModel)
     }
     
+    static func getCatalogueViewController() -> CatalogueViewController {
+        CatalogueViewController()
+    }
+    
     static func getBonusViewController() -> BonusViewController {
         BonusViewController()
+    }
+    
+    static func getMenuViewController() -> MenuViewController {
+        MenuViewController()
     }
 }

@@ -31,8 +31,7 @@ final class CardCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var labelStackView: UIStackView = {
-        let stackView = UIStackView(
-            arrangedSubviews: [titleLabel, disclaimerLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel])
         stackView.axis = .vertical
         stackView.spacing = 8
         return stackView
@@ -54,8 +53,8 @@ final class CardCollectionViewCell: UICollectionViewCell {
             guard let viewModel else { return }
             titleLabel.text = viewModel.title
             disclaimerLabel.text = viewModel.disclaimer
-            if viewModel.disclaimer.isEmpty {
-                labelStackView.removeArrangedSubview(disclaimerLabel)
+            if !viewModel.disclaimer.isEmpty {
+                labelStackView.addArrangedSubview(disclaimerLabel)
             }
             viewModel.imagePublisher
                 .sink { [weak self] in

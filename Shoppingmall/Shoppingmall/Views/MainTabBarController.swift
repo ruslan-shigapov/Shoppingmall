@@ -36,9 +36,17 @@ final class MainTabBarController: UITabBarController {
                     withTabBarIcon: Constants.Images.TabBarIcons.home,
                     andTabBarTitle: Constants.Texts.TabBarTitles.home),
                 generateNavigationController(
+                    for: ScreenFactory.getCatalogueViewController(),
+                    withTabBarIcon: Constants.Images.TabBarIcons.catalogue,
+                    andTabBarTitle: Constants.Texts.TabBarTitles.catalogue),
+                generateNavigationController(
                     for: ScreenFactory.getBonusViewController(),
                     withTabBarIcon: Constants.Images.TabBarIcons.bonus,
-                    andTabBarTitle: Constants.Texts.TabBarTitles.bonus)
+                    andTabBarTitle: Constants.Texts.TabBarTitles.bonus),
+                generateNavigationController(
+                    for: ScreenFactory.getMenuViewController(),
+                    withTabBarIcon: Constants.Images.TabBarIcons.menu,
+                    andTabBarTitle: Constants.Texts.TabBarTitles.menu)
             ],
             animated: true)
     }

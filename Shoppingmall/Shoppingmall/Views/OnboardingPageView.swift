@@ -70,7 +70,7 @@ final class OnboardingPageView: UIView {
     
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = 4
+        pageControl.numberOfPages = 3
         pageControl.currentPage = currentPage
         return pageControl
     }()
@@ -123,6 +123,9 @@ final class OnboardingPageView: UIView {
             containerStackView.removeArrangedSubview(buttonStackView)
             primaryButton.isHidden = true
             secondaryButton.isHidden = true
+        }
+        if currentPage == 3 {
+            pageControl.isHidden = true
         }
     }
     

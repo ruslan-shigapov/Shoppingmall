@@ -30,20 +30,12 @@ final class OnboardingViewController: UIViewController {
         description: Constants.Texts.Onboarding.thirdPageDescription,
         primaryButtonTitle: Constants.Texts.ButtonTitles.allow,
         secondaryButtonTitle: Constants.Texts.ButtonTitles.later)
-    private let fourthPageView = OnboardingPageView(
-        color: .smokyBlack,
-        title: Constants.Texts.Onboarding.fourthPageTitle,
-        currentPage: 3,
-        description: Constants.Texts.Onboarding.fourthPageDescription,
-        primaryButtonTitle: Constants.Texts.ButtonTitles.register,
-        secondaryButtonTitle: Constants.Texts.ButtonTitles.alreadyRegistered)
     
     private lazy var pageScrollView = OnboardingScrollView(
         pageViews: [
             firstPageView,
             secondPageView,
-            thirdPageView,
-            fourthPageView
+            thirdPageView
         ])
     
     private lazy var skipButton: SecondaryButton = {
@@ -87,20 +79,16 @@ final class OnboardingViewController: UIViewController {
             self,
             primaryAction: #selector(allowButtonTapped),
             secondaryAction: #selector(laterButtonTapped))
-        fourthPageView.addTarget(
-            self,
-            primaryAction: #selector(registerButtonTapped),
-            secondaryAction: #selector(alreadyRegisteredButtonTapped))
     }
     
-    private func scrollToLastPage() {
-        let fourthPageViewContentOffset = CGPoint(
-            x: pageScrollView.frame.width * 3,
-            y: 0)
-        pageScrollView.setContentOffset(
-            fourthPageViewContentOffset,
-            animated: true)
-    }
+//    private func scrollToLastPage() {
+//        let fourthPageViewContentOffset = CGPoint(
+//            x: pageScrollView.frame.width * 3,
+//            y: 0)
+//        pageScrollView.setContentOffset(
+//            fourthPageViewContentOffset,
+//            animated: true)
+//    }
     
     @objc private func skipButtonTapped() {
         viewModel.setNotFirstLaunch(value: true)
@@ -112,16 +100,15 @@ final class OnboardingViewController: UIViewController {
     @objc private func allowButtonTapped() {
         viewModel.requestNotificationPermission { [weak self] in
             guard let self else { return }
-            scrollToLastPage()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.skipButtonTapped()
+            }
         }
     }
     
     @objc private func laterButtonTapped() {
-        scrollToLastPage()
+        skipButtonTapped()
     }
-    
-    @objc private func registerButtonTapped() {}
-    @objc private func alreadyRegisteredButtonTapped() {}
 }
 
 // MARK: - Layout

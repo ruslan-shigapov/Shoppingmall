@@ -13,7 +13,9 @@ enum Constants {
         static let appName = UIImage(named: "AppName")
         enum TabBarIcons {
             static let home = UIImage(systemName: "house")
+            static let catalogue = UIImage(systemName: "bag")
             static let bonus = UIImage(systemName: "gift")
+            static let menu = UIImage(systemName: "menucard")
         }
     }
     // MARK: Fonts
@@ -46,7 +48,9 @@ enum Constants {
         }
         enum TabBarTitles {
             static let home = "Дом"
+            static let catalogue = "Каталог"
             static let bonus = "Бонус"
+            static let menu = "Меню"
         }
         enum Greetings {
             static let goodMorning = "Доброе утро!"

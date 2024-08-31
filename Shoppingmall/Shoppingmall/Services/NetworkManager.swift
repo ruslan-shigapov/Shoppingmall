@@ -165,6 +165,7 @@ final class NetworkManager {
                 return image
             }
             .mapError { NetworkError.unknownError($0) }
+            .retry(1)
             .eraseToAnyPublisher()
     }
 }

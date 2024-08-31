@@ -31,6 +31,9 @@
 		E49499DF2C7F2DCC009A9B52 /* CardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49499DE2C7F2DCC009A9B52 /* CardCellViewModel.swift */; };
 		E4C18B492C675CED0078C5BF /* BlockCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C18B482C675CED0078C5BF /* BlockCellViewModel.swift */; };
 		E4C18B4B2C676CE10078C5BF /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C18B4A2C676CE10078C5BF /* BlockTableViewCell.swift */; };
+		E4C39E212C8309F80065B32F /* NavigationBarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C39E202C8309F80065B32F /* NavigationBarTitleView.swift */; };
+		E4C39E232C830B1E0065B32F /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C39E222C830B1E0065B32F /* CatalogueViewController.swift */; };
+		E4C39E252C8317FA0065B32F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C39E242C8317FA0065B32F /* MenuViewController.swift */; };
 		E4E33A482C5E82A300A4908C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A472C5E82A300A4908C /* PrimaryButton.swift */; };
 		E4E33A4A2C5E859F00A4908C /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A492C5E859F00A4908C /* SecondaryButton.swift */; };
 		E4E33A4C2C5E894800A4908C /* OnboardingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A4B2C5E894800A4908C /* OnboardingScrollView.swift */; };
@@ -63,6 +66,9 @@
 		E49499DE2C7F2DCC009A9B52 /* CardCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCellViewModel.swift; sourceTree = "<group>"; };
 		E4C18B482C675CED0078C5BF /* BlockCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCellViewModel.swift; sourceTree = "<group>"; };
 		E4C18B4A2C676CE10078C5BF /* BlockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
+		E4C39E202C8309F80065B32F /* NavigationBarTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarTitleView.swift; sourceTree = "<group>"; };
+		E4C39E222C830B1E0065B32F /* CatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewController.swift; sourceTree = "<group>"; };
+		E4C39E242C8317FA0065B32F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		E4E33A472C5E82A300A4908C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		E4E33A492C5E859F00A4908C /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		E4E33A4B2C5E894800A4908C /* OnboardingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScrollView.swift; sourceTree = "<group>"; };
@@ -166,7 +172,10 @@
 				E43989BE2C5E13EC002F51C9 /* OnboardingViewController.swift */,
 				E47291FA2C63AD6B00E944E9 /* MainTabBarController.swift */,
 				E408085D2C64C29800680E99 /* HomeViewController.swift */,
+				E4C39E202C8309F80065B32F /* NavigationBarTitleView.swift */,
+				E4C39E222C830B1E0065B32F /* CatalogueViewController.swift */,
 				E408085F2C64C2D200680E99 /* BonusViewController.swift */,
+				E4C39E242C8317FA0065B32F /* MenuViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -295,9 +304,12 @@
 				E43989C32C5E1439002F51C9 /* MobileDevice.swift in Sources */,
 				E49499DF2C7F2DCC009A9B52 /* CardCellViewModel.swift in Sources */,
 				E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */,
+				E4C39E232C830B1E0065B32F /* CatalogueViewController.swift in Sources */,
 				E408085E2C64C29800680E99 /* HomeViewController.swift in Sources */,
 				E43BDD212C5E44AD00305E05 /* UIView+extension.swift in Sources */,
 				E47291FD2C63B20300E944E9 /* NotificationManager.swift in Sources */,
+				E4C39E252C8317FA0065B32F /* MenuViewController.swift in Sources */,
+				E4C39E212C8309F80065B32F /* NavigationBarTitleView.swift in Sources */,
 				E40014F62C5E218F003407ED /* OnboardingPageView.swift in Sources */,
 				E4E33A4C2C5E894800A4908C /* OnboardingScrollView.swift in Sources */,
 				E43989BF2C5E13EC002F51C9 /* OnboardingViewController.swift in Sources */,

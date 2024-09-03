@@ -15,6 +15,7 @@ private enum Path: String {
     case offers = "/offers"
     case services = "/shops/category/slug/services/"
     case events = "/events"
+    case categories = "/categories"
 }
 
 enum NetworkError: Error {
@@ -28,7 +29,13 @@ final class NetworkManager {
     
     static let shared = NetworkManager()
     
-    private let decoder = JSONDecoder()
+    private let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+    
+    private var subscription: AnyCancellable?
     
     private var mobileDeviceId: String? {
         UserDefaults.standard.string(forKey: "mobileDeviceId")
@@ -36,50 +43,31 @@ final class NetworkManager {
     
     private init() {}
     
-    private func performRequest<T: Decodable>(
-        _ request: URLRequest,
-        retryCount: Int = 2,
-        completion: @escaping (Result<T, NetworkError>) -> Void
-    ) {
-        URLSession.shared.dataTask(
-            with: request
-        ) { [weak self] data, response, error in
-            guard let self else { return }
-            if let error {
-                completion(.failure(.unknownError(error)))
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                if retryCount > 0 {
-                    performRequest(
-                        request,
-                        retryCount: retryCount - 1,
-                        completion: completion)
-                } else {
-                    completion(.failure(.invalidResponse))
+    private func publish<T: Decodable>(
+        _ request: URLRequest
+    ) -> AnyPublisher<T, NetworkError> {
+        URLSession.shared.dataTaskPublisher(for: request)
+            .mapError { NetworkError.unknownError($0) }
+            .tryMap {
+                guard let httpResponse = $0.response as? HTTPURLResponse,
+                      (200...299).contains(httpResponse.statusCode) else {
+                    throw NetworkError.invalidResponse
                 }
-                return
+                guard !$0.data.isEmpty else {
+                    throw NetworkError.noData
+                }
+                
+                return $0.data
             }
-            guard let data else {
-                completion(.failure(.noData))
-                return
-            }
-            do {
-                let decodedData = try decoder.decode(
-                    T.self,
-                    from: data)
-                completion(.success(decodedData))
-            } catch {
-                completion(.failure(.parsingFailure(error: error)))
-            }
-        }.resume()
+            .retry(2)
+            .decode(type: T.self, decoder: decoder)
+            .mapError { NetworkError.parsingFailure(error: $0) }
+            .eraseToAnyPublisher()
     }
     
-    private func fetchMobileDeviceId(
-        by jsonData: [String: Any],
-        completion: @escaping (Result<String, NetworkError>) -> Void
-    ) {
+    private func publishMobileDeviceId(
+        by jsonData: [String: Any]
+    ) -> AnyPublisher<String, NetworkError> {
         let url = URL(string: Path.base.rawValue + Path.mobileDevice.rawValue)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -88,19 +76,14 @@ final class NetworkManager {
             request.httpBody = try JSONSerialization.data(
                 withJSONObject: jsonData)
         } catch {
-            completion(.failure(.parsingFailure(error: error)))
-            return
+            return Fail(error: NetworkError.parsingFailure(error: error))
+                .eraseToAnyPublisher()
         }
-        performRequest(
-            request
-        ) { (result: Result<MobileDevice, NetworkError>) in
-            switch result {
-            case .success(let mobileDevice):
-                completion(.success(mobileDevice.id))
-            case .failure(let error):
-                completion(.failure(error))
+        return publish(request)
+            .map { (mobileDevice: MobileDevice) in
+                mobileDevice.id
             }
-        }
+            .eraseToAnyPublisher()
     }
     
     func setupMobileDeviceId() {
@@ -112,22 +95,21 @@ final class NetworkManager {
             "version_os": UIDevice.current.systemVersion,
             "model": UIDevice.current.model
         ]
-        fetchMobileDeviceId(by: jsonData) { result in
-            switch result {
-            case .success(let mobileDeviceId):
-                UserDefaults.standard.setValue(
-                    mobileDeviceId,
-                    forKey: "mobileDeviceId")
-            case .failure(let error):
-                print(error.localizedDescription)
+        subscription = publishMobileDeviceId(by: jsonData)
+            .sink {
+                switch $0 {
+                case .finished: break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            } receiveValue: {
+                UserDefaults.standard.setValue($0, forKey: "mobileDeviceId")
             }
-        }
     }
     
-    func fetchCards(
-        forBlock blockTitle: Constants.Texts.BlockTitles,
-        completion: @escaping (Result<[Card], NetworkError>) -> Void
-    ) {
+    func publishCards(
+        forBlock blockTitle: Constants.Texts.BlockTitles
+    ) -> AnyPublisher<[Card], NetworkError> {
         let extraPath = switch blockTitle {
         case .news: Path.news.rawValue
         case .newOffers: Path.offers.rawValue
@@ -140,21 +122,16 @@ final class NetworkManager {
         urlComponents?.queryItems = [
             URLQueryItem(name: queryItemName, value: "true")
         ]
-        guard let url = urlComponents?.url else { return }
-        let request = URLRequest(url: url)
-        performRequest(request) { (result: Result<[Card], NetworkError>) in
-            switch result {
-            case .success(let cards):
-                DispatchQueue.main.async {
-                    completion(.success(cards))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
+        guard let url = urlComponents?.url else {
+            return Just([])
+                .setFailureType(to: NetworkError.self)
+                .eraseToAnyPublisher()
         }
+        let request = URLRequest(url: url)
+        return publish(request)
     }
     
-    func imagePublisher(
+    func publishImage(
         byUrl url: URL
     ) -> AnyPublisher<UIImage?, NetworkError> {
         URLSession.shared.dataTaskPublisher(for: url)
@@ -167,5 +144,11 @@ final class NetworkManager {
             .mapError { NetworkError.unknownError($0) }
             .retry(1)
             .eraseToAnyPublisher()
+    }
+    
+    func publishCategories() -> AnyPublisher<[Category], NetworkError> {
+        let url = URL(string: Path.base.rawValue + Path.categories.rawValue)!
+        let request = URLRequest(url: url)
+        return publish(request)
     }
 }

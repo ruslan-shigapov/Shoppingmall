@@ -40,10 +40,13 @@ final class CardCellViewModel: CardCellViewModelProtocol {
     }
     
     private func loadImage() {
-        guard let url = URL(string: card.logo_url) else { return }
-        subscription = NetworkManager.shared.imagePublisher(byUrl: url)
-            .replaceError(with: nil)
+        guard let url = URL(string: card.logoUrl) else { return }
+        subscription = NetworkManager.shared.publishImage(byUrl: url)
             .receive(on: DispatchQueue.main)
+            .catch {
+                print($0.localizedDescription)
+                return Just<UIImage?>(nil)
+            }
             .assign(to: \.image, on: self)
     }
 }

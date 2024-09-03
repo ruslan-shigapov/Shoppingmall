@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol BlockCellViewModelProtocol {
     var isFirstBlock: Bool { get }
@@ -20,6 +21,8 @@ protocol BlockCellViewModelProtocol {
 final class BlockCellViewModel: BlockCellViewModelProtocol {
     
     private let blockTitle: Constants.Texts.BlockTitles
+    
+    private var subscription: AnyCancellable?
         
     private var cards: [Card] = [] {
         didSet {
@@ -44,19 +47,21 @@ final class BlockCellViewModel: BlockCellViewModelProtocol {
     }
         
     func fetchCards(completion: @escaping () -> Void) {
-        NetworkManager.shared.fetchCards(
-            forBlock: blockTitle
-        ) { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let cards):
-                self.cards = cards
-                completion()
-            case .failure(let error):
-                cards = []
-                print(error)
+        subscription = NetworkManager.shared.publishCards(forBlock: blockTitle)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self else { return }
+                switch $0 {
+                case .finished:
+                    completion()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    cards = []
+                }
+            } receiveValue: { [weak self] in
+                guard let self else { return }
+                cards = $0
             }
-        }
     }
     
     func getNumberOfItems() -> Int {

@@ -28,6 +28,8 @@
 		E47291F92C63A8D800E944E9 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */; };
 		E47291FB2C63AD6B00E944E9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47291FA2C63AD6B00E944E9 /* MainTabBarController.swift */; };
 		E47291FD2C63B20300E944E9 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47291FC2C63B20300E944E9 /* NotificationManager.swift */; };
+		E48FD00C2C872C2D005A5593 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48FD00B2C872C2D005A5593 /* CategoryCollectionViewCell.swift */; };
+		E48FD00E2C873767005A5593 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48FD00D2C873767005A5593 /* Category.swift */; };
 		E49499DF2C7F2DCC009A9B52 /* CardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49499DE2C7F2DCC009A9B52 /* CardCellViewModel.swift */; };
 		E4C18B492C675CED0078C5BF /* BlockCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C18B482C675CED0078C5BF /* BlockCellViewModel.swift */; };
 		E4C18B4B2C676CE10078C5BF /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C18B4A2C676CE10078C5BF /* BlockTableViewCell.swift */; };
@@ -63,6 +65,8 @@
 		E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		E47291FA2C63AD6B00E944E9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E47291FC2C63B20300E944E9 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		E48FD00B2C872C2D005A5593 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		E48FD00D2C873767005A5593 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E49499DE2C7F2DCC009A9B52 /* CardCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCellViewModel.swift; sourceTree = "<group>"; };
 		E4C18B482C675CED0078C5BF /* BlockCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCellViewModel.swift; sourceTree = "<group>"; };
 		E4C18B4A2C676CE10078C5BF /* BlockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 			children = (
 				E43989C22C5E1439002F51C9 /* MobileDevice.swift */,
 				E41A08752C749A2E00488D23 /* Card.swift */,
+				E48FD00D2C873767005A5593 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 			children = (
 				E4C18B4A2C676CE10078C5BF /* BlockTableViewCell.swift */,
 				E42A7F6A2C7360A2002979E9 /* CardCollectionViewCell.swift */,
+				E48FD00B2C872C2D005A5593 /* CategoryCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				E40808642C64C6DA00680E99 /* ScreenFactory.swift in Sources */,
 				E41A08762C749A2E00488D23 /* Card.swift in Sources */,
 				E43989C12C5E141F002F51C9 /* NetworkManager.swift in Sources */,
+				E48FD00C2C872C2D005A5593 /* CategoryCollectionViewCell.swift in Sources */,
 				E42A7F6B2C7360A2002979E9 /* CardCollectionViewCell.swift in Sources */,
 				E40808622C64C32D00680E99 /* HomeViewModel.swift in Sources */,
 				E47291FB2C63AD6B00E944E9 /* MainTabBarController.swift in Sources */,
@@ -314,6 +321,7 @@
 				E4E33A4C2C5E894800A4908C /* OnboardingScrollView.swift in Sources */,
 				E43989BF2C5E13EC002F51C9 /* OnboardingViewController.swift in Sources */,
 				E47291F92C63A8D800E944E9 /* OnboardingViewModel.swift in Sources */,
+				E48FD00E2C873767005A5593 /* Category.swift in Sources */,
 				E4E33A482C5E82A300A4908C /* PrimaryButton.swift in Sources */,
 				E43BDD1F2C5E43D500305E05 /* Constants.swift in Sources */,
 				E4C18B4B2C676CE10078C5BF /* BlockTableViewCell.swift in Sources */,

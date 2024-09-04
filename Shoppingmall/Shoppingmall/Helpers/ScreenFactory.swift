@@ -28,7 +28,8 @@ struct ScreenFactory {
     }
     
     static func getCatalogueViewController() -> CatalogueViewController {
-        CatalogueViewController()
+        let viewModel = CatalogueViewModel()
+        return CatalogueViewController(viewModel: viewModel)
     }
     
     static func getBonusViewController() -> BonusViewController {

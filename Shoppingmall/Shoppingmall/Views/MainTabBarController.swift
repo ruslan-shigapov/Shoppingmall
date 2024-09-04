@@ -17,7 +17,7 @@ final class MainTabBarController: UITabBarController {
     
     private func setupUI() {
         tabBar.backgroundColor = .white
-        tabBar.barTintColor = .lightGray
+        tabBar.barTintColor = .white
         tabBar.tintColor = .deepBlue
         tabBar.layer.cornerRadius = 16
         tabBar.layer.shadowColor = UIColor.black.cgColor

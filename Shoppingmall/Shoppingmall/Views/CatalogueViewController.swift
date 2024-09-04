@@ -10,8 +10,14 @@ import Combine
 
 final class CatalogueViewController: UIViewController {
     
+    // MARK: Private Properties
+    private var viewModel: CatalogueViewModelProtocol
+    
+    // MARK: Views
     private let titleView = NavigationBarTitleView(
         title: Constants.Texts.TabBarTitles.catalogue)
+    
+    private let pathLabel = UILabel()
     
     private lazy var categoryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -27,16 +33,29 @@ final class CatalogueViewController: UIViewController {
             forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         return collectionView
     }()
-
+    
+    // MARK: Initialize
+    init(viewModel: CatalogueViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
+    // MARK: Private Methods 
     private func setupUI() {
         setupNavigationBar()
         view.backgroundColor = .white
-        view.addSubview(categoryCollectionView)
+        view.addSubviews(pathLabel, categoryCollectionView)
         view.prepareForAutoLayout()
         setConstraints()
     }
@@ -45,30 +64,12 @@ final class CatalogueViewController: UIViewController {
         navigationItem.titleView = titleView
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = .white
-        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
-//        let tabBarAppearance = UITabBarAppearance()
-//        tabBarAppearance.backgroundColor = .white
-//        tabBarController?.tabBar.standardAppearance = tabBarAppearance
-    }
-    
-    private func setConstraints() {
-        NSLayoutConstraint.activate([
-            categoryCollectionView.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: 24),
-            categoryCollectionView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: 24),
-            categoryCollectionView.bottomAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: -24),
-            categoryCollectionView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -24)
-        ])
+        let navigationBar = navigationController?.navigationBar
+        navigationBar?.standardAppearance = navigationBarAppearance
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension CatalogueViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(
@@ -81,13 +82,14 @@ extension CatalogueViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension CatalogueViewController: UICollectionViewDataSource {
     
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        7
+        viewModel.getNumberOfItems()
     }
     
     func collectionView(
@@ -98,9 +100,34 @@ extension CatalogueViewController: UICollectionViewDataSource {
             withReuseIdentifier: CategoryCollectionViewCell.identifier,
             for: indexPath)
         let categoryCell = cell as? CategoryCollectionViewCell
-        let colors: [UIColor] = [.deepBlue, .milkyPink, .smokyBlack, .lightGray]
-        categoryCell?.backgroundColor = colors.randomElement()
-        categoryCell?.layer.cornerRadius = 12
+        categoryCell?.configure(
+            withTitle: viewModel.getTitleForItem(at: indexPath))
         return categoryCell ?? UICollectionViewCell()
+    }
+}
+
+// MARK: - Layout
+extension CatalogueViewController {
+    
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            pathLabel.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: 16),
+            pathLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            categoryCollectionView.topAnchor.constraint(
+                equalTo: pathLabel.bottomAnchor,
+                constant: 8),
+            categoryCollectionView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: 24),
+            categoryCollectionView.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -24),
+            categoryCollectionView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -24)
+        ])
     }
 }

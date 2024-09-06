@@ -16,6 +16,7 @@ private enum Path: String {
     case services = "/shops/category/slug/services/"
     case events = "/events"
     case categories = "/categories"
+    case objects = "/shops/category/slug/"
 }
 
 enum NetworkError: Error {
@@ -142,7 +143,7 @@ final class NetworkManager {
                 return image
             }
             .mapError { NetworkError.unknownError($0) }
-            .retry(1)
+            .retry(2)
             .eraseToAnyPublisher()
     }
     
@@ -150,5 +151,13 @@ final class NetworkManager {
         let url = URL(string: Path.base.rawValue + Path.categories.rawValue)!
         let request = URLRequest(url: url)
         return publish(request)
+    }
+    
+    func publishObjects(
+        for category: String
+    ) -> AnyPublisher<[Object], NetworkError> {
+        let path = Path.base.rawValue + Path.objects.rawValue + category
+        let url = URL(string: path)!
+        return publish(URLRequest(url: url))
     }
 }

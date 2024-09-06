@@ -11,11 +11,14 @@ enum Constants {
     // MARK: Images
     enum Images {
         static let appName = UIImage(named: "AppName")
+        static let backArrow = UIImage(named: "BackArrow")
+        static let pin = UIImage(named: "Pin")
+        static let illustration = UIImage(named: "Illustration")
         enum TabBarIcons {
-            static let home = UIImage(systemName: "house")
-            static let catalogue = UIImage(systemName: "bag")
-            static let bonus = UIImage(systemName: "gift")
-            static let menu = UIImage(systemName: "menucard")
+            static let home = UIImage(named: "Home")
+            static let catalogue = UIImage(named: "Bag")
+            static let bonus = UIImage(named: "Gift")
+            static let menu = UIImage(named: "Menu")
         }
     }
     // MARK: Fonts
@@ -26,9 +29,11 @@ enum Constants {
     }
     // MARK: Texts
     enum Texts {
+        static let searchPlaceholder = "Поиск"
+        static let noObjects = "Упс..\n\n По вашему запросу\n ничего не найдено"
         enum Onboarding {
-            static let firstPageTitle = "Шоппинг \n и отдых"
-            static let secondPageTitle = "Особые \n привилегии"
+            static let firstPageTitle = "Шоппинг\n и отдых"
+            static let secondPageTitle = "Особые\n привилегии"
             static let thirdPageTitle = "Узнавайте первыми"
             static let fourthPageTitle = "Регистрация"
             static let thirdPageDescription = """

@@ -52,15 +52,16 @@ final class BlockCellViewModel: BlockCellViewModelProtocol {
             .sink { [weak self] in
                 guard let self else { return }
                 switch $0 {
-                case .finished:
-                    completion()
+                case .finished: break
                 case .failure(let error):
                     print(error.localizedDescription)
                     cards = []
+                    completion()
                 }
             } receiveValue: { [weak self] in
                 guard let self else { return }
                 cards = $0
+                completion()
             }
     }
     

@@ -7,4 +7,5 @@
 
 struct Category: Decodable {
     var name: String
+    var slug: String
 }

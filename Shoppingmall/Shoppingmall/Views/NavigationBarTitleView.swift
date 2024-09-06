@@ -11,13 +11,13 @@ final class NavigationBarTitleView: UIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: Constants.Fonts.medium, size: 24)
         label.textColor = .black
         return label
     }()
 
-    init(title: String) {
+    init(title: String, fontSize: CGFloat = 24) {
         titleLabel.text = title
+        titleLabel.font = UIFont(name: Constants.Fonts.medium, size: fontSize)
         super.init(frame: .zero)
         setupUI()
     }
@@ -36,13 +36,14 @@ final class NavigationBarTitleView: UIView {
     private func setConstraints() {
         titleLabel.centerYAnchor.constraint(
             equalTo: centerYAnchor).isActive = true
-        if titleLabel.text == Constants.Texts.TabBarTitles.catalogue {
-            titleLabel.centerXAnchor.constraint(
-                equalTo: centerXAnchor).isActive = true
-        } else {
+        if titleLabel.text == Constants.Texts.TabBarTitles.bonus ||
+           titleLabel.text == Constants.Texts.TabBarTitles.menu {
             titleLabel.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 6).isActive = true
+        } else {
+            titleLabel.centerXAnchor.constraint(
+                equalTo: centerXAnchor).isActive = true
         }
     }
 }

@@ -11,6 +11,7 @@ import Combine
 protocol CatalogueViewModelProtocol {
     func getNumberOfItems() -> Int
     func getTitleForItem(at indexPath: IndexPath) -> String
+    func getCategory(at indexPath: IndexPath) -> Category
 }
 
 final class CatalogueViewModel: CatalogueViewModelProtocol {
@@ -44,5 +45,9 @@ final class CatalogueViewModel: CatalogueViewModelProtocol {
     
     func getTitleForItem(at indexPath: IndexPath) -> String {
         categories[indexPath.item].name
+    }
+    
+    func getCategory(at indexPath: IndexPath) -> Category {
+        categories[indexPath.item]
     }
 }

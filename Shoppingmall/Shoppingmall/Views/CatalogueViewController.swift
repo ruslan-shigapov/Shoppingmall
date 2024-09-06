@@ -80,6 +80,23 @@ extension CatalogueViewController: UICollectionViewDelegateFlowLayout {
         let width = collectionView.bounds.width / 2 - 8
         return CGSize(width: width, height: width)
     }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: 0, bottom: 24, right: 0)
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        let categoryVC = ScreenFactory.getCategoryViewController(
+            category: viewModel.getCategory(at: indexPath))
+        navigationController?.pushViewController(categoryVC, animated: true)
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -123,8 +140,7 @@ extension CatalogueViewController {
                 equalTo: view.leadingAnchor,
                 constant: 24),
             categoryCollectionView.bottomAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: -24),
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             categoryCollectionView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
                 constant: -24)

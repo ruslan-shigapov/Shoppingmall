@@ -18,14 +18,16 @@ final class CardCollectionViewCell: UICollectionViewCell {
     // MARK: Views
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: Constants.Fonts.regular, size: 18)
+        label.font = UIFont(name: Constants.Fonts.medium, size: 18)
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()
     
     private let disclaimerLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: Constants.Fonts.regular, size: 14)
+        label.font = UIFont(name: Constants.Fonts.medium, size: 14)
+        label.textColor = .white
         label.numberOfLines = 0
         return label
     }()

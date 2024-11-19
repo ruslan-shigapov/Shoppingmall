@@ -11,11 +11,12 @@ import Combine
 protocol CategoryViewModelProtocol {
     var title: String { get }
     func numberOfRows() -> Int
-    func fetchObjects(completion: @escaping () -> Void)
-    func getObjectCellViewModel(
+    func fetchShops(completion: @escaping () -> Void)
+    func getShopCellViewModel(
         at indexPath: IndexPath
-    ) -> ObjectCellViewModelProtocol
+    ) -> ShopCellViewModelProtocol
     func search(byText searchText: String, completion: @escaping () -> Void)
+    func getShop(at indexPath: IndexPath) -> Shop
 }
 
 final class CategoryViewModel: CategoryViewModelProtocol {
@@ -24,13 +25,13 @@ final class CategoryViewModel: CategoryViewModelProtocol {
     
     private var subscription: AnyCancellable?
     
-    private var objects: [Object] = [] {
+    private var shops: [Shop] = [] {
         didSet {
-            filteredObjects = objects
+            filteredShops = shops
         }
     }
     
-    private var filteredObjects: [Object] = []
+    private var filteredShops: [Shop] = []
     
     var title: String {
         category.name
@@ -40,40 +41,45 @@ final class CategoryViewModel: CategoryViewModelProtocol {
         self.category = category
     }
     
-    func fetchObjects(completion: @escaping () -> Void) {
-        subscription = NetworkManager.shared.publishObjects(for: category.slug)
+    func fetchShops(completion: @escaping () -> Void) {
+        subscription?.cancel()
+        subscription = NetworkManager.shared.publishShops(for: category.slug)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                guard let self else { return }
+            .sink { 
                 switch $0 {
                 case .finished: break
                 case .failure(let error):
-                    print(error.localizedDescription)
-                    objects = []
-                    completion()
+                    print(error)
                 }
             } receiveValue: { [weak self] in
                 guard let self else { return }
-                objects = $0
+                shops = $0
                 completion()
             }
     }
     
     func numberOfRows() -> Int {
-        filteredObjects.count
+        filteredShops.count
     }
     
-    func getObjectCellViewModel(
+    func getShopCellViewModel(
         at indexPath: IndexPath
-    ) -> ObjectCellViewModelProtocol {
-        ObjectCellViewModel(object: filteredObjects[indexPath.row])
+    ) -> ShopCellViewModelProtocol {
+        ShopCellViewModel(object: filteredShops[indexPath.row])
     }
     
     func search(byText searchText: String, completion: @escaping () -> Void) {
-        filteredObjects = searchText.isEmpty ? objects : objects.filter { $0.name.lowercased().contains(searchText.lowercased())
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self else { return }
+            filteredShops = searchText.isEmpty ? shops : shops.filter { $0.name.lowercased().contains(searchText.lowercased())
+            }
+            DispatchQueue.main.async {
+                completion()
+            }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            completion()
-        }
+    }
+    
+    func getShop(at indexPath: IndexPath) -> Shop {
+        shops[indexPath.row]
     }
 }

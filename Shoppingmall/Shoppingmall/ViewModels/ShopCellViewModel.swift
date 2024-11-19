@@ -1,5 +1,5 @@
 //
-//  ObjectCellViewModel.swift
+//  ShopCellViewModel.swift
 //  Shoppingmall
 //
 //  Created by Ruslan Shigapov on 05.09.2024.
@@ -8,38 +8,39 @@
 import UIKit
 import Combine
 
-protocol ObjectCellViewModelProtocol {
+protocol ShopCellViewModelProtocol {
     var name: String  { get }
     var imagePublisher: AnyPublisher<UIImage?, Never> { get }
 }
 
-final class ObjectCellViewModel: ObjectCellViewModelProtocol {
+final class ShopCellViewModel: ShopCellViewModelProtocol {
     
-    private let object: Object
+    private let shop: Shop
     
     private var subscription: AnyCancellable?
     
     @Published private var previewImage: UIImage?
     
     var name: String {
-        object.name
+        shop.name
     }
     
     var imagePublisher: AnyPublisher<UIImage?, Never> {
         $previewImage.eraseToAnyPublisher()
     }
     
-    init(object: Object) {
-        self.object = object
+    init(object: Shop) {
+        self.shop = object
         loadImage()
     }
     
     private func loadImage() {
-        guard let url = URL(string: object.logoUrl) else { return }
+        subscription?.cancel()
+        guard let url = URL(string: shop.logoUrl) else { return }
         subscription = NetworkManager.shared.publishImage(byUrl: url)
             .receive(on: DispatchQueue.main)
             .catch {
-                print($0.localizedDescription)
+                print($0)
                 return Just<UIImage?>(nil)
             }
             .assign(to: \.previewImage, on: self)

@@ -25,9 +25,13 @@ final class BlockTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let showAllCardsButton: SecondaryButton = {
+    private lazy var showAllCardsButton: SecondaryButton = {
         let button = SecondaryButton(color: .deepBlue)
         button.setTitle(Constants.Texts.ButtonTitles.all, for: .normal)
+        button.addTarget(
+            self,
+            action: #selector(showAllCardsButtonTapped),
+            for: .touchUpInside)
         return button
     }()
     
@@ -70,12 +74,6 @@ final class BlockTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: Lifecycle
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setConstraints()
-    }
 
     // MARK: Private Methods
     private func setupUI() {
@@ -86,6 +84,11 @@ final class BlockTableViewCell: UITableViewCell {
             showAllCardsButton,
             cardCollectionView)
         contentView.prepareForAutoLayout()
+        setConstraints()
+    }
+    
+    @objc private func showAllCardsButtonTapped() {
+        
     }
 }
 

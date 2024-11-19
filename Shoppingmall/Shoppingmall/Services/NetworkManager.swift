@@ -12,11 +12,12 @@ private enum Path: String {
     case base = "https://skillbox.dev.instadev.net/api/v1"
     case mobileDevice = "/mobile-device"
     case news = "/news/with/promotions"
-    case offers = "/offers"
     case services = "/shops/category/slug/services/"
     case events = "/events"
     case categories = "/categories"
-    case objects = "/shops/category/slug/"
+    case shops = "/shops/category/slug/"
+    case shopDetails = "/shops/"
+    case offers = "/promotions"
 }
 
 enum NetworkError: Error {
@@ -60,9 +61,9 @@ final class NetworkManager {
                 
                 return $0.data
             }
-            .retry(2)
             .decode(type: T.self, decoder: decoder)
             .mapError { NetworkError.parsingFailure(error: $0) }
+            .retry(3)
             .eraseToAnyPublisher()
     }
     
@@ -101,7 +102,7 @@ final class NetworkManager {
                 switch $0 {
                 case .finished: break
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print(error)
                 }
             } receiveValue: {
                 UserDefaults.standard.setValue($0, forKey: "mobileDeviceId")
@@ -109,11 +110,12 @@ final class NetworkManager {
     }
     
     func publishCards(
-        forBlock blockTitle: Constants.Texts.BlockTitles
+        forBlock blockTitle: Constants.Texts.BlockTitles,
+        shopId: String
     ) -> AnyPublisher<[Card], NetworkError> {
         let extraPath = switch blockTitle {
         case .news: Path.news.rawValue
-        case .newOffers: Path.offers.rawValue
+        case .offers: Path.shopDetails.rawValue + shopId + Path.offers.rawValue
         case .usefulInfo: Path.services.rawValue
         case .events: Path.events.rawValue
         }
@@ -128,8 +130,7 @@ final class NetworkManager {
                 .setFailureType(to: NetworkError.self)
                 .eraseToAnyPublisher()
         }
-        let request = URLRequest(url: url)
-        return publish(request)
+        return publish(URLRequest(url: url))
     }
     
     func publishImage(
@@ -144,19 +145,27 @@ final class NetworkManager {
             }
             .mapError { NetworkError.unknownError($0) }
             .retry(2)
+            .delay(for: .seconds(0.3), scheduler: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     
     func publishCategories() -> AnyPublisher<[Category], NetworkError> {
         let url = URL(string: Path.base.rawValue + Path.categories.rawValue)!
-        let request = URLRequest(url: url)
-        return publish(request)
+        return publish(URLRequest(url: url))
     }
     
-    func publishObjects(
+    func publishShops(
         for category: String
-    ) -> AnyPublisher<[Object], NetworkError> {
-        let path = Path.base.rawValue + Path.objects.rawValue + category
+    ) -> AnyPublisher<[Shop], NetworkError> {
+        let path = Path.base.rawValue + Path.shops.rawValue + category
+        let url = URL(string: path)!
+        return publish(URLRequest(url: url))
+    }
+    
+    func publishShopDetails(
+        byId id: String
+    ) -> AnyPublisher<Shop, NetworkError> {
+        let path = Path.base.rawValue + Path.shopDetails.rawValue + id
         let url = URL(string: path)!
         return publish(URLRequest(url: url))
     }

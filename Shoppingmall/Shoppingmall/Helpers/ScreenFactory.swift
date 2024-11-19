@@ -39,6 +39,13 @@ struct ScreenFactory {
         return CategoryViewController(viewModel: viewModel)
     }
     
+    static func getShopDetailsViewController(
+        shop: Shop
+    ) -> ShopDetailsViewController {
+        let viewModel = ShopDetailsViewModel(shop: shop)
+        return ShopDetailsViewController(viewModel: viewModel)
+    }
+    
     static func getBonusViewController() -> BonusViewController {
         BonusViewController()
     }

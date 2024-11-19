@@ -78,16 +78,11 @@ final class CardCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Lifecycle
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setConstraints()
-    }
-    
     // MARK: Private Methods
     private func setupUI() {
         addSubview(backgroundImageView)
         prepareForAutoLayout()
+        setConstraints()
     }
 }
 

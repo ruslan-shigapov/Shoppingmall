@@ -31,29 +31,34 @@ final class CategoryViewController: UIViewController {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
         searchBar.placeholder = Constants.Texts.searchPlaceholder
+        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
+            string: Constants.Texts.searchPlaceholder,
+            attributes: [.foregroundColor : UIColor.lightGray])
+        searchBar.searchTextField.leftView?.tintColor = .lightGray
+        searchBar.searchTextField.textColor = .black
         searchBar.delegate = self
         return searchBar
     }()
     
-    private lazy var objectTableView: UITableView = {
+    private lazy var shopTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.register(
-            ObjectTableViewCell.self,
-            forCellReuseIdentifier: ObjectTableViewCell.identifier)
+            ShopTableViewCell.self,
+            forCellReuseIdentifier: ShopTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
     }()
         
-    private let noObjectsStackView: UIStackView = {
+    private let noShopsStackView: UIStackView = {
         let descriptionLabel = UILabel()
         descriptionLabel.font = UIFont(name: Constants.Fonts.regular, size: 18)
         descriptionLabel.textColor = .lightGray
         descriptionLabel.textAlignment = .center
-        descriptionLabel.text = Constants.Texts.noObjects
+        descriptionLabel.text = Constants.Texts.noResults
         descriptionLabel.numberOfLines = 4
         let illustrationImageView = UIImageView(
             image: Constants.Images.illustration)
@@ -94,13 +99,13 @@ final class CategoryViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
-        view.addSubviews(searchBar, objectTableView, noObjectsStackView)
+        view.addSubviews(searchBar, shopTableView, noShopsStackView)
         view.prepareForAutoLayout()
         setConstraints()
     }
     
     private func setupContent() {
-        viewModel.fetchObjects { [weak self] in
+        viewModel.fetchShops { [weak self] in
             guard let self else { return }
             updateUI()
         }
@@ -110,12 +115,13 @@ final class CategoryViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(
             target: self,
             action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
     }
     
     private func updateUI() {
-        objectTableView.reloadData()
-        noObjectsStackView.isHidden = viewModel.numberOfRows() != 0
+        shopTableView.reloadData()
+        noShopsStackView.isHidden = viewModel.numberOfRows() != 0
     }
     
     @objc private func backButtonTapped() {
@@ -132,17 +138,21 @@ extension CategoryViewController: UITableViewDelegate {
     
     func tableView(
         _ tableView: UITableView,
-        shouldHighlightRowAt indexPath: IndexPath
-    ) -> Bool {
-        false
-    }
-    
-    func tableView(
-        _ tableView: UITableView,
         heightForRowAt indexPath: IndexPath
     ) -> CGFloat {
         60
     }
+    
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let shopVC = ScreenFactory.getShopDetailsViewController(
+            shop: viewModel.getShop(at: indexPath))
+        navigationController?.pushViewController(shopVC, animated: true)
+    }
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -160,11 +170,11 @@ extension CategoryViewController: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: ObjectTableViewCell.identifier)
-        let objectCell = cell as? ObjectTableViewCell
-        objectCell?.isFirstObject = indexPath.row == 0
-        objectCell?.viewModel = viewModel.getObjectCellViewModel(at: indexPath)
-        return objectCell ?? UITableViewCell()
+            withIdentifier: ShopTableViewCell.identifier)
+        let shopCell = cell as? ShopTableViewCell
+        shopCell?.isFirstObject = indexPath.row == 0
+        shopCell?.viewModel = viewModel.getShopCellViewModel(at: indexPath)
+        return shopCell ?? UITableViewCell()
     }
 }
 
@@ -196,20 +206,22 @@ extension CategoryViewController {
                 equalTo: view.trailingAnchor,
                 constant: -18),
             
-            objectTableView.topAnchor.constraint(
+            shopTableView.topAnchor.constraint(
                 equalTo: searchBar.bottomAnchor,
                 constant: 40),
-            objectTableView.leadingAnchor.constraint(
+            shopTableView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
                 constant: 24),
-            objectTableView.bottomAnchor.constraint(
+            shopTableView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            objectTableView.trailingAnchor.constraint(
+            shopTableView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
                 constant: -24),
             
-            noObjectsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            noObjectsStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            noShopsStackView.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor),
+            noShopsStackView.centerYAnchor.constraint(
+                equalTo: view.centerYAnchor)
         ])
     }
 }

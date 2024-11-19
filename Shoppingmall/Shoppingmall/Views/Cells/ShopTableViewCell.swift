@@ -1,5 +1,5 @@
 //
-//  ObjectTableViewCell.swift
+//  ShopTableViewCell.swift
 //  Shoppingmall
 //
 //  Created by Ruslan Shigapov on 05.09.2024.
@@ -8,9 +8,9 @@
 import UIKit
 import Combine
 
-final class ObjectTableViewCell: UITableViewCell {
+final class ShopTableViewCell: UITableViewCell {
     
-    static var identifier = String(describing: ObjectTableViewCell.self)
+    static var identifier = String(describing: ShopTableViewCell.self)
     
     // MARK: Private Properties
     private var storage: Set<AnyCancellable> = []
@@ -57,7 +57,7 @@ final class ObjectTableViewCell: UITableViewCell {
     // MARK: Public Properties 
     var isFirstObject = false
     
-    var viewModel: ObjectCellViewModelProtocol? {
+    var viewModel: ShopCellViewModelProtocol? {
         didSet {
             titleLabel.text = viewModel?.name
             viewModel?.imagePublisher
@@ -73,18 +73,18 @@ final class ObjectTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         dividerView.isHidden = isFirstObject
-        setConstraints()
     }
 
     // MARK: Private Methods
     private func setupUI() {
         backgroundColor = .clear
-        contentView.addSubviews(
+        addSubviews(
             dividerView,
             previewImageView,
             titleLabel,
             pinImageView)
-        contentView.prepareForAutoLayout()
+        prepareForAutoLayout()
+        setConstraints()
     }
     
     private func setConstraints() {

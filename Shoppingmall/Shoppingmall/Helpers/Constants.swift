@@ -14,6 +14,7 @@ enum Constants {
         static let backArrow = UIImage(named: "BackArrow")
         static let pin = UIImage(named: "Pin")
         static let illustration = UIImage(named: "Illustration")
+        static let whitePin = UIImage(named: "WhitePin")
         enum TabBarIcons {
             static let home = UIImage(named: "Home")
             static let catalogue = UIImage(named: "Bag")
@@ -30,7 +31,7 @@ enum Constants {
     // MARK: Texts
     enum Texts {
         static let searchPlaceholder = "Поиск"
-        static let noObjects = "Упс..\n\n По вашему запросу\n ничего не найдено"
+        static let noResults = "Упс..\n\n По вашему запросу\n ничего не найдено"
         enum Onboarding {
             static let firstPageTitle = "Шоппинг\n и отдых"
             static let secondPageTitle = "Особые\n привилегии"
@@ -50,6 +51,7 @@ enum Constants {
             static let register = "Зарегистрироваться"
             static let alreadyRegistered = "У меня уже есть аккаунт"
             static let all = "Все"
+            static let location = "Расположение в ТРЦ  "
         }
         enum TabBarTitles {
             static let home = "Дом"
@@ -65,7 +67,7 @@ enum Constants {
         }
         enum BlockTitles: String, CaseIterable {
             case news = "Новости"
-            case newOffers = "Новые предложения"
+            case offers = "Предложения за баллы"
             case usefulInfo = "Полезная информация"
             case events = "Мероприятия"
         }

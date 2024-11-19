@@ -25,13 +25,14 @@ final class CatalogueViewModel: CatalogueViewModelProtocol {
     }
     
     private func fetchCategories() {
+        subscription?.cancel()
         subscription = NetworkManager.shared.publishCategories()
             .receive(on: DispatchQueue.main)
             .sink {
                 switch $0 {
                 case .finished: break
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print(error)
                 }
             } receiveValue: { [weak self] in
                 guard let self else { return }

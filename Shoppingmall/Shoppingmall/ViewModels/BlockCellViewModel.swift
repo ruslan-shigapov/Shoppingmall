@@ -22,6 +22,8 @@ final class BlockCellViewModel: BlockCellViewModelProtocol {
     
     private let blockTitle: Constants.Texts.BlockTitles
     
+    private let shopId: String
+    
     private var subscription: AnyCancellable?
         
     private var cards: [Card] = [] {
@@ -42,19 +44,23 @@ final class BlockCellViewModel: BlockCellViewModelProtocol {
         blockTitle.rawValue
     }
     
-    init(blockTitle: Constants.Texts.BlockTitles) {
+    init(blockTitle: Constants.Texts.BlockTitles, shopId: String = "") {
         self.blockTitle = blockTitle
+        self.shopId = shopId
     }
-        
+    
     func fetchCards(completion: @escaping () -> Void) {
-        subscription = NetworkManager.shared.publishCards(forBlock: blockTitle)
+        subscription?.cancel()
+        subscription = NetworkManager.shared.publishCards(
+            forBlock: blockTitle,
+            shopId: shopId)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 guard let self else { return }
                 switch $0 {
                 case .finished: break
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print(error)
                     cards = []
                     completion()
                 }

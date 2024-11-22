@@ -36,12 +36,15 @@ final class CardCellViewModel: CardCellViewModelProtocol {
     
     init(card: Card) {
         self.card = card
-        loadImage()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self else { return }
+            loadImage()
+        }
     }
     
     private func loadImage() {
-        subscription?.cancel()
         guard let url = URL(string: card.logoUrl) else { return }
+        subscription?.cancel()
         subscription = NetworkManager.shared.publishImage(byUrl: url)
             .receive(on: DispatchQueue.main)
             .catch {

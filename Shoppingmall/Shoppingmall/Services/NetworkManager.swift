@@ -43,6 +43,8 @@ final class NetworkManager {
         UserDefaults.standard.string(forKey: "mobileDeviceId")
     }
     
+    private var imageCache = NSCache<NSURL, UIImage>()
+    
     private init() {}
     
     private func publish<T: Decodable>(
@@ -58,7 +60,6 @@ final class NetworkManager {
                 guard !$0.data.isEmpty else {
                     throw NetworkError.noData
                 }
-                
                 return $0.data
             }
             .decode(type: T.self, decoder: decoder)
@@ -136,7 +137,12 @@ final class NetworkManager {
     func publishImage(
         byUrl url: URL
     ) -> AnyPublisher<UIImage?, NetworkError> {
-        URLSession.shared.dataTaskPublisher(for: url)
+        if let cachedImage = imageCache.object(forKey: url as NSURL) {
+            return Just(cachedImage)
+                .setFailureType(to: NetworkError.self)
+                .eraseToAnyPublisher()
+        }
+        return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap {
                 guard let image = UIImage(data: $0.data) else {
                     throw NetworkError.noData
@@ -145,7 +151,11 @@ final class NetworkManager {
             }
             .mapError { NetworkError.unknownError($0) }
             .retry(2)
-            .delay(for: .seconds(0.3), scheduler: DispatchQueue.main)
+            .handleEvents(receiveOutput:  { [weak self] in
+                if let self, let image = $0 {
+                    self.imageCache.setObject(image, forKey: url as NSURL)
+                }
+            })
             .eraseToAnyPublisher()
     }
     

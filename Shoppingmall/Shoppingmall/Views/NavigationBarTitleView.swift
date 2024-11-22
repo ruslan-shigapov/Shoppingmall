@@ -34,16 +34,9 @@ final class NavigationBarTitleView: UIView {
     }
     
     private func setConstraints() {
-        titleLabel.centerYAnchor.constraint(
-            equalTo: centerYAnchor).isActive = true
-        if titleLabel.text == Constants.Texts.TabBarTitles.bonus ||
-           titleLabel.text == Constants.Texts.TabBarTitles.menu {
-            titleLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor,
-                constant: 6).isActive = true
-        } else {
-            titleLabel.centerXAnchor.constraint(
-                equalTo: centerXAnchor).isActive = true
-        }
+        NSLayoutConstraint.activate([
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
     }
 }

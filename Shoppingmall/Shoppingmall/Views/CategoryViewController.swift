@@ -147,12 +147,11 @@ extension CategoryViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
         let shopVC = ScreenFactory.getShopDetailsViewController(
             shop: viewModel.getShop(at: indexPath))
         navigationController?.pushViewController(shopVC, animated: true)
     }
-    
 }
 
 // MARK: - UITableViewDataSource

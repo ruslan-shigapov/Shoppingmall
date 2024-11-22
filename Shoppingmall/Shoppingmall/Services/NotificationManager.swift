@@ -28,4 +28,14 @@ final class NotificationManager {
             }
         }
     }
+    
+    func checkPermission(completion: @escaping (Bool) -> Void) {
+        notificationCenter.getNotificationSettings {
+            completion($0.authorizationStatus == .authorized)
+        }
+    }
+    
+    func removeAllNotifications() {
+        notificationCenter.removeAllPendingNotificationRequests()
+    }
 }

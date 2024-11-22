@@ -15,6 +15,8 @@ enum Constants {
         static let pin = UIImage(named: "Pin")
         static let illustration = UIImage(named: "Illustration")
         static let whitePin = UIImage(named: "WhitePin")
+        static let forwardArrow = UIImage(named: "ForwardArrow")
+        static let entrance = UIImage(named: "Entrance")
         enum TabBarIcons {
             static let home = UIImage(named: "Home")
             static let catalogue = UIImage(named: "Bag")
@@ -26,12 +28,12 @@ enum Constants {
     enum Fonts {
         static let regular = "Montserrat-Regular"
         static let medium = "Montserrat-Medium"
-        static let semiBold = "Montserrat-SemiBold"
     }
     // MARK: Texts
     enum Texts {
         static let searchPlaceholder = "Поиск"
         static let noResults = "Упс..\n\n По вашему запросу\n ничего не найдено"
+        static let appName = "ShoppingMall"
         enum Onboarding {
             static let firstPageTitle = "Шоппинг\n и отдых"
             static let secondPageTitle = "Особые\n привилегии"
@@ -70,6 +72,29 @@ enum Constants {
             case offers = "Предложения за баллы"
             case usefulInfo = "Полезная информация"
             case events = "Мероприятия"
+        }
+        enum MenuIconNames: String, CaseIterable {
+            case flash = "Flash"
+            case questionPin = "QuestionPin"
+            case person = "Person"
+            case chat = "Chat"
+            case gear = "Gear"
+            case info = "Info"
+        }
+        enum MenuTitles: String, CaseIterable {
+            case newsAndOffers = "Новости и акции"
+            case howToGet = "Как добраться"
+            case contacts = "Контакты"
+            case chat = "Чат с ShoppingMall"
+            case settings = "Настройки"
+            case aboutApp = "О приложении"
+        }
+        enum Settings {
+            static let notifications = "Уведомления"
+            static let offers = "Акции в магазинах"
+            static let kidsEvents = "Детские мероприятия"
+            static let events = "Мероприятия в ТРЦ"
+            static let loginOrRegistration = "Вход или регистрация"
         }
     }
 }

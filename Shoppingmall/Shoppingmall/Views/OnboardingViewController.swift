@@ -81,15 +81,6 @@ final class OnboardingViewController: UIViewController {
             secondaryAction: #selector(laterButtonTapped))
     }
     
-//    private func scrollToLastPage() {
-//        let fourthPageViewContentOffset = CGPoint(
-//            x: pageScrollView.frame.width * 3,
-//            y: 0)
-//        pageScrollView.setContentOffset(
-//            fourthPageViewContentOffset,
-//            animated: true)
-//    }
-    
     @objc private func skipButtonTapped() {
         viewModel.setNotFirstLaunch(value: true)
         let mainTabBarController = MainTabBarController()

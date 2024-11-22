@@ -51,6 +51,11 @@ struct ScreenFactory {
     }
     
     static func getMenuViewController() -> MenuViewController {
-        MenuViewController()
+        let viewModel = MenuViewModel()
+        return MenuViewController(viewModel: viewModel)
+    }
+    
+    static func getSettingViewController() -> SettingsViewController {
+        SettingsViewController()
     }
 }

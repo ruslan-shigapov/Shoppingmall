@@ -58,4 +58,9 @@ struct ScreenFactory {
     static func getSettingViewController() -> SettingsViewController {
         SettingsViewController()
     }
+    
+    static func getNewsAndOffersViewController() -> NewsAndOffersViewController {
+        let viewModel = NewsAndOffersViewModel()
+        return NewsAndOffersViewController(viewModel: viewModel)
+    }
 }

@@ -10,4 +10,10 @@ struct Card: Decodable {
     var name: String?
     var logoUrl: String
     var disclaimer: String?
+    var date: Dates?
+}
+
+struct Dates: Decodable {
+    var start: String
+    var finish: String
 }

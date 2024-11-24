@@ -37,6 +37,8 @@
 		E48FD00C2C872C2D005A5593 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48FD00B2C872C2D005A5593 /* CategoryCollectionViewCell.swift */; };
 		E48FD00E2C873767005A5593 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48FD00D2C873767005A5593 /* Category.swift */; };
 		E49499DF2C7F2DCC009A9B52 /* CardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49499DE2C7F2DCC009A9B52 /* CardCellViewModel.swift */; };
+		E496EFD42CF205D3008C6682 /* NewsAndOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E496EFD32CF205D3008C6682 /* NewsAndOffersViewController.swift */; };
+		E496EFD62CF20A37008C6682 /* BigCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E496EFD52CF20A37008C6682 /* BigCardCollectionViewCell.swift */; };
 		E4A5D9082C8C46CB00B68517 /* ShopDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5D9072C8C46CB00B68517 /* ShopDetailsViewController.swift */; };
 		E4A5D90A2C8C492600B68517 /* ShopDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5D9092C8C492600B68517 /* ShopDetailsViewModel.swift */; };
 		E4B989162C8861F600CCFAE3 /* CatalogueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B989152C8861F600CCFAE3 /* CatalogueViewModel.swift */; };
@@ -47,6 +49,8 @@
 		E4C39E252C8317FA0065B32F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C39E242C8317FA0065B32F /* MenuViewController.swift */; };
 		E4C5E9D32C887A79005D4B00 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5E9D22C887A79005D4B00 /* CategoryViewController.swift */; };
 		E4C5E9D52C887BA1005D4B00 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5E9D42C887BA1005D4B00 /* CategoryViewModel.swift */; };
+		E4E1A0B92CF3337D00D81845 /* BigCardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A0B82CF3337D00D81845 /* BigCardCellViewModel.swift */; };
+		E4E1A0BB2CF33D9A00D81845 /* NewsAndOffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A0BA2CF33D9A00D81845 /* NewsAndOffersViewModel.swift */; };
 		E4E33A482C5E82A300A4908C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A472C5E82A300A4908C /* PrimaryButton.swift */; };
 		E4E33A4A2C5E859F00A4908C /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A492C5E859F00A4908C /* SecondaryButton.swift */; };
 		E4E33A4C2C5E894800A4908C /* OnboardingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A4B2C5E894800A4908C /* OnboardingScrollView.swift */; };
@@ -85,6 +89,8 @@
 		E48FD00B2C872C2D005A5593 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		E48FD00D2C873767005A5593 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E49499DE2C7F2DCC009A9B52 /* CardCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCellViewModel.swift; sourceTree = "<group>"; };
+		E496EFD32CF205D3008C6682 /* NewsAndOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAndOffersViewController.swift; sourceTree = "<group>"; };
+		E496EFD52CF20A37008C6682 /* BigCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4A5D9072C8C46CB00B68517 /* ShopDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailsViewController.swift; sourceTree = "<group>"; };
 		E4A5D9092C8C492600B68517 /* ShopDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailsViewModel.swift; sourceTree = "<group>"; };
 		E4B989152C8861F600CCFAE3 /* CatalogueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewModel.swift; sourceTree = "<group>"; };
@@ -95,6 +101,8 @@
 		E4C39E242C8317FA0065B32F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		E4C5E9D22C887A79005D4B00 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		E4C5E9D42C887BA1005D4B00 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		E4E1A0B82CF3337D00D81845 /* BigCardCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCardCellViewModel.swift; sourceTree = "<group>"; };
+		E4E1A0BA2CF33D9A00D81845 /* NewsAndOffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAndOffersViewModel.swift; sourceTree = "<group>"; };
 		E4E33A472C5E82A300A4908C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		E4E33A492C5E859F00A4908C /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		E4E33A4B2C5E894800A4908C /* OnboardingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScrollView.swift; sourceTree = "<group>"; };
@@ -206,6 +214,7 @@
 				E408085F2C64C2D200680E99 /* BonusViewController.swift */,
 				E4C39E242C8317FA0065B32F /* MenuViewController.swift */,
 				E42752A42CF09CDA00525D50 /* SettingsViewController.swift */,
+				E496EFD32CF205D3008C6682 /* NewsAndOffersViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,6 +242,8 @@
 				E4A5D9092C8C492600B68517 /* ShopDetailsViewModel.swift */,
 				E42752A22CF08E6D00525D50 /* MenuViewModel.swift */,
 				E45382E32CEF468A008018DE /* NavigationCellViewModel.swift */,
+				E4E1A0BA2CF33D9A00D81845 /* NewsAndOffersViewModel.swift */,
+				E4E1A0B82CF3337D00D81845 /* BigCardCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -245,6 +256,7 @@
 				E48FD00B2C872C2D005A5593 /* CategoryCollectionViewCell.swift */,
 				E47A668C2C89BD42009A3A32 /* ShopTableViewCell.swift */,
 				E45382E12CEF4429008018DE /* NavigationTableViewCell.swift */,
+				E496EFD52CF20A37008C6682 /* BigCardCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -346,10 +358,12 @@
 				E47291FB2C63AD6B00E944E9 /* MainTabBarController.swift in Sources */,
 				E43989C32C5E1439002F51C9 /* MobileDevice.swift in Sources */,
 				E49499DF2C7F2DCC009A9B52 /* CardCellViewModel.swift in Sources */,
+				E496EFD42CF205D3008C6682 /* NewsAndOffersViewController.swift in Sources */,
 				E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */,
 				E4C39E232C830B1E0065B32F /* CatalogueViewController.swift in Sources */,
 				E408085E2C64C29800680E99 /* HomeViewController.swift in Sources */,
 				E43BDD212C5E44AD00305E05 /* UIView+extension.swift in Sources */,
+				E4E1A0B92CF3337D00D81845 /* BigCardCellViewModel.swift in Sources */,
 				E47291FD2C63B20300E944E9 /* NotificationManager.swift in Sources */,
 				E4C39E252C8317FA0065B32F /* MenuViewController.swift in Sources */,
 				E4C39E212C8309F80065B32F /* NavigationBarTitleView.swift in Sources */,
@@ -360,7 +374,9 @@
 				E47A66912C89CBB8009A3A32 /* ShopCellViewModel.swift in Sources */,
 				E43989BF2C5E13EC002F51C9 /* OnboardingViewController.swift in Sources */,
 				E45382E42CEF468A008018DE /* NavigationCellViewModel.swift in Sources */,
+				E496EFD62CF20A37008C6682 /* BigCardCollectionViewCell.swift in Sources */,
 				E47291F92C63A8D800E944E9 /* OnboardingViewModel.swift in Sources */,
+				E4E1A0BB2CF33D9A00D81845 /* NewsAndOffersViewModel.swift in Sources */,
 				E4C5E9D32C887A79005D4B00 /* CategoryViewController.swift in Sources */,
 				E48FD00E2C873767005A5593 /* Category.swift in Sources */,
 				E4E33A482C5E82A300A4908C /* PrimaryButton.swift in Sources */,

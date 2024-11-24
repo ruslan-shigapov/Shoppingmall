@@ -132,9 +132,9 @@ extension BlockTableViewCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: CardCollectionViewCell.identifier,
             for: indexPath)
-        let itemCell = cell as? CardCollectionViewCell
-        itemCell?.viewModel = viewModel?.getCardCellViewModel(at: indexPath)
-        return itemCell ?? UICollectionViewCell()
+        let cardCell = cell as? CardCollectionViewCell
+        cardCell?.viewModel = viewModel?.getCardCellViewModel(at: indexPath)
+        return cardCell ?? UICollectionViewCell()
     }
 }
 

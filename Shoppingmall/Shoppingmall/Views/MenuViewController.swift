@@ -90,7 +90,9 @@ extension MenuViewController: UITableViewDelegate {
     ) {
         tableView.deselectRow(at: indexPath, animated: false)
         switch indexPath.row {
-        case 0: break
+        case 0: navigationController?.pushViewController(
+            ScreenFactory.getNewsAndOffersViewController(),
+            animated: true)
         case 1: break
         case 2: break
         case 3: break

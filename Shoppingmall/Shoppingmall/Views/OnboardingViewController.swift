@@ -39,7 +39,7 @@ final class OnboardingViewController: UIViewController {
         ])
     
     private lazy var skipButton: SecondaryButton = {
-        let button = SecondaryButton(color: .lightGray)
+        let button = SecondaryButton(color: .clearGrey)
         button.setTitle(Constants.Texts.ButtonTitles.skip, for: .normal)
         button.addTarget(
             self,

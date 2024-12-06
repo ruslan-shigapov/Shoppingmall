@@ -67,7 +67,7 @@ final class BigCardCollectionViewCell: UICollectionViewCell {
     
     // MARK: Private Methods
     private func setupUI() {
-        backgroundColor = .lightGray
+        backgroundColor = .clearGrey
         addSubviews(cardImageView, titleLabel, datesLabel)
         prepareForAutoLayout()
         layer.cornerRadius = 12

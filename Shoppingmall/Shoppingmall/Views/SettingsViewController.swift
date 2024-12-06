@@ -65,13 +65,13 @@ final class SettingsViewController: UIViewController {
     
     private let firstDividerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .clearGrey
         return view
     }()
     
     private let secondDividerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .clearGrey
         return view
     }()
     

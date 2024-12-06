@@ -26,7 +26,7 @@ final class NewsAndOffersViewController: UIViewController {
     private let titleView = NavigationBarTitleView(
         title: Constants.Texts.MenuTitles.newsAndOffers.rawValue)
     
-    private let pathLabel = UILabel()
+    private let patchLabel = UILabel()
     
     private lazy var bigCardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -65,7 +65,7 @@ final class NewsAndOffersViewController: UIViewController {
     private func setupUI() {
         setupNavigationBar()
         view.backgroundColor = .white
-        view.addSubviews(pathLabel, bigCardCollectionView)
+        view.addSubviews(patchLabel, bigCardCollectionView)
         view.prepareForAutoLayout()
         setConstraints()
     }
@@ -128,13 +128,13 @@ extension NewsAndOffersViewController {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            pathLabel.topAnchor.constraint(
+            patchLabel.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: 16),
-            pathLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            patchLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             bigCardCollectionView.topAnchor.constraint(
-                equalTo: pathLabel.bottomAnchor,
+                equalTo: patchLabel.bottomAnchor,
                 constant: 8),
             bigCardCollectionView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,

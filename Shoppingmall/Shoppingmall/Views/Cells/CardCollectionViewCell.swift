@@ -41,7 +41,7 @@ final class CardCollectionViewCell: UICollectionViewCell {
     
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .lightGray
+        imageView.backgroundColor = .clearGrey
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
         imageView.addSubview(labelStackView)

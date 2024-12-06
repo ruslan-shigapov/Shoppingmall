@@ -33,8 +33,8 @@ final class CategoryViewController: UIViewController {
         searchBar.placeholder = Constants.Texts.searchPlaceholder
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
             string: Constants.Texts.searchPlaceholder,
-            attributes: [.foregroundColor : UIColor.lightGray])
-        searchBar.searchTextField.leftView?.tintColor = .lightGray
+            attributes: [.foregroundColor : UIColor.clearGrey])
+        searchBar.searchTextField.leftView?.tintColor = .clearGrey
         searchBar.searchTextField.textColor = .black
         searchBar.delegate = self
         return searchBar
@@ -56,7 +56,7 @@ final class CategoryViewController: UIViewController {
     private let noShopsStackView: UIStackView = {
         let descriptionLabel = UILabel()
         descriptionLabel.font = UIFont(name: Constants.Fonts.regular, size: 18)
-        descriptionLabel.textColor = .lightGray
+        descriptionLabel.textColor = .clearGrey
         descriptionLabel.textAlignment = .center
         descriptionLabel.text = Constants.Texts.noResults
         descriptionLabel.numberOfLines = 4

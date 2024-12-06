@@ -17,6 +17,7 @@ enum Constants {
         static let whitePin = UIImage(named: "WhitePin")
         static let forwardArrow = UIImage(named: "ForwardArrow")
         static let entrance = UIImage(named: "Entrance")
+        static let map = UIImage(named: "Map")
         enum TabBarIcons {
             static let home = UIImage(named: "Home")
             static let catalogue = UIImage(named: "Bag")

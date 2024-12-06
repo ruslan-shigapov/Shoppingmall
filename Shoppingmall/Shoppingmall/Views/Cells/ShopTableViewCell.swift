@@ -18,7 +18,7 @@ final class ShopTableViewCell: UITableViewCell {
     // MARK: Views
     private let dividerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .clearGrey
         return view
     }()
     

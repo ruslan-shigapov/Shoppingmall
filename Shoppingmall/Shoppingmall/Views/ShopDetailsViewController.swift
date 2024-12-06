@@ -33,7 +33,7 @@ final class ShopDetailsViewController: UIViewController {
     
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .lightGray
+        imageView.backgroundColor = .clearGrey
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         return imageView

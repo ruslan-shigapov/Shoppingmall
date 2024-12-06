@@ -17,7 +17,7 @@ final class CatalogueViewController: UIViewController {
     private let titleView = NavigationBarTitleView(
         title: Constants.Texts.TabBarTitles.catalogue)
     
-    private let pathLabel = UILabel()
+    private let patchLabel = UILabel()
     
     private lazy var categoryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -55,7 +55,7 @@ final class CatalogueViewController: UIViewController {
     private func setupUI() {
         setupNavigationBar()
         view.backgroundColor = .white
-        view.addSubviews(pathLabel, categoryCollectionView)
+        view.addSubviews(patchLabel, categoryCollectionView)
         view.prepareForAutoLayout()
         setConstraints()
     }
@@ -128,13 +128,13 @@ extension CatalogueViewController {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            pathLabel.topAnchor.constraint(
+            patchLabel.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: 16),
-            pathLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            patchLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             categoryCollectionView.topAnchor.constraint(
-                equalTo: pathLabel.bottomAnchor,
+                equalTo: patchLabel.bottomAnchor,
                 constant: 8),
             categoryCollectionView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,

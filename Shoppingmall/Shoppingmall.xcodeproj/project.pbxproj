@@ -49,6 +49,8 @@
 		E4C39E252C8317FA0065B32F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C39E242C8317FA0065B32F /* MenuViewController.swift */; };
 		E4C5E9D32C887A79005D4B00 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5E9D22C887A79005D4B00 /* CategoryViewController.swift */; };
 		E4C5E9D52C887BA1005D4B00 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5E9D42C887BA1005D4B00 /* CategoryViewModel.swift */; };
+		E4DBA71E2D02FFEE007B0A41 /* HowToGetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DBA71D2D02FFEE007B0A41 /* HowToGetViewController.swift */; };
+		E4DBA7202D0308E0007B0A41 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DBA71F2D0308E0007B0A41 /* MapViewController.swift */; };
 		E4E1A0B92CF3337D00D81845 /* BigCardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A0B82CF3337D00D81845 /* BigCardCellViewModel.swift */; };
 		E4E1A0BB2CF33D9A00D81845 /* NewsAndOffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A0BA2CF33D9A00D81845 /* NewsAndOffersViewModel.swift */; };
 		E4E33A482C5E82A300A4908C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A472C5E82A300A4908C /* PrimaryButton.swift */; };
@@ -101,6 +103,8 @@
 		E4C39E242C8317FA0065B32F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		E4C5E9D22C887A79005D4B00 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		E4C5E9D42C887BA1005D4B00 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		E4DBA71D2D02FFEE007B0A41 /* HowToGetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToGetViewController.swift; sourceTree = "<group>"; };
+		E4DBA71F2D0308E0007B0A41 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E4E1A0B82CF3337D00D81845 /* BigCardCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCardCellViewModel.swift; sourceTree = "<group>"; };
 		E4E1A0BA2CF33D9A00D81845 /* NewsAndOffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAndOffersViewModel.swift; sourceTree = "<group>"; };
 		E4E33A472C5E82A300A4908C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 				E4C39E242C8317FA0065B32F /* MenuViewController.swift */,
 				E42752A42CF09CDA00525D50 /* SettingsViewController.swift */,
 				E496EFD32CF205D3008C6682 /* NewsAndOffersViewController.swift */,
+				E4DBA71D2D02FFEE007B0A41 /* HowToGetViewController.swift */,
+				E4DBA71F2D0308E0007B0A41 /* MapViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 				E4B989162C8861F600CCFAE3 /* CatalogueViewModel.swift in Sources */,
 				E4E33A4A2C5E859F00A4908C /* SecondaryButton.swift in Sources */,
 				E40808602C64C2D200680E99 /* BonusViewController.swift in Sources */,
+				E4DBA71E2D02FFEE007B0A41 /* HowToGetViewController.swift in Sources */,
 				E42752A32CF08E6D00525D50 /* MenuViewModel.swift in Sources */,
 				E4C18B492C675CED0078C5BF /* BlockCellViewModel.swift in Sources */,
 				E4A5D9082C8C46CB00B68517 /* ShopDetailsViewController.swift in Sources */,
@@ -354,6 +361,7 @@
 				E48FD00C2C872C2D005A5593 /* CategoryCollectionViewCell.swift in Sources */,
 				E42A7F6B2C7360A2002979E9 /* CardCollectionViewCell.swift in Sources */,
 				E40808622C64C32D00680E99 /* HomeViewModel.swift in Sources */,
+				E4DBA7202D0308E0007B0A41 /* MapViewController.swift in Sources */,
 				E47A668D2C89BD42009A3A32 /* ShopTableViewCell.swift in Sources */,
 				E47291FB2C63AD6B00E944E9 /* MainTabBarController.swift in Sources */,
 				E43989C32C5E1439002F51C9 /* MobileDevice.swift in Sources */,

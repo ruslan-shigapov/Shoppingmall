@@ -63,4 +63,8 @@ struct ScreenFactory {
         let viewModel = NewsAndOffersViewModel()
         return NewsAndOffersViewController(viewModel: viewModel)
     }
+    
+    static func getHowToGetViewController() -> HowToGetViewController {
+        HowToGetViewController()
+    }
 }

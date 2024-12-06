@@ -93,7 +93,9 @@ extension MenuViewController: UITableViewDelegate {
         case 0: navigationController?.pushViewController(
             ScreenFactory.getNewsAndOffersViewController(),
             animated: true)
-        case 1: break
+        case 1: navigationController?.pushViewController(
+            ScreenFactory.getHowToGetViewController(),
+            animated: true)
         case 2: break
         case 3: break
         case 4: navigationController?.pushViewController(

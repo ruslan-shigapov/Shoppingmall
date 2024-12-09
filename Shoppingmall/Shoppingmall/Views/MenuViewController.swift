@@ -101,7 +101,9 @@ extension MenuViewController: UITableViewDelegate {
         case 4: navigationController?.pushViewController(
             ScreenFactory.getSettingViewController(),
             animated: true)
-        case 5: break
+        case 5: navigationController?.pushViewController(
+            ScreenFactory.getAboutAppViewController(),
+            animated: true)
         default: break
         }
     }

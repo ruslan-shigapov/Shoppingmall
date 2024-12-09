@@ -67,4 +67,8 @@ struct ScreenFactory {
     static func getHowToGetViewController() -> HowToGetViewController {
         HowToGetViewController()
     }
+    
+    static func getAboutAppViewController() -> AboutAppViewController {
+        AboutAppViewController()
+    }
 }

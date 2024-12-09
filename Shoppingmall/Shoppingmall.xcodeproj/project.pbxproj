@@ -26,6 +26,7 @@
 		E43989CC2C5E152B002F51C9 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E43989C72C5E152B002F51C9 /* OFL.txt */; };
 		E43BDD1F2C5E43D500305E05 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BDD1E2C5E43D500305E05 /* Constants.swift */; };
 		E43BDD212C5E44AD00305E05 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BDD202C5E44AD00305E05 /* UIView+extension.swift */; };
+		E440B0B52D06DFCE00A9E98E /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440B0B42D06DFCE00A9E98E /* StarButton.swift */; };
 		E45382E22CEF4429008018DE /* NavigationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45382E12CEF4429008018DE /* NavigationTableViewCell.swift */; };
 		E45382E42CEF468A008018DE /* NavigationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45382E32CEF468A008018DE /* NavigationCellViewModel.swift */; };
 		E47291F92C63A8D800E944E9 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */; };
@@ -51,6 +52,7 @@
 		E4C5E9D52C887BA1005D4B00 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5E9D42C887BA1005D4B00 /* CategoryViewModel.swift */; };
 		E4DBA71E2D02FFEE007B0A41 /* HowToGetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DBA71D2D02FFEE007B0A41 /* HowToGetViewController.swift */; };
 		E4DBA7202D0308E0007B0A41 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DBA71F2D0308E0007B0A41 /* MapViewController.swift */; };
+		E4DBA7222D031018007B0A41 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DBA7212D031018007B0A41 /* AboutAppViewController.swift */; };
 		E4E1A0B92CF3337D00D81845 /* BigCardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A0B82CF3337D00D81845 /* BigCardCellViewModel.swift */; };
 		E4E1A0BB2CF33D9A00D81845 /* NewsAndOffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A0BA2CF33D9A00D81845 /* NewsAndOffersViewModel.swift */; };
 		E4E33A482C5E82A300A4908C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E33A472C5E82A300A4908C /* PrimaryButton.swift */; };
@@ -80,6 +82,7 @@
 		E43989C72C5E152B002F51C9 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		E43BDD1E2C5E43D500305E05 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E43BDD202C5E44AD00305E05 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
+		E440B0B42D06DFCE00A9E98E /* StarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarButton.swift; sourceTree = "<group>"; };
 		E45382E12CEF4429008018DE /* NavigationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTableViewCell.swift; sourceTree = "<group>"; };
 		E45382E32CEF468A008018DE /* NavigationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCellViewModel.swift; sourceTree = "<group>"; };
 		E47291F82C63A8D800E944E9 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 		E4C5E9D42C887BA1005D4B00 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		E4DBA71D2D02FFEE007B0A41 /* HowToGetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToGetViewController.swift; sourceTree = "<group>"; };
 		E4DBA71F2D0308E0007B0A41 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E4DBA7212D031018007B0A41 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 		E4E1A0B82CF3337D00D81845 /* BigCardCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCardCellViewModel.swift; sourceTree = "<group>"; };
 		E4E1A0BA2CF33D9A00D81845 /* NewsAndOffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAndOffersViewModel.swift; sourceTree = "<group>"; };
 		E4E33A472C5E82A300A4908C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				E496EFD32CF205D3008C6682 /* NewsAndOffersViewController.swift */,
 				E4DBA71D2D02FFEE007B0A41 /* HowToGetViewController.swift */,
 				E4DBA71F2D0308E0007B0A41 /* MapViewController.swift */,
+				E440B0B42D06DFCE00A9E98E /* StarButton.swift */,
+				E4DBA7212D031018007B0A41 /* AboutAppViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -366,6 +372,7 @@
 				E47291FB2C63AD6B00E944E9 /* MainTabBarController.swift in Sources */,
 				E43989C32C5E1439002F51C9 /* MobileDevice.swift in Sources */,
 				E49499DF2C7F2DCC009A9B52 /* CardCellViewModel.swift in Sources */,
+				E4DBA7222D031018007B0A41 /* AboutAppViewController.swift in Sources */,
 				E496EFD42CF205D3008C6682 /* NewsAndOffersViewController.swift in Sources */,
 				E43989A92C5E120A002F51C9 /* AppDelegate.swift in Sources */,
 				E4C39E232C830B1E0065B32F /* CatalogueViewController.swift in Sources */,
@@ -384,6 +391,7 @@
 				E45382E42CEF468A008018DE /* NavigationCellViewModel.swift in Sources */,
 				E496EFD62CF20A37008C6682 /* BigCardCollectionViewCell.swift in Sources */,
 				E47291F92C63A8D800E944E9 /* OnboardingViewModel.swift in Sources */,
+				E440B0B52D06DFCE00A9E98E /* StarButton.swift in Sources */,
 				E4E1A0BB2CF33D9A00D81845 /* NewsAndOffersViewModel.swift in Sources */,
 				E4C5E9D32C887A79005D4B00 /* CategoryViewController.swift in Sources */,
 				E48FD00E2C873767005A5593 /* Category.swift in Sources */,
